@@ -71,7 +71,7 @@ fn r_array() {
     let b: [i32; 5] = [1, 2, 3, 4, 5];
     // [3,3,3,3,3]
     let c = [3; 5];
-    // 访问越界，要注意
+    // 访问越界，要注意,编译器会检查出来
     println!(b[12])
 }
 
@@ -79,8 +79,8 @@ fn r_array() {
 fn r_slice() {
     let a = [1, 2, 3, 4, 5];
     // .. 和go里面的: 性质一样.
-    let b = a[..3];
-    println!("{}".a[4..])
+    let b = a[..2];
+    println!("{}",a[2..])
 }
 
 // 语句和表达式，语句包括表达式，语句返回值是空的，表达式有返回值{},
@@ -103,7 +103,7 @@ fn r_for_while_loop() {
     // 包头不包尾，类似python shell等语法
     for number in (1..4).rev() {
         // 输出 3 2 1
-        print!(number)
+        println!("{}", number)
     }
 }
 
@@ -164,5 +164,51 @@ impl User {
             name,
             age: 18,
         }
+    }
+}
+
+// 枚举类型
+// 别人可以用枚举类型。方式IpAddrKind::V4
+enum IpAddrKind {
+    // 数据可以是任何类型
+    V4(u8, u8, u8, u8),
+    V6,
+    // 枚举类型是结构体
+    V8 { a: u32 },
+}
+
+// 给枚举类型定义方法
+impl IpAddrKind {
+    fn call(&self) -> IpAddrKind {
+        self::V4
+    }
+}
+
+// Rust 中没有null
+fn r_null() {
+    // Some None这是 Prelude 预导入的Option<T>枚举类型的值，所以可以直接用。
+    let some_number = Some(5);
+    let some_string = Some("asd");
+    // 上面两个都可以推断处类型，
+    // 这里直接使用None是无法推断出类型的
+    //如果使用枚举要定义类型，应该这样写，但是Option<i32> 不是i32类型。
+    let absent_number: Option<i32> = None;
+    // 这里不能相加，检查会提示的。
+    let s2 = absent_number + some_number;
+}
+
+// if let
+fn r_if_let() {
+    let v = Some(8u32);
+    match v {
+        Some(3) => println!("three"),
+        // 表示其他类型的匹配，因为枚举类型必须穷举，相当于 default
+        _ => println!("other"),
+    }
+    // if let,只匹配一种情况，不用穷举。
+    if let Some(3) = v {
+        println!("three");
+    } else {
+        println!("other");
     }
 }
