@@ -143,4 +143,26 @@ fn r_struct(name: String, age: u32) {
     println!("{:#?}", user2);
 }
 
-
+// 结构体的方法
+// 可以有多个 impl User
+impl User {
+    // 获取名字的方法
+    // fn getName(&self) -> String {
+    //     // 这里之所以报错，是因为rust中，数据不能任意赋值
+    //     // 除了基本类型和实现了Copy的trait的类型。
+    //     // String在heap上，并且没主动实现copy，我们返回一个name时候，因为是借用，不能移交所有权。
+    //     self.name
+    // }
+    fn getAge(&self) -> u32 {
+        self.age
+    }
+    // 关联函数，关联函数不传self，可以直接通过结构体调用
+    // 调用方式有点像java中静态方法，功能类似go中NewObject这种。
+    // 调用方式 User::newUser("你好")
+    fn newUser(name: String) -> User {
+        User {
+            name,
+            age: 18,
+        }
+    }
+}
