@@ -256,3 +256,22 @@ fn r_vector() {
         SpreadsheetCell::Float(10.12),
     ];
 }
+
+// String,是对 Vec<u8>的包装
+fn r_string() {
+    // 更新
+    let mut s = String::from("foo");
+    s.push_str("bar");
+    // 单个字符
+    s.push('c');
+    // 拼接 可以使用+，也可以如下：
+    let s2 = format!("{}-{}", s, s);
+    // 这是utf-8编码，所以每次字符占用一个字节，
+    // 如果是unicode字符，那就是每个字符两个字节。
+    let len = String::from("Hasd").len();
+    // 字符串切割
+    // 如果这个字符是unicode字符，每两个字节表示一个字符，我们截取三个字节。也就是一个半字符
+    // 这种情况会发生panic，不能获取半个字符，所以，切割字符串的时候要慎重。
+    let sp  = &s[0..3];
+
+}
