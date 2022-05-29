@@ -3,7 +3,13 @@ use std::cmp::Ordering;
 use std::io;
 // trait 相当于接口，里面定义了一些方法。
 use rand::Rng;
-
+/*
+嵌套引用
+use std::io;
+use std::io::Write;
+上面两行相当于：
+use std::io::{self,Write};
+ */
 fn main() {
     // 带了一个！，表示这是一个宏不是一个函数。
     println!("Hello, world!");
@@ -80,7 +86,6 @@ fn r_slice() {
     let a = [1, 2, 3, 4, 5];
     // .. 和go里面的: 性质一样.
     let b = a[..2];
-    println!("{}",a[2..])
 }
 
 // 语句和表达式，语句包括表达式，语句返回值是空的，表达式有返回值{},
@@ -211,4 +216,43 @@ fn r_if_let() {
     } else {
         println!("other");
     }
+}
+
+// Vector，类似go中自动扩容的切片
+fn r_vector() {
+    // 创建
+    // let mut  v = Vec::new();
+    let mut v = vec![1, 2, 3, 4];
+    // 这种写法是有问题的，v中添加新的值后，vector可能扩容，所以，这行后面不能v.push(5)
+    // let first = &v[0];
+    // 追加值
+    v.push(5);
+    // 获取
+    // 这种出现越界会panic
+    let third: &i32 = &v[100];
+    println!("third:{}", third);
+    // 这种因为判断了None的情况，所以不会panic。
+    match v.get(100) {
+        Some(third) => println!("third:{}", third),
+        None => print!("none"),
+    }
+    // 改变
+    for i in &mut v {
+        *i += 50;
+    }
+    // 发现值已经被改变了
+    for i in v {
+        println!("{}", i)
+    }
+    // 以上为止，vector中只是放了相同的元素，通过和enum；类型配合。vector中可以放不同的类型的值。
+    enum SpreadsheetCell {
+        Int(i32),
+        Float(f64),
+        Text(String),
+    }
+    let row = vec![
+        SpreadsheetCell::Int(3),
+        SpreadsheetCell::Text(String::from("blue")),
+        SpreadsheetCell::Float(10.12),
+    ];
 }
