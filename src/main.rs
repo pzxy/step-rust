@@ -1,7 +1,8 @@
 use std::cmp::Ordering;
 // 默认会将 prelude 导入到每个包里面。如果要使用以外的库中内容，就需要使用 use将包导入进来。
 use std::io;
-use rand::Rng;// trait 相当于接口，里面定义了一些方法。
+// trait 相当于接口，里面定义了一些方法。
+use rand::Rng;
 
 fn main() {
     // 带了一个！，表示这是一个宏不是一个函数。
@@ -74,6 +75,14 @@ fn r_array() {
     println!(b[12])
 }
 
+// 切片
+fn r_slice() {
+    let a = [1, 2, 3, 4, 5];
+    // .. 和go里面的: 性质一样.
+    let b = a[..3];
+    println!("{}".a[4..])
+}
+
 // 语句和表达式，语句包括表达式，语句返回值是空的，表达式有返回值{},
 // ;是告诉一个语句的结束。
 fn r_fn() {
@@ -91,9 +100,47 @@ fn r_for_while_loop() {
     for e in a.iter() {
         println!("value:{}", e);
     }
-    // 包头不包尾
+    // 包头不包尾，类似python shell等语法
     for number in (1..4).rev() {
         // 输出 3 2 1
         print!(number)
     }
 }
+
+// 借用：将引用作为参数的，就是借用，如果要修改借用的数据，需要声明mut。
+
+
+// struct
+// 调试使用，rust包含调试功能，这是为这个结构体显示的选择这一个功能。
+#[derive(Debug)]
+struct User {
+    name: String,
+    age: u32,
+}
+
+// tuple struct
+struct Color(i32, u32, i32);
+
+fn r_struct(name: String, age: u32) {
+    // 必须全部赋值，不能像go中，只声明一部分
+    let user1 = User {
+        // 入参字段和结构体字段一致，可以直接简写，类似name。
+        name,
+        age: 32,
+    };
+    // ..user1 使用 user1中的值，
+    let user2 = User {
+        name: String::from("123"),
+        // 元素相同可以使用。
+        ..user1
+    };
+    let color = Color(1, 2, 3);
+    // 这样需要实现 Display
+    // println!("{}", user1);
+    // 这样需要实现 Debug，或者在结构体上加上 #[derive(Debug)]
+    println!("{:?}", user1);
+    // 打印更清晰
+    println!("{:#?}", user2);
+}
+
+
