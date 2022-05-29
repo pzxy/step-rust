@@ -1,6 +1,9 @@
 use std::cmp::Ordering;
+use std::collections::HashMap;
+use std::intrinsics::size_of;
 // 默认会将 prelude 导入到每个包里面。如果要使用以外的库中内容，就需要使用 use将包导入进来。
 use std::io;
+use std::ptr::hash;
 // trait 相当于接口，里面定义了一些方法。
 use rand::Rng;
 /*
@@ -272,6 +275,67 @@ fn r_string() {
     // 字符串切割
     // 如果这个字符是unicode字符，每两个字节表示一个字符，我们截取三个字节。也就是一个半字符
     // 这种情况会发生panic，不能获取半个字符，所以，切割字符串的时候要慎重。
-    let sp  = &s[0..3];
+    let sp = &s[0..3];
+}
 
+// HashMap,需要引入 use::collections::HashMap;
+// 同构，所有k-v必须是同一种类型，数组存在heap上。
+// HashMap性能一般，为了安全考虑，可以抵挡Dos攻击，如果要有高性能，实现hasher trait
+fn r_hashMap() {
+    // 创建
+    // let mut scores: HashMap<String, i32> = HashMap::new();
+    // let mut scores = HashMap::new();
+    // scores.insert(String::from("Blue"), 10);
+    // scores.insert(String::from("Yellow"), 10);
+
+    // 通过元组创建，可以创建很多种类型，hashMap是其中一种。
+    // let teams = vec![String::from("Blue"),String::from("Yellow")];
+    // let  initial_scores = vec![10,50];
+    // 这里 声明未指定类型，因为可以推断出来。
+    // let scores:HashMap<_,_> = teams.iter().zip(initial_scores.iter()).collect();
+    // HashMap所有权，基本类型会Copy， String类型会转移所有权。
+
+    // let field_name = String::from("Favorite Color");
+    // let field_value = String::from("Blue");
+    // let mut map = HashMap::new();
+    // 执行了这一步以后，field_name field_value的所有权，已经转移了，这两个字段后续已经无法使用了。
+    // 除非使用 map.insert(&field_name, &field_value);
+    // map.insert(field_name, field_value);
+
+    // 获取hashMap
+    // let mut scores = HashMap::new();
+    // scores.insert(String::from("Blue"), 10);
+    // let k = String::from("Blue");
+    // let score = scores.get(&team_name);
+    // 通过Option来判断
+    // match score {
+    //     Some(s) => println!("{}", s),
+    //     None => println!("team not exist"),
+    // }
+
+    // 遍历hashMap
+    // let mut scores = HashMap::new();
+    // scores.insert(String::from("Blue"), 10);
+    // scores.insert(String::from("Yellow"), 50);
+    // for (k, v) in &scores {
+    //     println!("{},{}", k, v);
+    // }
+
+    //更新hashMap，正常情况一样，相同就会覆盖
+    let mut scores = HashMap::new();
+    scores.insert(String::from("Blue"), 10);
+    // 这里会覆盖掉
+    scores.insert(String::from("Blue"), 50);
+    // 如果不存在再更新 entry, 并不会改变为60，因为 String::from("Blue") 已经存在了。
+    scores.entry(String::from("Blue")).or_insert(60);
+    println!("{:?}", scores);
+
+    // 例子：统计字符串单词数量
+    let text = "hello world wonderful world";
+    let mut map = HashMap::new();
+    for word in text.split_whitespace() {
+        let count = map.entry(word).or_insert(0);
+        *count += 1;
+    }
+    println!("{:#?}", map)
 }
