@@ -62,6 +62,7 @@ pub fn notify31<T, U>(a: T, b: U) -> String where
 }
 
 // 4. trait 作为返回值,要求返回类型必须实现了 Summary 这个trait
+// 这里为什么不行，是因为入参，编译器肯定知道类型的，参数，编辑器也必须知道类型。
 pub fn notify4(flag: bool) -> impl Summary {
     // 返回值需要实现Summary这个 trait，
     Tweet {
