@@ -5,6 +5,7 @@ mod r_struct;
 mod concept;
 mod control_flow;
 mod error;
+mod r_trait;
 
 use std::cmp::Ordering;
 use std::intrinsics::size_of;

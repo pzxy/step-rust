@@ -13,7 +13,7 @@ fn r_null() {
     let s2 = absent_number + some_number;
 }
 
-// 声明周期
+// 生命周期
 
 fn r_life() {
     {
@@ -25,3 +25,6 @@ fn r_life() {
         println!("r:{}", r);
     }
 }
+
+// 基本类型，分配在栈上的数据，都实现了Copy这个trait
+// 分配在heap上的数据，实现的是Clone
