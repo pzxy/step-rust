@@ -1,5 +1,3 @@
-
-
 // 借用：将引用作为参数的，就是借用，如果要修改借用的数据，需要声明mut。
 
 // Rust 中没有null
@@ -13,4 +11,17 @@ fn r_null() {
     let absent_number: Option<i32> = None;
     // 这里不能相加，检查会提示的。
     let s2 = absent_number + some_number;
+}
+
+// 声明周期
+
+fn r_life() {
+    {
+        let r;
+        {
+            let x = 5;
+            r = &x;
+        }
+        println!("r:{}", r);
+    }
 }

@@ -21,6 +21,10 @@ use std::io::Write;
 use std::io::{self,Write};
  */
 fn main() {
+}
+
+
+fn r_demo(){
     // 带了一个！，表示这是一个宏不是一个函数。
     println!("Hello, world!");
     // 1～101也是包头不包尾
@@ -55,10 +59,4 @@ fn main() {
             }
         }
     }
-}
-
-
-// 错误处理
-fn r_error() {
-
 }
