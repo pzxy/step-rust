@@ -1,17 +1,8 @@
 extern crate core;
 
-mod container;
-mod r_struct;
-mod concept;
-mod control_flow;
-mod error;
-mod r_trait;
-
 use std::cmp::Ordering;
-use std::intrinsics::size_of;
 // 默认会将 prelude 导入到每个包里面。如果要使用以外的库中内容，就需要使用 use将包导入进来。
 use std::io;
-use std::ptr::hash;
 // trait 相当于接口，里面定义了一些方法。
 use rand::Rng;
 /*
@@ -22,10 +13,11 @@ use std::io::Write;
 use std::io::{self,Write};
  */
 fn main() {
+    r_demo()
 }
 
 
-fn r_demo(){
+fn r_demo() {
     // 带了一个！，表示这是一个宏不是一个函数。
     println!("Hello, world!");
     // 1～101也是包头不包尾
