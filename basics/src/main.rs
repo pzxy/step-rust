@@ -1,5 +1,3 @@
-extern crate core;
-
 use std::cmp::Ordering;
 // 默认会将 prelude 导入到每个包里面。如果要使用以外的库中内容，就需要使用 use将包导入进来。
 use std::io;
@@ -17,7 +15,7 @@ fn main() {
 }
 
 
-fn r_demo() {
+pub fn r_demo() {
     // 带了一个！，表示这是一个宏不是一个函数。
     println!("Hello, world!");
     // 1～101也是包头不包尾
