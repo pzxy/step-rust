@@ -19,6 +19,8 @@
 //
 // test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
 mod closure;
+mod iterator;
+
 pub fn add_two(a: i32) -> i32 {
     a + 2
 }
@@ -26,6 +28,8 @@ pub fn add_two(a: i32) -> i32 {
 // 这是单元测试
 #[cfg(test)]
 mod tests {
+    use crate::iterator::{iterator31, iterator32, iterator4};
+
     // 加了 #[test]就是测试函数,也可以不加
     #[test]
     fn it_works() {
@@ -63,6 +67,13 @@ mod tests {
         } else {
             Err(String::from("测试失败"))
         }
+    }
+
+    #[test]
+    fn t_iterator() {
+        iterator31();
+        iterator32();
+        iterator4();
     }
 }
 
