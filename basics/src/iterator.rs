@@ -1,3 +1,5 @@
+use std::rt::panic_count::count_is_zero;
+
 // 迭代器：
 // 迭代器模式：对一系列项执行某些任务。
 // rust迭代器：懒惰的，除非调用消费迭代器的方法，否则迭代器本身没有任何效果。
@@ -49,3 +51,47 @@ pub fn iterator4() {
     let v2: Vec<_> = v1.iter().map(|x| x + 1).collect();
     assert_eq!(v2, vec![2, 3, 4])
 }
+
+// filter 迭代适配器
+// 入参：闭包
+// 返回值：bool，如果为true，则会返回，当调用.collect()时，会收集返回的值。
+
+// 5. 创建自定义的迭代器
+struct Counter {
+    count: u32,
+}
+
+impl Counter {
+    fn new() -> Counter {
+        Counter {
+            count: 0,
+        }
+    }
+}
+
+impl Iterator for Counter {
+    type Item = u32;
+
+    fn next(&mut self) -> Option<Self::Item> {
+        if self.count < 5 {
+            self.count += 1;
+            Some(self.count)
+        } else {
+            None
+        }
+    }
+}
+
+fn iterator5() {
+    let sum: u32 = Counter::new()
+        .zip(Counter::new().skip(1))
+        .map(|(a, b)| a * b)
+        // 能够被3整除
+        .filter(|x| x % 3 == 0)
+        .sum();
+    // 18
+    println!("sum:{}", sum)
+}
+
+// 6. 零开销抽象，Zero-Cost Abstraction
+// 看起来迭代器抽象了，但是编译后和底层代码没有区别的。
