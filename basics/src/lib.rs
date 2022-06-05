@@ -18,7 +18,7 @@
 // running 0 tests
 //
 // test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
-
+mod closure;
 pub fn add_two(a: i32) -> i32 {
     a + 2
 }
