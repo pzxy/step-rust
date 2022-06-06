@@ -110,4 +110,24 @@ API token 会存储在本地`~/.cargo/credentials`中.
     edition = "2021"
     ```
    [更多元数据...](https://doc.rust-lang.org/cargo/reference/manifest.html)
-5. 发布 `cargo publish` 命令,首次提交需要验证下邮箱,根据提示操作就好了. 
+5. 发布 `cargo publish` 命令,首次提交需要验证下邮箱,根据提示操作就好了.
+
+## 8. 从 crate.io 安装二进制 crate
+- 命令: cargo install
+- 来源: [https//crate.io](https//crate.io)
+- 限制: 只能安装具有二进制目标(binary target)的 crate,也就是crate 有 `*/src/main.rs` 文件.
+    - 二进制目标 binary target:是一个可运行程序,由 carte 生成,一般 crate 中会描述,`library target`和`binary target`.
+- 默认路径:`$HOME/.cargo/bin`
+
+### 8.1 使用自定义命令扩展 cargo
+安装了以后,可以直接使用 crate 的名字来运行.
+如果 `$HOME/.cargo/bin` 中程序的名字是这种命名结构`cargo-something`,
+就可以像子命令一样运行,类似这样`cargo something`,并且还可以使用`cargo --list`来列出所有类似的`something`的子命令.
+所以我们安装了一个工具以后,可以将名字改成类似这样的,然后就可以愉快的玩耍了.
+例如:
+```bash 
+mv step-rust cargo-demo
+# 然后,这样就可以执行了.
+cargo demo
+```
+好处: 可使用 `cargo install` 来安装扩展,想内置工具一样来运行.
