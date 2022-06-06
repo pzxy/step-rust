@@ -90,6 +90,8 @@ fn main() {
 
 
 ## 7. 发布项目到 crates.io 上
+需要注意的是,发布上去的版本是不能删除的,这保证了被人可以放心的使用你的 crate 而不用担心被删除.
+而且 crate 的名字是唯一的.
 1. 创建 [crates.io ](https://crates.io/)账号,通过 github 账号登录
 2. 用户设置-> API Tokens ->New Token
 3. 运行命令 `cargo login 获取的APIToken`,这个 token 一定要保密,泄露以后要在 [https://crates.io/](https://crates.io/) 重新生成,
