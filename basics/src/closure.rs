@@ -50,16 +50,16 @@ impl<T> Cacher<T>
         }
     }
 
-    fn value(&mut self, arg: u32) -> u32 {
-        match self.value {
-            Some(v) => v,
-            None => {
-                let v = self.calculation(arg);
-                self.value = Some(v);
-                v
-            }
-        }
-    }
+    // fn value(&mut self, arg: u32) -> u32 {
+    //     match self.value {
+    //         Some(v) => v,
+    //         None => {
+    //             let v = self.calculation(arg);
+    //             self.value = Some(v);
+    //             v
+    //         }
+    //     }
+    // }
 }
 // vfn closure3(){
 // let e = Cacher::new( | num | {

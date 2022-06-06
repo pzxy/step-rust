@@ -1,8 +1,9 @@
 use std::cmp::Ordering;
 // 默认会将 prelude 导入到每个包里面。如果要使用以外的库中内容，就需要使用 use将包导入进来。
 use std::io;
+
 // trait 相当于接口，里面定义了一些方法。
-use rand::Rng;
+// use rand::Rng;
 /*
 嵌套引用
 use std::io;
@@ -19,7 +20,8 @@ pub fn r_demo() {
     // 带了一个！，表示这是一个宏不是一个函数。
     println!("Hello, world!");
     // 1～101也是包头不包尾
-    let secret_number = rand::thread_rng().gen_range(1, 101);
+    // let secret_number = rand::thread_rng().gen_range(1, 101);
+    let secret_number = 23;
     println!("神秘数字: {}", secret_number);
     loop {
         println!("猜一个数");

@@ -89,7 +89,7 @@ fn main() {
 另外,这样使用`pub use`的话,生成的文档也会不同.
 
 
-## 7. 将自己的项目发布到 crates.io 上
+## 7. 发布项目到 crates.io 上
 1. 创建 [crates.io ](https://crates.io/)账号,通过 github 账号登录
 2. 用户设置-> API Tokens ->New Token
 3. 运行命令 `cargo login 获取的APIToken`,这个 token 一定要保密,泄露以后要在 [https://crates.io/](https://crates.io/) 重新生成,
@@ -108,4 +108,4 @@ API token 会存储在本地`~/.cargo/credentials`中.
     edition = "2021"
     ```
    [更多元数据...](https://doc.rust-lang.org/cargo/reference/manifest.html)
-5. 发布 `cargo publish` 命令
+5. 发布 `cargo publish` 命令,首次提交需要验证下邮箱,根据提示操作就好了. 
