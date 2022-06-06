@@ -1,3 +1,6 @@
+//! # 外层注释
+//! 通常用于描述 crate 以及模块的特性.
+
 // cargo test 命令，执行所有测试
 // 下面是打印信息
 // 运行了一个测试
@@ -21,10 +24,18 @@
 mod closure;
 mod iterator;
 
-pub fn add_two(a: i32) -> i32 {
-    a + 2
-}
+/// 这是文档注释
+/// # Examples
+/// ```
+///   let arg = 5;
+///   let answer = step_rust::add_one(arg);
+///
+///   assert_eq!(6,answer)
+/// ```
 
+pub fn add_two(x: i32) -> i32 {
+    x + 2
+}
 // 这是单元测试
 #[cfg(test)]
 mod tests {
