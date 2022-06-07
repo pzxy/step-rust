@@ -23,6 +23,7 @@
 // test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
 mod closure;
 mod iterator;
+mod pointer;
 
 /// 这是文档注释
 /// # Examples
@@ -36,10 +37,12 @@ mod iterator;
 pub fn add_two(x: i32) -> i32 {
     x + 2
 }
+
 // 这是单元测试
 #[cfg(test)]
 mod tests {
     use crate::iterator::{iterator31, iterator32, iterator4};
+    use crate::pointer::{pointer2, pointer3, pointer4};
 
     // 加了 #[test]就是测试函数,也可以不加
     #[test]
@@ -85,6 +88,13 @@ mod tests {
         iterator31();
         iterator32();
         iterator4();
+    }
+
+    #[test]
+    fn t_pointer() {
+        pointer2();
+        pointer3();
+        pointer4();
     }
 }
 
