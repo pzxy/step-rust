@@ -117,7 +117,7 @@ pub fn pointer3() {
 // - strong_count 获取引用计数,当所有值为 0 时释放这个值.
 // - weak_count 获取引用计数,不为 0 时也可释放.
 
-use std::rc::Rc;
+use std::rc::{Rc, Weak};
 // 导入枚举值
 use crate::pointer::List2::{Cons2, Nil2};
 
@@ -158,7 +158,7 @@ pub fn pointer4() {
     // 这里c 离开作用域了可以看到减少了
     println!("refer count after leave c :{}", Rc::strong_count(&a));
 
-    //输出:
+    // 输出:
     // refer count after create a:1
     // refer count after create b:2
     // refer count after create c:3
@@ -204,3 +204,95 @@ pub fn pointer5() {
 
 // Cell<T> 通过复制访问数据
 // Mutex<T> 跨线程访问内存可变
+
+// 6. 写一个循环引用,造成内存泄漏,蛇咬住自己的尾巴.
+use crate::pointer::Node::{Cons4, Nil4};
+use crate::pointer::Node2::{Cons5, Nil5};
+
+#[derive(Debug)]
+enum Node {
+    // Rc 增加计数,RefCell 修改 Rc
+    Cons4(i32, RefCell<Rc<Node>>),
+    Nil4,
+}
+
+impl Node {
+    fn tail(&self) -> Option<&RefCell<Rc<Node>>> {
+        match self {
+            // Some 返回的都是引用
+            Cons4(_, item) => Some(item),
+            Nil4 => None,
+        }
+    }
+}
+
+// 这里会出现循环引用.
+pub fn pointer6() {
+    // a 节点
+    let a = Rc::new(Cons4(5, RefCell::new(Rc::new(Nil4))));
+    // b 节点 -> a 节点
+    let b = Rc::new(Cons4(10, RefCell::new(Rc::clone(&a))));
+    if let Some(link) = a.tail() {
+        // a 节点 -> b 节点
+        *link.borrow_mut() = Rc::clone(&b);
+    }
+    // 出现堆栈溢出 overflowed  stack
+    // println!("{:?}",b.tail())
+}
+
+// 7. 如何避免循环引用?
+// 将 Rc<T> 换成 Weak<T> 实例的 strong_count 加 1,Rc<T>的实例只有在 strong_count 为 0 的时候才会被清理.
+// Rc<T>实例通过调用 Rc::downgrade 方法可以创建的 WeakReference(弱引用):
+// - 返回类型是 Weak<T>(智能指针)
+// - 调用 Rc::downgrade 会为 weak_count 加 1.
+// Rc<T> 使用 weak_count 来追踪存在多少 Weak<T>.
+// weak_count 不为 0 并不影响 Rc<T>实例的道理
+// 强引用为 0 时,弱引用会自动断开.
+// 使用 Weak<T> 实例上的调用的 upgrade 方法,返回 Option<Rc<T>>,用此来判断他指向的值是否存在.
+
+#[derive(Debug)]
+enum Node2 {
+    // Rc 增加计数,RefCell 修改 Rc
+    Cons5(i32, RefCell<Weak<Node2>>),
+    Nil5,
+}
+
+impl Node2 {
+    fn tail(&self) -> Option<&RefCell<Weak<Node2>>> {
+        // println!("inner:{:?}", self);
+        match self {
+            // Some 返回的都是引用
+            Cons5(_, item) => {
+                // println!("value:{:?}", item.borrow().upgrade());
+                Some(item)
+            },
+            Nil5 => None,
+        }
+    }
+}
+// 这里虽然写法差不多,但是没有出现循环应用.
+// Rc::downgrade(&a),获取 Rc 的弱引用
+// link.borrow().upgrade(),获取弱引用指向的值.
+// rust 中实现一个链表没必要一定要这样写,和go 里面一样写也是可以的.
+pub fn pointer7() {
+    // a 节点
+    let a = Rc::new(Cons5(5, RefCell::new(Weak::new())));
+    // b 节点 -> a 节点
+    println!("a strong:{},weak:{}", Rc::strong_count(&a), Rc::weak_count(&a));
+    let b = Rc::new(Cons5(10, RefCell::new(Rc::downgrade(&a))));
+    println!("a strong:{},weak:{}", Rc::strong_count(&a), Rc::weak_count(&a));
+    println!("b strong:{},weak:{}", Rc::strong_count(&b), Rc::weak_count(&b));
+
+    if let Some(link) = a.tail() {
+        // a 节点 -> b 节点
+        *link.borrow_mut() = Rc::downgrade(&b);
+        // 获取弱引用指向的值,应该是 b 的值 10
+        println!("weak pointer value:{:?}", link.borrow().upgrade());
+    }
+    println!("a strong:{},weak:{}", Rc::strong_count(&a), Rc::weak_count(&a));
+    println!("b strong:{},weak:{}", Rc::strong_count(&b), Rc::weak_count(&b));
+    // 出现堆栈溢出 overflowed  stack
+    println!("{:?}", b.tail())
+}
+
+

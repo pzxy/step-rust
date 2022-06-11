@@ -42,7 +42,7 @@ pub fn add_two(x: i32) -> i32 {
 #[cfg(test)]
 mod tests {
     use crate::iterator::{iterator31, iterator32, iterator4};
-    use crate::pointer::{pointer2, pointer3, pointer4, pointer5};
+    use crate::pointer::{pointer2, pointer3, pointer4, pointer5, pointer6, pointer7};
 
     // 加了 #[test]就是测试函数,也可以不加
     #[test]
@@ -96,6 +96,12 @@ mod tests {
         pointer3();
         pointer4();
         pointer5();
+    }
+
+    #[test]
+    fn t_pointer6() {
+        // pointer6();
+        pointer7()
     }
 }
 
