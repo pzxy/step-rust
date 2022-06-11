@@ -51,6 +51,7 @@ impl<T> Deref for MyBox<T> {
 }
 
 pub fn pointer2() {
+    println!("-------pointer2------");
     let x = 5;
     let y = MyBox::new(x);
     assert_eq!(5, x);
@@ -91,6 +92,8 @@ impl Drop for DropPointer {
 }
 
 pub fn pointer3() {
+    println!("-------pointer3------");
+
     let a = DropPointer { data: String::from("第一") };
     let b = DropPointer { data: String::from("第二") };
     println!("pointer3 over");
@@ -109,15 +112,11 @@ pub fn pointer3() {
 }
 
 
-// 4. Rc<T> 不在预先导入模块中,只使用于单线程.并且只能通过不可变引用.
+// 4. Rc<T> ,refer count,不在预先导入模块中,只使用于单线程.并且只允许不可变借用.
 // - clone 增加引用计数.不会执行深度 copy 操作,只是增加引用计数的值.
 // - strong_count 获取引用计数,当所有值为 0 时释放这个值.
 // - weak_count 获取引用计数,不为 0 时也可释放.
-//    b--->3
-//           \
-//       a--> 5--->10--->nil
-//           /
-//    c---->4
+
 use std::rc::Rc;
 // 导入枚举值
 use crate::pointer::List2::{Cons2, Nil2};
@@ -128,7 +127,14 @@ enum List2 {
     Nil2,
 }
 
+//    b--->3
+//           \
+//       a--> 5--->10--->nil
+//           /
+//    c---->4
 pub fn pointer4() {
+    println!("-------pointer4------");
+
     // let a = Cons(5,
     //              Box::new(Cons(10,
     //                            Box::new(Nil))));
@@ -147,7 +153,7 @@ pub fn pointer4() {
 
     {
         let c = Cons2(4, Rc::clone(&a));
-        println!("refer count  after create c:{}", Rc::strong_count(&a));
+        println!("refer count after create c:{}", Rc::strong_count(&a));
     }
     // 这里c 离开作用域了可以看到减少了
     println!("refer count after leave c :{}", Rc::strong_count(&a));
@@ -155,6 +161,46 @@ pub fn pointer4() {
     //输出:
     // refer count after create a:1
     // refer count after create b:2
-    // refer count  after create c:3
+    // refer count after create c:3
     // refer count after leave c :2
 }
+
+
+// 5. RefCell<T> 只会在运行时检查借用规则,
+// 可以通过调用方法,来修改内部的值,虽然外部是不可变的,但是内部是可变的,从而达到内部可变性.
+// 通俗点讲,就是将数据放在head上,然后 refcell 中维护一个可变引用和多个不可变引用的变量,这些变量只能通过指针获取到.
+use std::cell::RefCell;
+use crate::pointer::List3::{Cons3, Nil3};
+
+#[derive(Debug)]
+enum List3 {
+    Cons3(Rc<RefCell<i32>>, Rc<List3>),
+    Nil3,
+}
+
+pub fn pointer5() {
+    println!("-------pointer5------");
+
+    let v = RefCell::new(5);
+    println!("value1:{}", v.borrow());
+    // 可变借用,直接修改里面的值
+    *v.borrow_mut() += 10;
+    println!("plus 10, value2:{}", v.borrow());
+
+    // 常用例子,和 Rc 配合使用
+    // RefCell 可以通过borrow_mut 修改内部值
+    // Rc 可以通过clone 来创建增加引用计数.
+
+    let value = Rc::new(RefCell::new(5));
+    let a = Rc::new(Cons3(Rc::clone(&value), Rc::new(Nil3)));
+    let b = Cons3(Rc::new(RefCell::new(6)), Rc::clone(&a));
+    let c = Cons3(Rc::new(RefCell::new(10)), Rc::clone(&a));
+    // 改变内部值
+    *value.borrow_mut() += 10;
+    println!("a after = {:?}", a);
+    println!("b after = {:?}", b);
+    println!("c after = {:?}", c);
+}
+
+// Cell<T> 通过复制访问数据
+// Mutex<T> 跨线程访问内存可变
