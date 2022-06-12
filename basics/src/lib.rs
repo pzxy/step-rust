@@ -24,6 +24,7 @@
 mod closure;
 mod iterator;
 mod pointer;
+mod thread;
 
 /// 这是文档注释
 /// # Examples
@@ -43,6 +44,7 @@ pub fn add_two(x: i32) -> i32 {
 mod tests {
     use crate::iterator::{iterator31, iterator32, iterator4};
     use crate::pointer::{pointer2, pointer3, pointer4, pointer5, pointer6, pointer7};
+    use crate::thread::{thread1, thread2, thread3, thread33, thread4Arc};
 
     // 加了 #[test]就是测试函数,也可以不加
     #[test]
@@ -102,6 +104,15 @@ mod tests {
     fn t_pointer6() {
         // pointer6();
         pointer7()
+    }
+
+    #[test]
+    fn t_thread() {
+        thread1();
+        thread2();
+        thread3();
+        thread33();
+        thread4Arc();
     }
 }
 
