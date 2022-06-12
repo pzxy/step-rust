@@ -25,12 +25,7 @@ mod closure;
 mod iterator;
 mod pointer;
 mod thread;
-mod container;
-mod concept;
 mod control_flow;
-mod error;
-mod r_struct;
-mod r_trait;
 
 /// 这是文档注释
 /// # Examples
