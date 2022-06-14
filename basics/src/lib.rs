@@ -26,6 +26,7 @@ mod iterator;
 mod pointer;
 mod thread;
 mod control_flow;
+mod pattern;
 
 /// 这是文档注释
 /// # Examples
