@@ -27,6 +27,7 @@ mod pointer;
 mod thread;
 mod control_flow;
 mod pattern;
+mod r_unsafe;
 
 /// 这是文档注释
 /// # Examples
@@ -46,6 +47,7 @@ pub fn add_two(x: i32) -> i32 {
 mod tests {
     use crate::iterator::{iterator31, iterator32, iterator4};
     use crate::pointer::{pointer2, pointer3, pointer4, pointer5, pointer6, pointer7};
+    use crate::r_unsafe::unsafe4;
     use crate::thread::{thread1, thread2, thread3, thread33, thread4Arc};
 
     // 加了 #[test]就是测试函数,也可以不加
@@ -115,6 +117,11 @@ mod tests {
         thread3();
         thread33();
         thread4Arc();
+    }
+
+    #[test]
+    fn t_unsafe() {
+        unsafe4()
     }
 }
 
