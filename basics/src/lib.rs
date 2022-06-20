@@ -28,6 +28,7 @@ mod thread;
 mod control_flow;
 mod pattern;
 mod r_unsafe;
+mod r_trait;
 
 /// 这是文档注释
 /// # Examples
