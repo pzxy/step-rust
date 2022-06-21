@@ -1,13 +1,3 @@
-// 类型
-fn r_type() {
-    // bool类型就是 bool
-    // 整型 i32 u32 isize usize等
-    // 浮点型 f32 f64
-    // 字符类型比较特殊，是Unicode类型，支持emoji，比较特殊。范围 U+0000~U+D7FF , U+E000~U+10FFFF 。
-    let a = '2';
-    let b = '$';
-    let c = '🤔';
-}
 
 // struct
 // 调试使用，rust包含调试功能，这是为这个结构体显示的选择这一个功能。

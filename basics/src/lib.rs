@@ -29,6 +29,7 @@ mod control_flow;
 mod pattern;
 mod r_unsafe;
 mod r_trait;
+mod r_type;
 
 /// 这是文档注释
 /// # Examples
