@@ -32,7 +32,7 @@ fn closure2() {
 
 // 3. fn trait
 struct Cacher<T>
-    where T: Fn(u32) -> u32,
+where T: Fn(u32) -> u32,
 {
     // 闭包
     calculation: T,
@@ -41,7 +41,7 @@ struct Cacher<T>
 }
 
 impl<T> Cacher<T>
-    where T: Fn(u32) -> u32,
+where T: Fn(u32) -> u32,
 {
     fn new(calculation: T) -> Cacher<T> {
         Cacher {
@@ -69,3 +69,78 @@ impl<T> Cacher<T>
 // let s = e.value(2);
 //
 // }
+
+/******************************** 高级部分 ********************************/
+
+// 4. 函数指针
+// 可以将函数传递给其他函数
+// 函数在传递过程中会被强制转换成 fn 类型
+// fn 类型就是 函数指针(function pointer)
+fn add_one(x: i32) -> i32 {
+    x + 1
+}
+
+// 第一个参数是一个函数指针,
+fn do_twice(f: fn(i32) -> i32, arg: i32) -> i32 {
+    f(arg) + f(arg)
+}
+
+fn closure4() {
+    let answer = do_twice(add_one, 5);
+    println!("{}", answer)
+}
+
+// 5. 函数指针与闭包的不同
+// fn 是一个类型,不是一个 trait
+// - 可以直接指定 fn 为参数类型,不用声明一个以 Fn trait 为约束的泛型参数
+// 函数指针实现了全部 3 种闭包 trait(Fn,FnMut,FnOnce):
+// - 总是可以把函数指针用作参数,传递给一个接受闭包的函数
+// - 所以,常用搭配闭包的 trait 的泛型来编写函数:这样可以同时接受闭包和普通函数
+// 某些情景,指向接受 fn 而不接受闭包:
+// - 与外部不支持闭包的代码交互:c 函数
+fn closure5() {
+    let listOfNumbers = vec![1, 2, 3];
+    let listOfStrings: Vec<String> = listOfNumbers
+        .iter()
+        // 这里也可以这样写,因为我们查看 map 函数,发现 F 其实是:FnMut(Self::Item) -> B
+        // 是三种闭包 trait 中的一种.
+        //.map(ToString::to_string)
+        .map(|i| i.to_string())
+        .collect();
+
+    enum Status {
+        Value(u32),
+        Stop,
+    }
+    // 初始化 Value,其实用的是下面这个函数
+    // 所以 map 可以将这个函数传进去.
+    // let v = Status::Value(3);
+    let list_of_status: Vec<Status> =
+        (0u32..20)
+            .map(Status::Value)
+            .collect();
+}
+
+//   fn map<B, F>(self, f: F) -> Map<Self, F>
+//     where
+//         Self: Sized,
+//         F: FnMut(Self::Item) -> B,
+//     {
+//         Map::new(self, f)
+//     }
+
+
+// 6. 返回闭包
+// 闭包使用 trait 进行表达,无法再函数中直接返回一个闭包,
+// 可以将一个实现了该 trait 的具体类型作为返回值.
+
+// 不能返回一个闭包,因为在编译时,不能判断返回值的大小
+// 也是 r_type 中 5, 必须实现了 Sized Trait 的类型才能判断出大小
+// fn return_closure()-> Fn(i32) -> i32 {
+//     |x| x+1
+// }
+
+// 不能判断大小时,可以放在指针后面,比如 Box 中.
+fn return_closure() -> Box<dyn Fn(i32) -> i32> {
+    Box::new(|x| x + 1)
+}

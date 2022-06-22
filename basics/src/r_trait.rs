@@ -1,5 +1,4 @@
 use std::fmt::{Debug, Display, format, Formatter, write};
-use std::intrinsics::offset;
 
 // 类似接口
 // 但不完全是，一般高级语言的接口是不自己实现方法的，
