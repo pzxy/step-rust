@@ -30,6 +30,7 @@ mod pattern;
 mod r_unsafe;
 mod r_trait;
 mod r_type;
+mod marco;
 
 /// 这是文档注释
 /// # Examples
