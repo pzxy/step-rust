@@ -144,3 +144,20 @@ fn closure5() {
 fn return_closure() -> Box<dyn Fn(i32) -> i32> {
     Box::new(|x| x + 1)
 }
+
+
+// rust 闭包的本质,捕获上下文参数
+// fn counter(i:i32) -> fn(i32) -> i32 {
+//     fn inc(n:i32)->i32 {
+//         // i 是counter函数的参数,所以不能被 inc 内部直接访问
+//         n+i
+//     }
+//     inc
+// }
+
+// 这里返回值是实现了 FnMut 这个 trait 的一个 匿名函数
+// 这种情况才是rust 中得闭包,rust 中闭包,也就是可以捕获上下文参数的函数,必须实现 Fn,FnMut FnOnce 三个 trait
+fn counter(i:i32) -> impl FnMut(i32) -> i32 {
+    // 将所有权,转移到闭包中
+   move |n| n+i
+}

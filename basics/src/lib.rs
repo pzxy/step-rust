@@ -31,6 +31,7 @@ mod r_unsafe;
 mod r_trait;
 mod r_type;
 mod marco;
+mod r_func;
 
 /// 这是文档注释
 /// # Examples
