@@ -1,3 +1,5 @@
+mod offer03;
+
 #[cfg(test)]
 mod tests {
     #[test]

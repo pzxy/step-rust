@@ -1,4 +1,3 @@
-use step_rust;
 use crate::common::setup;
 
 //导入本目录下的模块
@@ -12,5 +11,4 @@ fn demo() {
     // 或者tests目录下的其他模块，通过mod引用进来，来调用。
 
     setup();
-    assert_eq!(125, step_rust::add_two(123))
 }

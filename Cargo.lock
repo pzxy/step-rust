@@ -16,6 +16,10 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a06f77d526c1a601b7c4cdd98f54b5eaabffc14d5f2f0296febdc7f357c6d3ba"
 
 [[package]]
+name = "leetcode"
+version = "0.1.0"
+
+[[package]]
 name = "libc"
 version = "0.2.126"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -73,6 +77,7 @@ name = "step"
 version = "0.1.0"
 dependencies = [
  "basics",
+ "leetcode",
  "rand 0.4.6",
 ]
 
