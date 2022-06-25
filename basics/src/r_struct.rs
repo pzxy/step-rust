@@ -9,6 +9,9 @@ struct User {
 
 // tuple struct
 struct Color(i32, u32, i32);
+// 元组结构体只包含一个元素时就是 newType 模式
+// 可以定义分数的一些方法,可以和 u32进行区分
+struct Score(u32);
 
 fn r_struct(name: String, age: u32) {
     // 必须全部赋值，不能像go中，只声明一部分
@@ -31,6 +34,8 @@ fn r_struct(name: String, age: u32) {
     // 打印更清晰
     println!("{:#?}", user2);
 }
+// 单元结构体,不占用空间
+struct Unit;
 
 // 结构体的方法
 // 可以有多个 impl User
