@@ -1,4 +1,4 @@
-mod offer03;
+mod offer03_数组中重复数字;
 
 #[cfg(test)]
 mod tests {
