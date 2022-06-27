@@ -1,10 +1,14 @@
-mod offer03_数组中重复数字;
+mod offer04;
+mod offer03_find_repeat_number;
 
 #[cfg(test)]
 mod tests {
+    use crate::offer04::find_number_in2_d_array;
+
     #[test]
     fn it_works() {
-        let result = 2 + 2;
-        assert_eq!(result, 4);
+        let s = [[-5]];
+        let array = find_number_in2_d_array(s, -10);
+        println!("{}", array)
     }
 }
