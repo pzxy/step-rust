@@ -1,11 +1,11 @@
 mod offer04_find_number_in2_d_array;
 mod offer03_find_repeat_number;
-mod offer05;
+mod offer05_replace_space;
 
 #[cfg(test)]
 mod tests {
     use crate::offer04_find_number_in2_d_array::find_number_in2_d_array;
-    use crate::offer05::replace_space;
+    use crate::offer05_replace_space::replace_space;
 
     #[test]
     fn it_works() {
@@ -20,4 +20,5 @@ mod tests {
         println!("{}",ret);
         assert_eq!(ret, "we%20are%20happy")
     }
+
 }
