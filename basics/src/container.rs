@@ -21,7 +21,7 @@ fn r_array() {
     // [3,3,3,3,3]
     let c = [3; 5];
     // 访问越界，要注意,编译器会检查出来
-    println!(b[12])
+    // println!(b[12])
 }
 
 // 切片
@@ -46,7 +46,8 @@ fn r_vector() {
     // 创建
     // let mut  v = Vec::new();
     let mut v = vec![1, 2, 3, 4];
-    // 这种写法是有问题的，v中添加新的值后，vector可能扩容，所以，这行后面不能v.push(5)
+    // 这种写法是有问题的，v中添加新的值后，vector可能扩容，
+    // 引用地址可能变化，所以，这行后面不能v.push(5)
     // let first = &v[0];
     // 追加值
     v.push(5);
@@ -95,7 +96,7 @@ fn r_string() {
     // 字符串切割
     // 如果这个字符是unicode字符，每两个字节表示一个字符，我们截取三个字节。也就是一个半字符
     // 这种情况会发生panic，不能获取半个字符，所以，切割字符串的时候要慎重。
-    let sp = &s[0..3];
+    // let sp = &s[0..3];
 }
 
 // HashMap,需要引入 use::collections::HashMap;

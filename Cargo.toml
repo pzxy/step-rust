@@ -3,4 +3,5 @@
 members = [
     "basics",
     "step",
+    "algorithms/leetcode",
 ]
