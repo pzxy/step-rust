@@ -8,7 +8,10 @@
 // 输出：[2,3,1]
 
 // Definition for singly-linked list.
-// #[derive(PartialEq, Eq, Clone, Debug)]
+
+use std::simd::i32x2;
+
+#[derive(PartialEq, Eq, Clone, Debug)]
 pub struct ListNode {
     pub val: i32,
     pub next: Option<Box<ListNode>>,
@@ -16,11 +19,9 @@ pub struct ListNode {
 
 impl ListNode {
     #[inline]
+    // 内联,编译后会内联到其他代码中.
     fn new(val: i32) -> Self {
-        ListNode {
-            next: None,
-            val,
-        }
+        ListNode { next: None, val }
     }
 }
 
@@ -37,5 +38,15 @@ pub fn reverse_print(head: Option<Box<ListNode>>) -> Vec<i32> {
         stack.push(cur.val);
         // curNode 向后移动
     }
-    stack.iter().rev().map(|&x|x).collect::<Vec<i32>>()
+    stack.iter().rev().map(|&x| x).collect::<Vec<i32>>()
+}
+
+pub fn reverse_print2(head: Option<Box<ListNode>>) -> Vec<i32> {
+    let mut p = head;
+    let mut stack = Vec::new();
+    while let Some(mut cur) = p {
+        p = cur.next.take();
+        stack.push(cur.val)
+    }
+    stack.iter().rev().map(|&x|x).collect()
 }
