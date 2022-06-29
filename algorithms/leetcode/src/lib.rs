@@ -1,6 +1,7 @@
 mod offer04_find_number_in2_d_array;
 mod offer03_find_repeat_number;
 mod offer05_replace_space;
+mod offer06_reverse_print;
 
 #[cfg(test)]
 mod tests {
