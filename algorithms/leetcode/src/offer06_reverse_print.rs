@@ -9,8 +9,6 @@
 
 // Definition for singly-linked list.
 
-use std::simd::i32x2;
-
 #[derive(PartialEq, Eq, Clone, Debug)]
 pub struct ListNode {
     pub val: i32,
@@ -48,5 +46,5 @@ pub fn reverse_print2(head: Option<Box<ListNode>>) -> Vec<i32> {
         p = cur.next.take();
         stack.push(cur.val)
     }
-    stack.iter().rev().map(|&x|x).collect()
+    stack.iter().rev().map(|&x| x).collect()
 }
