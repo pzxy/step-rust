@@ -52,20 +52,20 @@ pub fn build_tree(preorder: Vec<i32>, inorder: Vec<i32>) -> Option<Rc<RefCell<Tr
     if preorder.len() > 5000 {
         return None;
     }
-    for (i,root) in inorder.iter().enumerate() {
+    for (i, root) in inorder.iter().enumerate() {
         if root == preorder[0] {
-            return Some(Rc::new(RefCell::new(TreeNode{
+            return Some(Rc::new(RefCell::new(TreeNode {
                 val: *root,
-                left: Self::build_tree(preorder[1..i+1].to_vec(),inorder[0..i].to_vec()),
-                right: Self::build_tree(preorder[i+1..].to_vec(),inorder[i+1..].to_vec()),
-            })))
+                left: Self::build_tree(preorder[1..i + 1].to_vec(), inorder[0..i].to_vec()),
+                right: Self::build_tree(preorder[i + 1..].to_vec(), inorder[i + 1..].to_vec()),
+            })));
         }
     }
     None
 }
 
 // 时间换空间
-fn build(preorder: &[i32], inorder: &[i32]) -> Option<Rc<RefCell<TreeNode>>>  {
+fn build(preorder: &[i32], inorder: &[i32]) -> Option<Rc<RefCell<TreeNode>>> {
     if preorder.is_empty() {
         return None;
     }
