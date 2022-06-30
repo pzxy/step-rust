@@ -24,7 +24,6 @@
 
 use std::cell::RefCell;
 use std::rc::Rc;
-use std::slice::range;
 
 // Definition for a binary tree node.
 #[derive(Debug, PartialEq, Eq)]
@@ -44,6 +43,7 @@ impl TreeNode {
         }
     }
 }
+// 空间换时间
 
 pub fn build_tree(preorder: Vec<i32>, inorder: Vec<i32>) -> Option<Rc<RefCell<TreeNode>>> {
     if preorder.len() != inorder.len() {
@@ -56,10 +56,32 @@ pub fn build_tree(preorder: Vec<i32>, inorder: Vec<i32>) -> Option<Rc<RefCell<Tr
         if root == preorder[0] {
             return Some(Rc::new(RefCell::new(TreeNode{
                 val: *root,
-                left: build_tree(preorder[1:i+1],inorder[0:i]),
-                right: build_tree(preorder[i+1..],inorder[i+1..]),
+                left: Self::build_tree(preorder[1..i+1].to_vec(),inorder[0..i].to_vec()),
+                right: Self::build_tree(preorder[i+1..].to_vec(),inorder[i+1..].to_vec()),
             })))
         }
     }
     None
 }
+
+// 时间换空间
+fn build(preorder: &[i32], inorder: &[i32]) -> Option<Rc<RefCell<TreeNode>>>  {
+    if preorder.is_empty() {
+        return None;
+    }
+    let mut root = TreeNode::new(preorder[0]);
+    let index = inorder.iter().position(|x| x == &preorder[0]).unwrap();
+
+    root.left = build(&preorder[1..index + 1], &inorder[0..index]);
+    root.right = build(&preorder[index + 1..preorder.len()], &inorder[index + 1..inorder.len()]);
+    Some(Rc::new(RefCell::new(root)))
+}
+
+impl Solution {
+    pub fn build_tree(preorder: Vec<i32>, inorder: Vec<i32>) -> Option<Rc<RefCell<TreeNode>>> {
+        build(&preorder[..], &inorder[0..inorder.len()])
+    }
+}
+
+
+
