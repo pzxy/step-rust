@@ -59,6 +59,13 @@ impl CQueue {
             }
         }
     }
+    fn delete_head3(&mut self) -> i32 {
+        if self.stack_out.is_empty() {
+            self.stack_out = self.stack_in.iter().rev().map(|&x| x).collect();
+            self.stack_in.clear()
+        }
+        self.stack_out.pop().unwrap_or(-1)
+    }
 }
 
 // #[derive(Default)]
