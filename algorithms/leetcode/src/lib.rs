@@ -3,6 +3,7 @@ mod offer03_find_repeat_number;
 mod offer05_replace_space;
 mod offer06_reverse_print;
 mod offer07_build_tree;
+mod offer09;
 
 #[cfg(test)]
 mod tests {
