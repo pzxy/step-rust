@@ -52,20 +52,20 @@ pub fn build_tree(preorder: Vec<i32>, inorder: Vec<i32>) -> Option<Rc<RefCell<Tr
     if preorder.len() > 5000 {
         return None;
     }
-    for (i, root) in inorder.iter().enumerate() {
-        if root == preorder[0] {
-            return Some(Rc::new(RefCell::new(TreeNode {
+    for (i,root) in inorder.iter().enumerate() {
+        if *root == preorder[0] {
+            return Some(Rc::new(RefCell::new(TreeNode{
                 val: *root,
-                left: Self::build_tree(preorder[1..i + 1].to_vec(), inorder[0..i].to_vec()),
-                right: Self::build_tree(preorder[i + 1..].to_vec(), inorder[i + 1..].to_vec()),
-            })));
+                left: build_tree(preorder[1..i+1].to_vec(),inorder[0..i].to_vec()),
+                right: build_tree(preorder[i+1..].to_vec(),inorder[i+1..].to_vec()),
+            })))
         }
     }
     None
 }
 
 // 时间换空间
-fn build(preorder: &[i32], inorder: &[i32]) -> Option<Rc<RefCell<TreeNode>>> {
+fn build(preorder: &[i32], inorder: &[i32]) -> Option<Rc<RefCell<TreeNode>>>  {
     if preorder.is_empty() {
         return None;
     }
@@ -73,15 +73,16 @@ fn build(preorder: &[i32], inorder: &[i32]) -> Option<Rc<RefCell<TreeNode>>> {
     let index = inorder.iter().position(|x| x == &preorder[0]).unwrap();
 
     root.left = build(&preorder[1..index + 1], &inorder[0..index]);
-    root.right = build(&preorder[index + 1..preorder.len()], &inorder[index + 1..inorder.len()]);
+    root.right = build(&preorder[index + 1..], &inorder[index + 1..]);
     Some(Rc::new(RefCell::new(root)))
 }
 
-impl Solution {
-    pub fn build_tree(preorder: Vec<i32>, inorder: Vec<i32>) -> Option<Rc<RefCell<TreeNode>>> {
-        build(&preorder[..], &inorder[0..inorder.len()])
-    }
-}
+// impl Solution {
+//     pub fn build_tree(preorder: Vec<i32>, inorder: Vec<i32>) -> Option<Rc<RefCell<TreeNode>>> {
+//         build(&preorder[..], &inorder[..])
+//     }
+// }
+//
 
 
 
