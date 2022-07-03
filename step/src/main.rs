@@ -15,7 +15,6 @@ fn main() {
     r_demo()
 }
 
-
 pub fn r_demo() {
     // 带了一个！，表示这是一个宏不是一个函数。
     println!("Hello, world!");
@@ -43,10 +42,10 @@ pub fn r_demo() {
         println!("你猜测的数是:{}", guess);
         // 类似switch，
         match guess.cmp(&secret_number) {
-            Ordering::Less => println!("Too small"),// 这种写法，是arm概念。
-            Ordering::Greater => println!("Too big"),//arm
+            Ordering::Less => println!("Too small"), // 这种写法，是arm概念。
+            Ordering::Greater => println!("Too big"), //arm
             Ordering::Equal => {
-                println!("You win");//arm
+                println!("You win"); //arm
                 break;
             }
         }

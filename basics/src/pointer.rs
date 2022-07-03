@@ -22,10 +22,7 @@ enum List {
 
 // Box<T>主要是
 fn pointer1() {
-    let l = Cons(1,
-                 Box::new(Cons(2,
-                               Box::new(Cons(3,
-                                             Box::new(Nil))))));
+    let l = Cons(1, Box::new(Cons(2, Box::new(Cons(3, Box::new(Nil))))));
 }
 
 // 2. Deref
@@ -78,7 +75,6 @@ fn point_print(s: &str) {
     println!("{}", s);
 }
 
-
 // 3. Drop
 // drop 在已导入模块中,直接可以用.
 struct DropPointer {
@@ -94,8 +90,12 @@ impl Drop for DropPointer {
 pub fn pointer3() {
     println!("-------pointer3------");
 
-    let a = DropPointer { data: String::from("第一") };
-    let b = DropPointer { data: String::from("第二") };
+    let a = DropPointer {
+        data: String::from("第一"),
+    };
+    let b = DropPointer {
+        data: String::from("第二"),
+    };
     println!("pointer3 over");
     // 输出结果,执行顺序类似 golang 里面的 defer,先进后出.
     // pointer3 over
@@ -110,7 +110,6 @@ pub fn pointer3() {
     // DropPointer:第一
     // DropPointer:第二
 }
-
 
 // 4. Rc<T> ,refer count,不在预先导入模块中,只使用于单线程.并且只允许不可变借用.
 // - clone 增加引用计数.不会执行深度 copy 操作,只是增加引用计数的值.
@@ -143,9 +142,7 @@ pub fn pointer4() {
     // let c = Cons(4, Box::new(a));
 
     // Rc<T>改动以后
-    let a = Rc::new(Cons2(5,
-                          Rc::new(Cons2(10,
-                                        Rc::new(Nil2)))));
+    let a = Rc::new(Cons2(5, Rc::new(Cons2(10, Rc::new(Nil2)))));
     println!(" refer count after create a:{}", Rc::strong_count(&a));
     // rc::clone 不会执行深度的 copy 操作,只会增加指针计数.当strong_count为 0 时,会被释放掉.
     let b = Cons2(3, Rc::clone(&a));
@@ -165,12 +162,11 @@ pub fn pointer4() {
     // refer count after leave c :2
 }
 
-
 // 5. RefCell<T> 只会在运行时检查借用规则,
 // 可以通过调用方法,来修改内部的值,虽然外部是不可变的,但是内部是可变的,从而达到内部可变性.
 // 通俗点讲,就是将数据放在head上,然后 refcell 中维护一个可变引用和多个不可变引用的变量,这些变量只能通过指针获取到.
-use std::cell::RefCell;
 use crate::pointer::List3::{Cons3, Nil3};
+use std::cell::RefCell;
 
 #[derive(Debug)]
 enum List3 {
@@ -265,7 +261,7 @@ impl Node2 {
             Cons5(_, item) => {
                 // println!("value:{:?}", item.borrow().upgrade());
                 Some(item)
-            },
+            }
             Nil5 => None,
         }
     }
@@ -278,10 +274,22 @@ pub fn pointer7() {
     // a 节点
     let a = Rc::new(Cons5(5, RefCell::new(Weak::new())));
     // b 节点 -> a 节点
-    println!("a strong:{},weak:{}", Rc::strong_count(&a), Rc::weak_count(&a));
+    println!(
+        "a strong:{},weak:{}",
+        Rc::strong_count(&a),
+        Rc::weak_count(&a)
+    );
     let b = Rc::new(Cons5(10, RefCell::new(Rc::downgrade(&a))));
-    println!("a strong:{},weak:{}", Rc::strong_count(&a), Rc::weak_count(&a));
-    println!("b strong:{},weak:{}", Rc::strong_count(&b), Rc::weak_count(&b));
+    println!(
+        "a strong:{},weak:{}",
+        Rc::strong_count(&a),
+        Rc::weak_count(&a)
+    );
+    println!(
+        "b strong:{},weak:{}",
+        Rc::strong_count(&b),
+        Rc::weak_count(&b)
+    );
 
     if let Some(link) = a.tail() {
         // a 节点 -> b 节点
@@ -289,10 +297,16 @@ pub fn pointer7() {
         // 获取弱引用指向的值,应该是 b 的值 10
         println!("weak pointer value:{:?}", link.borrow().upgrade());
     }
-    println!("a strong:{},weak:{}", Rc::strong_count(&a), Rc::weak_count(&a));
-    println!("b strong:{},weak:{}", Rc::strong_count(&b), Rc::weak_count(&b));
+    println!(
+        "a strong:{},weak:{}",
+        Rc::strong_count(&a),
+        Rc::weak_count(&a)
+    );
+    println!(
+        "b strong:{},weak:{}",
+        Rc::strong_count(&b),
+        Rc::weak_count(&b)
+    );
     // 出现堆栈溢出 overflowed  stack
     println!("{:?}", b.tail())
 }
-
-

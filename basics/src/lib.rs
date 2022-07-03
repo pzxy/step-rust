@@ -22,16 +22,16 @@
 //
 // test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
 mod closure;
-mod iterator;
-mod pointer;
-mod thread;
 mod control_flow;
+mod iterator;
+mod marco;
 mod pattern;
-mod r_unsafe;
+mod pointer;
+mod r_func;
 mod r_trait;
 mod r_type;
-mod marco;
-mod r_func;
+mod r_unsafe;
+mod thread;
 
 /// 这是文档注释
 /// # Examples
@@ -128,7 +128,6 @@ mod tests {
         unsafe4()
     }
 }
-
 
 // 测试命令：
 // 1. 并行，并发测试：测试默认是并行的，但是可以设置线程的数量，这个参数是传递给二进制文件的

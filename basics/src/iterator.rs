@@ -61,9 +61,7 @@ struct Counter {
 
 impl Counter {
     fn new() -> Counter {
-        Counter {
-            count: 0,
-        }
+        Counter { count: 0 }
     }
 }
 

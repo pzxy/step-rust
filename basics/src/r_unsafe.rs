@@ -22,7 +22,6 @@
 // - 任何内存安全相关的错误必须留在 unsafe 块里
 // - 尽可能隔离 unsafe 代码,最好能封装在安全的抽象里面,提供安全的 Api,这样才能更好的保证安全.
 
-
 use std::ptr::addr_of_mut;
 use std::slice;
 
@@ -69,9 +68,7 @@ unsafe fn dangerous() {}
 fn unsafe3() {
     // 这里直接调用会报错的,
     // dangerous()
-    unsafe {
-        dangerous()
-    }
+    unsafe { dangerous() }
 }
 
 // 4. 创建 unsafe  安全抽象
@@ -185,5 +182,3 @@ unsafe trait Foo {}
 
 // 不安全的 trait 要在 unsafe 的 代码块中进行实现
 unsafe impl Foo for i32 {}
-
-

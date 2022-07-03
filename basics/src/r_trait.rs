@@ -1,4 +1,4 @@
-use std::fmt::{Debug, Display, format, Formatter, write};
+use std::fmt::{format, write, Debug, Display, Formatter};
 
 // 类似接口
 // 但不完全是，一般高级语言的接口是不自己实现方法的，
@@ -19,7 +19,6 @@ pub trait Summary {
         format!("{}", self.summarize());
     }
 }
-
 
 // 在类型上实现trait，可以不同类型实现同一个trait
 pub struct Tweet {
@@ -54,7 +53,8 @@ pub fn notify3<T: Summary + Display, U: Clone + Debug>(a: T, b: U) -> String {
 }
 
 // 使用where子句定义trait，和c#很像
-pub fn notify31<T, U>(a: T, b: U) -> String where
+pub fn notify31<T, U>(a: T, b: U) -> String
+where
     T: Summary + Display,
     U: Clone + Debug,
 {
@@ -181,7 +181,10 @@ impl Add for Point {
 }
 
 pub fn trait8() {
-    assert_eq!(Point { x: 1, y: 9 } + Point { x: 2, y: 4 }, Point { x: 3, y: 3 });
+    assert_eq!(
+        Point { x: 1, y: 9 } + Point { x: 2, y: 4 },
+        Point { x: 3, y: 3 }
+    );
 }
 
 // 另外一个实现一个毫米和米的相加,这次指定相加的类型
@@ -275,7 +278,7 @@ trait OutlinePrint: fmt::Display {
 }
 
 struct Trait10 {
-    x: i32
+    x: i32,
 }
 
 impl OutlinePrint for Trait10 {}

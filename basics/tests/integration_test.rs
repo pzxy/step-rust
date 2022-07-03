@@ -1,5 +1,5 @@
-use step_rust;
 use crate::common::setup;
+use step_rust;
 
 //导入本目录下的模块
 mod common;

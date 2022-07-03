@@ -1,4 +1,3 @@
-
 //在一个 n * m 的二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。
 // 请完成一个高效的函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。
 //
@@ -26,25 +25,25 @@
 
 pub fn find_number_in2_d_array(matrix: [[i32; 1]; 1], target: i32) -> bool {
     if matrix.is_empty() {
-        return  false
+        return false;
     }
     if matrix[0].is_empty() {
-        return false
+        return false;
     }
     let mut row = 0;
-    let mut col = matrix[0].len()-1;
+    let mut col = matrix[0].len() - 1;
     while row < matrix.len() && col >= 0 {
         if matrix[row][col] == target {
-            return  true
+            return true;
         }
         if matrix[row][col] > target {
             // 这里是易错点,rust 中下标是无符号类型,不能为负数,
             if col == 0 {
-                break
+                break;
             }
             // 如果没有上面检查,这里可能为负数.
             col -= 1;
-        }else {
+        } else {
             row += 1;
         }
     }

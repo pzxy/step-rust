@@ -1,5 +1,5 @@
 use std::rc::Rc;
-use std::sync::{mpsc, Mutex, Arc};
+use std::sync::{mpsc, Arc, Mutex};
 use std::thread;
 use std::thread::spawn;
 use std::time::Duration;
@@ -67,7 +67,7 @@ pub fn thread33() {
             String::from("form"),
             String::from("zero"),
             String::from("to"),
-            String::from("hero")
+            String::from("hero"),
         ];
         for val in vals {
             tx.send(val).unwrap();
@@ -80,7 +80,7 @@ pub fn thread33() {
             String::from("1"),
             String::from("2"),
             String::from("3"),
-            String::from("4")
+            String::from("4"),
         ];
         for val in vals {
             tx1.send(val).unwrap();
@@ -185,7 +185,5 @@ pub fn thread4Arc() {
 // - 完全由 Sync 类型组成的类型也是 Sync 的.
 // 但是,Rc<T>不是 Sync 的,RefCell<T>和 Cell<T>家族也不是 Sync 的,而 Mutex<T>是 Sync 的.
 
-
 // Send 就是为了转移所有权,Sync 是可以传引用.
 //注意: 自己手动实现 Send 和 Sync 是不安全的,因为要使用不安全代码.所以实现的是要要谨慎.
-

@@ -1,4 +1,3 @@
-
 // 类型
 fn r_type() {
     // bool类型就是 bool
@@ -26,12 +25,12 @@ fn r_type() {
 // }
 
 // 使用别名后的代码
-pub trait Write{
+pub trait Write {
     // 这里 Result 之所以可以这样写,是因为在std::io中.有一个这样的别名
     // type Result<T> = Result<T,std::io::Error>
     // 或者, 我们在本文件中声明 type Result<T> = std::io::Result<T>,也可以
     // rust 中得别名和go 里面的很像,基本上和原类型一样.
- fn Write(&mut self,buf: &[u8])->std::io::Result<usize>;
+    fn Write(&mut self, buf: &[u8]) -> std::io::Result<usize>;
 }
 
 // 3. Never 类型
@@ -47,7 +46,7 @@ pub trait Write{
 // never 类型补充了没有返回值得代码的返回类型.
 // 自己的理解是: rust 是函数式编程,函数式变成都是有返回值的,
 // never 类型作为无函数返回的类型,那么统一了函数式变成.
-fn type3(){
+fn type3() {
     let guess = "";
     loop {
         let guess: u32 = match guess.trim().parse() {
@@ -75,7 +74,6 @@ fn type3(){
 //  - str 的地址
 //  - str 的长度
 
-
 // 5. Rust 使用动态大小类型(大小不定类型)的通用方式
 // 附带一些额外的元数据来存储动态信息的大小
 // - 使用动态大小类型时总会把它的值放在某种指针后边 , 比如 4 种的 &str
@@ -83,7 +81,6 @@ fn type3(){
 // 每个 trait 都是一个动态大小类型,可以通过名称对其进行引用/
 // 为了将 trait 用作 trait 对象,必须将它放置在某种指针之后
 // 例如 &dyn Trait , Box<dyn Trait> (Rc<dyn Trait>) 之后
-
 
 // 6. Sized trait
 // 为了处理动态大小类型(大小不定类型),

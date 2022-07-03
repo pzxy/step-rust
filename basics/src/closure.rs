@@ -29,10 +29,10 @@ fn closure2() {
     // closure_1("3");
 }
 
-
 // 3. fn trait
 struct Cacher<T>
-where T: Fn(u32) -> u32,
+where
+    T: Fn(u32) -> u32,
 {
     // 闭包
     calculation: T,
@@ -41,7 +41,8 @@ where T: Fn(u32) -> u32,
 }
 
 impl<T> Cacher<T>
-where T: Fn(u32) -> u32,
+where
+    T: Fn(u32) -> u32,
 {
     fn new(calculation: T) -> Cacher<T> {
         Cacher {
@@ -115,10 +116,7 @@ fn closure5() {
     // 初始化 Value,其实用的是下面这个函数
     // 所以 map 可以将这个函数传进去.
     // let v = Status::Value(3);
-    let list_of_status: Vec<Status> =
-        (0u32..20)
-            .map(Status::Value)
-            .collect();
+    let list_of_status: Vec<Status> = (0u32..20).map(Status::Value).collect();
 }
 
 //   fn map<B, F>(self, f: F) -> Map<Self, F>
@@ -128,7 +126,6 @@ fn closure5() {
 //     {
 //         Map::new(self, f)
 //     }
-
 
 // 6. 返回闭包
 // 闭包使用 trait 进行表达,无法再函数中直接返回一个闭包,
@@ -145,7 +142,6 @@ fn return_closure() -> Box<dyn Fn(i32) -> i32> {
     Box::new(|x| x + 1)
 }
 
-
 // rust 闭包的本质,捕获上下文参数
 // fn counter(i:i32) -> fn(i32) -> i32 {
 //     fn inc(n:i32)->i32 {
@@ -157,7 +153,7 @@ fn return_closure() -> Box<dyn Fn(i32) -> i32> {
 
 // 这里返回值是实现了 FnMut 这个 trait 的一个 匿名函数
 // 这种情况才是rust 中得闭包,rust 中闭包,也就是可以捕获上下文参数的函数,必须实现 Fn,FnMut FnOnce 三个 trait
-fn counter(i:i32) -> impl FnMut(i32) -> i32 {
+fn counter(i: i32) -> impl FnMut(i32) -> i32 {
     // 将所有权,转移到闭包中
-   move |n| n+i
+    move |n| n + i
 }

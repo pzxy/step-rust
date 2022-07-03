@@ -94,10 +94,7 @@ fn pattern8() {
 
 // 9. 解构 分解值
 fn pattern9() {
-    let p = Point {
-        x: 1,
-        y: 2,
-    };
+    let p = Point { x: 1, y: 2 };
     // 解构 结构体,这里相当于这样写
     // let Point { x: x, y: y } = p;
     let Point { x, y } = p;
@@ -123,7 +120,7 @@ enum Message {
     Quit,
     Move { x: i32, y: i32 },
     Write(String),
-    ChangeColor(Color)
+    ChangeColor(Color),
 }
 
 fn pattern10() {
@@ -145,8 +142,7 @@ fn pattern10() {
         }
         Message::ChangeColor(Color::Hsv(r, g, b)) => {
             println!("{},{},{}", r, g, b);
-        }
-        // 或者使用 _ =>(),
+        } // 或者使用 _ =>(),
     }
 }
 
@@ -187,7 +183,7 @@ fn pattern12() {
     let s = Point { x: 0, y: 3 };
     match s {
         // 这里使用 .. 来省略后面的变量,如果后面有 5 个,就会省略 5 个
-        Point { x, .. } => println!("x:{}", x)
+        Point { x, .. } => println!("x:{}", x),
     }
     let num = (1, 2, 4, 4, 1, 19);
     match num {
@@ -214,7 +210,7 @@ fn pattern13() {
     match 10 {
         // 匹配数字
         4 | 5 | 6 if flag == true => println!("yes"),
-        _ => println!("no")
+        _ => println!("no"),
     }
 }
 
@@ -230,16 +226,16 @@ fn pattern14() {
         }
         // 限定范围,注意@使用,
         // 因为使用了范围,所以要获取值需要创建一个新的变量
-        Point { x: tmp @ 1..=10, y: _, } => {
+        Point {
+            x: tmp @ 1..=10,
+            y: _,
+        } => {
             println!("tmp:{}", tmp)
         }
         // 匹配任意值,
         // 也可以写 Point { x, y, } =>{println!("x:{},y:{}", x, x)}
-        Point { x: a, y: b, } => {
+        Point { x: a, y: b } => {
             println!("x:{},y:{}", a, b)
         }
     }
 }
-
-
-
