@@ -5,6 +5,7 @@ mod offer06_reverse_print;
 mod offer07_build_tree;
 mod offer09_stack_for_queue;
 mod offer10_fib;
+mod offer11_min_array;
 
 #[cfg(test)]
 mod tests {
