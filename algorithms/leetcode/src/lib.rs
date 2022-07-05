@@ -1,3 +1,5 @@
+extern crate core;
+
 mod offer03_find_repeat_number;
 mod offer04_find_number_in2_d_array;
 mod offer05_replace_space;
@@ -6,6 +8,7 @@ mod offer07_build_tree;
 mod offer09_stack_for_queue;
 mod offer10_fib;
 mod offer11_min_array;
+mod offer12_char_exist;
 
 #[cfg(test)]
 mod tests {
