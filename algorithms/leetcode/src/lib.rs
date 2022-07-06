@@ -15,6 +15,7 @@ mod tests {
     use crate::offer04_find_number_in2_d_array::find_number_in2_d_array;
     use crate::offer05_replace_space::replace_space;
     use crate::offer10_fib::{fib, fib2, fib22, fib222, fold2};
+    use crate::offer12_char_exist::exist;
 
     #[test]
     fn it_works() {
@@ -34,5 +35,15 @@ mod tests {
     fn offer10() {
         let aa = fib22(48);
         println!("{}", aa);
+    }
+
+    #[test]
+    fn offer12() {
+        let board = vec![
+            vec!['h','e','l','l','o'],
+            vec!['w','o','r','l','d']
+        ];
+        let ret = exist(board, "heor".to_string());
+        assert_eq!(ret, true)
     }
 }
