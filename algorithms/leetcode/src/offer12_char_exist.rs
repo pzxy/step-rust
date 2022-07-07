@@ -85,7 +85,7 @@ pub fn exist(board: Vec<Vec<char>>, word: String) -> bool {
     false
 }
 
-
+struct Solution {}
 
 impl Solution {
     fn dfs(board: &mut Vec<Vec<char>>, chars: &Vec<char>, y: usize, x: usize, i: usize) -> bool {

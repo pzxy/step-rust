@@ -9,6 +9,7 @@ mod offer09_stack_for_queue;
 mod offer10_fib;
 mod offer11_min_array;
 mod offer12_char_exist;
+mod offer13_moving_count;
 
 #[cfg(test)]
 mod tests {
@@ -16,6 +17,7 @@ mod tests {
     use crate::offer05_replace_space::replace_space;
     use crate::offer10_fib::{fib, fib2, fib22, fib222, fold2};
     use crate::offer12_char_exist::exist;
+    use crate::offer13_moving_count::moving_count;
 
     #[test]
     fn it_works() {
@@ -40,10 +42,18 @@ mod tests {
     #[test]
     fn offer12() {
         let board = vec![
-            vec!['h','e','l','l','o'],
-            vec!['w','o','r','l','d']
+            vec!['h', 'e', 'l', 'l', 'o'],
+            vec!['w', 'o', 'r', 'l', 'd'],
         ];
         let ret = exist(board, "heor".to_string());
         assert_eq!(ret, true)
+    }
+
+    #[test]
+    fn offer13() {
+        let ret = moving_count(2, 3, 1);
+        assert_eq!(ret,3);
+        let ret = moving_count(3, 1, 0);
+        assert_eq!(ret,1);
     }
 }
