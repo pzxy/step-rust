@@ -20,7 +20,6 @@
 // 输入：board = [["a","b"],["c","d"]], word = "abcd"
 // 输出：false
 
-
 pub struct point {
     x: i32,
     y: i32,
@@ -38,7 +37,6 @@ impl point {
 // 这是错误的，rust静态以及产量，数据要保证是是不可变的。而这是宏，宏代码编译时候会变化的
 // static dirs: Vec<point> = vec![point { x: 0, y: 1 }, point { x: 1, y: 0 }, point { x: 0, y: -1 }, point { x: -1, y: 0 }];
 
-
 pub fn dfs(board: &mut Vec<Vec<char>>, p: point, word: String, k: i32) -> bool {
     if board[p.x as usize][p.y as usize] != word.as_bytes()[k as usize] as char {
         return false;
@@ -48,7 +46,12 @@ pub fn dfs(board: &mut Vec<Vec<char>>, p: point, word: String, k: i32) -> bool {
     }
     let v = board[p.x as usize][p.y as usize];
     board[p.x as usize][p.y as usize] = ' ';
-    for v in vec![point { x: 0, y: 1 }, point { x: 1, y: 0 }, point { x: 0, y: -1 }, point { x: -1, y: 0 }] {
+    for v in vec![
+        point { x: 0, y: 1 },
+        point { x: 1, y: 0 },
+        point { x: 0, y: -1 },
+        point { x: -1, y: 0 },
+    ] {
         let tmp = p.add(v);
         if check(board, &tmp) == false {
             continue;
@@ -77,7 +80,16 @@ pub fn exist(board: Vec<Vec<char>>, word: String) -> bool {
     let b = &mut board.clone();
     for (x, m) in board.iter().enumerate() {
         for (y, n) in m.iter().enumerate() {
-            if dfs(b, point { x: x as i32, y: y as i32 }, word.clone(), 0) == true {
+            if dfs(
+                b,
+                point {
+                    x: x as i32,
+                    y: y as i32,
+                },
+                word.clone(),
+                0,
+            ) == true
+            {
                 return true;
             }
         }

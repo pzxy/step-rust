@@ -22,7 +22,6 @@
 // -5000 <= numbers[i] <= 5000
 // numbers 原来是一个升序排序的数组，并进行了 1 至 n 次旋转
 
-
 // 【3，1，2,3】
 pub fn min_array(num: Vec<i32>) -> i32 {
     let mut l = 0;
@@ -49,7 +48,7 @@ pub fn min_array2(num: Vec<i32>) -> i32 {
         // 这里必须((r - l) >> 1) 这样括住,否则会报错.
         let m = l + ((r - l) >> 1);
         if num[l] < num[r] {
-            return num[l]
+            return num[l];
         }
         if num[l] < num[m] {
             l = m + 1
@@ -81,6 +80,3 @@ pub fn min_array3(numbers: Vec<i32>) -> i32 {
     }
     return numbers[p];
 }
-
-
-

@@ -17,50 +17,51 @@
 // 0 <= k<= 20
 // 通过次数265,514提交次数496,968
 
-pub fn moving_count(m: i32, n: i32, k: i32) -> i32 {
-    let mut count = 0;
-    for x in 0..m {
-        if x > k {
-            break;
-        }
-        for y in 0..n {
-            if y > k {
-                break;
-            }
-            if (x + y) > k {
-                continue;
-            }
-            if dfs(x, y, k) == true {
-                count += 1
-            }
-        }
-    }
-    count
-}
-
-
-pub fn dfs(x: i32, y: i32, k: i32) -> bool {
+// 这里只是举例了可以将数字转换成字符来获取每位相加的和
+pub fn sum(x: i32, y: i32, k: i32) -> i32 {
     // 获取数不应该转成字符串再转回来。
     // 应该通过取余获取
     let xs = x.to_string();
     let ys = y.to_string();
-    let a = xs.chars().fold(0, |mut a, x| {
-        x.to_string().parse::<i32>().unwrap()
-    });
-    let b = ys.chars().fold(a, |mut a, x| {
-        x.to_string().parse::<i32>().unwrap()
-    });
+    let a = xs
+        .chars()
+        .fold(0, |mut a, x| x.to_string().parse::<i32>().unwrap());
+    let b = ys
+        .chars()
+        .fold(a, |mut a, x| x.to_string().parse::<i32>().unwrap());
+    b
+}
 
-    if b > k {
-        false
-    } else {
-        true
+// 如果当前坐标各数位总和小于k且周边存在通路就加一。使用一个二维数组标记通路。
+pub fn moving_count(m: i32, n: i32, k: i32) -> i32 {
+    let m = m as usize;
+    let n = n as usize;
+    let k = k as usize;
+    let mut dv: Vec<Vec<usize>> = vec![vec![0; n]; m];
+    dv[0][0] = 1;
+    let mut ret = 0;
+
+    for i in 0..m {
+        for j in 0..n {
+            let mut sum = 0;
+            sum = sumself(i, j);
+            if sum > k {
+                continue;
+            }
+            if i > 0 && dv[i - 1][j] == 1
+                || j > 0 && dv[i][j - 1] == 1
+                || i < m - 1 && dv[i + 1][j] == 1
+                || j < n - 1 && dv[i][j + 1] == 1
+                || dv[i][j] == 1
+            {
+                ret += 1;
+                dv[i][j] = 1;
+            }
+        }
     }
+    return ret;
 }
 
-pub fn dfs2(x: i32, y: i32, k: i32) -> bool {
-    let i = x % 10;
+fn sumself(i: usize, j: usize) -> usize {
+    i % 10 + (i / 10) % 10 + i / 100 + j % 10 + (j / 10) % 10 + j / 100
 }
-
-
-

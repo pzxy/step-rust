@@ -41,10 +41,7 @@ mod tests {
 
     #[test]
     fn offer12() {
-        let board = vec![
-            vec!['h', 'e', 'l', 'l', 'o'],
-            vec!['w', 'o', 'r', 'l', 'd'],
-        ];
+        let board = vec![vec!['h', 'e', 'l', 'l', 'o'], vec!['w', 'o', 'r', 'l', 'd']];
         let ret = exist(board, "heor".to_string());
         assert_eq!(ret, true)
     }
@@ -52,8 +49,8 @@ mod tests {
     #[test]
     fn offer13() {
         let ret = moving_count(2, 3, 1);
-        assert_eq!(ret,3);
+        assert_eq!(ret, 3);
         let ret = moving_count(3, 1, 0);
-        assert_eq!(ret,1);
+        assert_eq!(ret, 1);
     }
 }
