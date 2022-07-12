@@ -10,6 +10,7 @@ mod offer10_fib;
 mod offer11_min_array;
 mod offer12_char_exist;
 mod offer13_moving_count;
+mod offer15_hamming_weight;
 
 #[cfg(test)]
 mod tests {
@@ -18,6 +19,7 @@ mod tests {
     use crate::offer10_fib::{fib, fib2, fib22, fib222, fold2};
     use crate::offer12_char_exist::exist;
     use crate::offer13_moving_count::moving_count;
+    use crate::offer15_hamming_weight::hamming_weight;
 
     #[test]
     fn it_works() {
@@ -52,5 +54,10 @@ mod tests {
         assert_eq!(ret, 3);
         let ret = moving_count(3, 1, 0);
         assert_eq!(ret, 1);
+    }
+    #[test]
+    fn offer15() {
+        let ret = hamming_weight(11);
+        assert_eq!(ret, 3)
     }
 }
