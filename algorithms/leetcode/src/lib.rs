@@ -57,6 +57,9 @@ mod tests {
     }
     #[test]
     fn offer15() {
+        for i in -3..=1 {
+            println!("{}", i)
+        }
         let ret = hamming_weight(11);
         assert_eq!(0.1+0.2,0.3);
         assert_eq!(ret, 3)
