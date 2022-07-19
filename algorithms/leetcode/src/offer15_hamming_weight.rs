@@ -25,6 +25,9 @@
 //
 // 提示：
 // 输入必须是长度为 32 的 二进制串 。
+
+
+// 移动位置后和1进行与操作。
 pub fn hamming_weight(n: usize) -> i32 {
     let mut count = 0;
     let mut num = n;

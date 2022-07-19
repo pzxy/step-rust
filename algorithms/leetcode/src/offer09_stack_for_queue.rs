@@ -22,6 +22,8 @@
 // 链接：https://leetcode.cn/problems/yong-liang-ge-zhan-shi-xian-dui-lie-lcof
 // 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 
+use std::collections::HashMap;
+
 #[derive(Default)]
 struct CQueue {
     stack_in: Vec<i32>,
