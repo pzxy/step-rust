@@ -10,6 +10,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "demo"
+version = "0.1.0"
+
+[[package]]
 name = "fuchsia-cprng"
 version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -77,6 +81,7 @@ name = "step"
 version = "0.1.0"
 dependencies = [
  "basics",
+ "demo",
  "leetcode",
  "rand 0.4.6",
 ]

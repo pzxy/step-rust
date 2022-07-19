@@ -19,3 +19,4 @@ rand = "0.4.6"
 
 basics = { path = "../basics" }
 leetcode = { path = "../algorithms/leetcode" }
+demo = { path = "../demo" }
