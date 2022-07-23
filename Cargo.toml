@@ -5,5 +5,5 @@ members = [
     "step",
     "algorithms/leetcode",
     "demo",
-    "practice/kv-server"
+    "practice/http-server"
 ]
