@@ -155,5 +155,23 @@ fn return_closure() -> Box<dyn Fn(i32) -> i32> {
 // 这种情况才是rust 中得闭包,rust 中闭包,也就是可以捕获上下文参数的函数,必须实现 Fn,FnMut FnOnce 三个 trait
 fn counter(i: i32) -> impl FnMut(i32) -> i32 {
     // 将所有权,转移到闭包中
+    for v in 1..10 {
+        if v == 5 {
+            v
+        } else {
+            v + 1
+        }
+    }
     move |n| n + i
+}
+
+fn counter222(i: i32) -> i32 {
+    // 将所有权,转移到闭包中
+    for v in 1..10 {
+        if v == 5 {
+        } else {
+            v + 1
+        }
+    }
+    5
 }

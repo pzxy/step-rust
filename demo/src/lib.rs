@@ -1,7 +1,10 @@
+mod a1_file;
+
 #[cfg(test)]
 
 mod tests {
-    use crate::read_file;
+    use crate::a1_file::{read_file1, read_file2};
+
     #[test]
     fn it_works() {
         let result = 2 + 2;
@@ -10,7 +13,10 @@ mod tests {
 
     #[test]
     fn test_file() {
-        assert_eq!(read_file().unwrap_err().to_string(), "");
+        assert_eq!(
+            read_file1().unwrap_err().to_string(),
+            read_file2().unwrap_err().to_string()
+        );
         println!("Success!")
     }
 }

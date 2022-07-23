@@ -17,7 +17,7 @@ fn iterator1() {
 // iter()：在不可变引用上创建迭代器，（迭代器里面是引用）
 // into_iter():创建的迭代器会获得所有权，以前的是不是用不了了。
 // iter_mut()：迭代可变的引用。
-pub fn iterator31() {
+pub(crate) fn iterator31() {
     let v1 = vec![1, 2, 3];
     // 这里只所有要加上mut，是因为v1_iter.next()方法，会修改迭代器中的值。
     let mut v1_iter = v1.iter();
