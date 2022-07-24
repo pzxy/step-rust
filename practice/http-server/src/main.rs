@@ -1,15 +1,17 @@
+use http_server::ThreadPool;
 use std::io::{Read, Write};
 use std::net::{TcpListener, TcpStream};
 use std::{fs, thread};
 
 fn main() {
     let listener = TcpListener::bind("127.0.0.1:8000").unwrap();
-
+    let pool = ThreadPool::new(4);
+    // take(2)只能处理两次请求
     for stream in listener.incoming() {
         let stream = stream.unwrap();
-        thread::spawn(|| handle_connection(stream));
-        // println!("Connection established!");
+        pool.execute(|| handle_connection(stream));
     }
+    println!("Shutting down")
 }
 
 fn handle_connection(mut stream: TcpStream) {
