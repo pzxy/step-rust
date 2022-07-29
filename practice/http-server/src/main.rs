@@ -1,7 +1,7 @@
 use http_server::ThreadPool;
 use std::io::{Read, Write};
 use std::net::{TcpListener, TcpStream};
-use std::{fs, thread};
+use std::{fs};
 
 fn main() {
     let listener = TcpListener::bind("127.0.0.1:8000").unwrap();
