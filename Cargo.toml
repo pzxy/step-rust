@@ -3,7 +3,6 @@
 members = [
     "step/basics",
     "step/advanced",
-    "step",
     "algorithms/leetcode",
     "demo",
     "practice/http-server"
