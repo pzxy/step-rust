@@ -1,20 +1,3 @@
-use std::cmp::Ordering;
-// 默认会将 prelude 导入到每个包里面。如果要使用以外的库中内容，就需要使用 use将包导入进来。
-use std::io;
-
-// trait 相当于接口，里面定义了一些方法。
-use rand::Rng;
-/*
-嵌套引用
-use std::io;
-use std::io::Write;
-上面两行相当于：
-use std::io::{self,Write};
- */
-fn main() {
-    r_demo()
-}
-
 pub fn r_demo() {
     // 带了一个！，表示这是一个宏不是一个函数。
     println!("Hello, world!");
