@@ -19,7 +19,7 @@ enum Command {
 /// Provided by the requester and used by the manager task to send the command
 /// response back to the requester.
 type Responder<T> = oneshot::Sender<mini_redis::Result<T>>;
-
+// fixme bin目录下启动方式： cargo run --bin client
 #[tokio::main]
 async fn main() {
     let (tx, mut rx) = mpsc::channel(32);

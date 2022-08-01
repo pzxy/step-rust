@@ -16,7 +16,7 @@ use bytes::Bytes;
 //     })
 // }
 type Db = Arc<Mutex<HashMap<String, Bytes>>>;
-
+// fixme bin目录下启动方式： cargo run --bin server
 #[tokio::main]
 async fn main() {
     let listener = TcpListener::bind("127.0.0.1:6379").await.unwrap();
