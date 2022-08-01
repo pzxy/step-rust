@@ -1,6 +1,8 @@
 mod async_wait;
-pub mod r_log;
-use crate::r_log::log1;
+pub mod logger;
+mod tracing;
+
+use crate::logger::log1;
 
 pub fn log_demo() {
     log1()
