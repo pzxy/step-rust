@@ -16,7 +16,7 @@ impl Func1 {
 }
 
 // 参数是函数指针类型
-fn show(c: fn(a: i32, b: i32) -> i32) {
+fn show(_c: fn(a: i32, b: i32) -> i32) {
     println!("show")
 }
 

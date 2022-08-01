@@ -21,8 +21,8 @@ enum List {
 }
 
 // Box<T>主要是
-fn pointer1() {
-    let l = Cons(1, Box::new(Cons(2, Box::new(Cons(3, Box::new(Nil))))));
+fn _pointer1() {
+    let _l = Cons(1, Box::new(Cons(2, Box::new(Cons(3, Box::new(Nil))))));
 }
 
 // 2. Deref
@@ -57,7 +57,7 @@ pub fn pointer2() {
 }
 
 // 解引用的调用过程
-fn pointer22() {
+fn _pointer22() {
     let m = MyBox::new(String::from("Rust"));
     // &m 相当于 &MyBox<String>
     // 然后默认调用 deref 就变成了 &String
@@ -93,7 +93,7 @@ pub fn pointer3() {
     let a = DropPointer {
         data: String::from("第一"),
     };
-    let b = DropPointer {
+    let _b = DropPointer {
         data: String::from("第二"),
     };
     println!("pointer3 over");
@@ -145,11 +145,11 @@ pub fn pointer4() {
     let a = Rc::new(Cons2(5, Rc::new(Cons2(10, Rc::new(Nil2)))));
     println!(" refer count after create a:{}", Rc::strong_count(&a));
     // rc::clone 不会执行深度的 copy 操作,只会增加指针计数.当strong_count为 0 时,会被释放掉.
-    let b = Cons2(3, Rc::clone(&a));
+    let _b = Cons2(3, Rc::clone(&a));
     println!("refer count after create b:{}", Rc::strong_count(&a));
 
     {
-        let c = Cons2(4, Rc::clone(&a));
+        let _c = Cons2(4, Rc::clone(&a));
         println!("refer count after create c:{}", Rc::strong_count(&a));
     }
     // 这里c 离开作用域了可以看到减少了

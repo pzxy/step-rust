@@ -23,8 +23,6 @@ extern crate core;
 // running 0 tests
 //
 // test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
-mod closure;
-mod control_flow;
 mod iterator;
 mod marco;
 mod pattern;
@@ -34,6 +32,7 @@ mod r_trait;
 mod r_type;
 mod r_unsafe;
 mod thread;
+mod r_log;
 
 /// 这是文档注释
 /// # Examples
@@ -52,9 +51,10 @@ pub fn add_two(x: i32) -> i32 {
 #[cfg(test)]
 mod tests {
     use crate::iterator::{iterator31, iterator32, iterator4};
-    use crate::pointer::{pointer2, pointer3, pointer4, pointer5, pointer6, pointer7};
+    use crate::pointer::{pointer2, pointer3, pointer4, pointer5, pointer7};
+    use crate::r_log::{log1, log2};
     use crate::r_unsafe::unsafe4;
-    use crate::thread::{thread1, thread2, thread3, thread33, thread4Arc};
+    use crate::thread::{thread1, thread2, thread3, thread33, thread_arc};
 
     // 加了 #[test]就是测试函数,也可以不加
     #[test]
@@ -122,12 +122,19 @@ mod tests {
         thread2();
         thread3();
         thread33();
-        thread4Arc();
+        thread_arc();
     }
 
     #[test]
     fn t_unsafe() {
         unsafe4()
+    }
+
+
+    #[test]
+    fn t_log(){
+        log1();
+        log2();
     }
 }
 

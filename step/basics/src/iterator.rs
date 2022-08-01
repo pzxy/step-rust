@@ -2,7 +2,7 @@
 // 迭代器模式：对一系列项执行某些任务。
 // rust迭代器：懒惰的，除非调用消费迭代器的方法，否则迭代器本身没有任何效果。
 // 1. 例子
-fn iterator1() {
+fn _iterator1() {
     let v1 = vec![1, 2, 3];
     let v1_iter = v1.iter();
 
@@ -78,7 +78,7 @@ impl Iterator for Counter {
     }
 }
 
-fn iterator5() {
+fn _iterator5() {
     let sum: u32 = Counter::new()
         .zip(Counter::new().skip(1))
         .map(|(a, b)| a * b)

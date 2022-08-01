@@ -4,9 +4,9 @@ fn r_type() {
     // 整型 i32 u32 isize usize等
     // 浮点型 f32 f64
     // 字符类型比较特殊，是Unicode类型，支持emoji，比较特殊。范围 U+0000~U+D7FF , U+E000~U+10FFFF 。
-    let a = '2';
-    let b = '$';
-    let c = '🤔';
+    let _a = '2';
+    let _b = '$';
+    let _c = '🤔';
 }
 
 // 1. r_trait 11
@@ -49,7 +49,7 @@ pub trait Write {
 fn type3() {
     let guess = "";
     loop {
-        let guess: u32 = match guess.trim().parse() {
+        let _guess: u32 = match guess.trim().parse() {
             Ok(num) => num,
             // 这里 continue 类型就是!,也就是 never 类型,
             // never 类型无法产生一个可以返回的值,

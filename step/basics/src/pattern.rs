@@ -12,7 +12,7 @@
 // 1. match 的 arm,必须匹配所有可能性
 // 2. if let 可以匹配 match 的一种可能,不会检查全部的可能性.
 // 3. while let ,只要模式继续满足条件,就会循环
-fn pattern3() {
+fn _pattern3() {
     let mut stack = Vec::new();
     stack.push(1);
     stack.push(2);
@@ -26,7 +26,7 @@ fn pattern3() {
 }
 
 // 4. for 循环,for 循环中,模式就是for字 后面的值
-fn pattern4() {
+fn _pattern4() {
     let v = vec![1, 2, 3];
     // (k,v) 就是模式,这是一个元组
     for (k, v) in v.iter().enumerate() {
@@ -35,21 +35,21 @@ fn pattern4() {
 }
 
 // 5. let 也是模式, let Pattern = Expression;
-fn pattern5() {
-    let a = 5;
-    let (x, y, z) = (1, 2, 4);
+fn _pattern5() {
+    let _a = 5;
+    let (_x, _y, _z) = (1, 2, 4);
     // 个数必须对应上,否则会报错
     // let (x, y) = (1, 2, 4);
 }
 
 // 6. 模式作为函数的参数
-fn foo(x: i32) {}
+fn _foo(_x: i32) {}
 
 fn print_coordinates(&(x, y): &(i32, i32)) {
     println!("x:{},y:{}", x, y)
 }
 
-fn pattern6() {
+fn _pattern6() {
     let s = (2, 3);
     print_coordinates(&s);
 }
@@ -63,7 +63,7 @@ fn pattern6() {
 // 函数参数 let 语句 ,for 循环只接受无可辩驳的模式
 // if let 和 while let 接受可辩驳和无可辩驳的模式.
 // 其实这些都不用记,用的多了就记住了.
-fn pattern7() {
+fn _pattern7() {
     let a: Option<i32> = Some(5);
     // 这里会报错,因为 let 只接受不可辩驳的模式,Some 是可辩驳的,也就是说有多个值,
     //let Some(x) = a;
@@ -78,7 +78,7 @@ struct Point {
     y: i32,
 }
 
-fn pattern8() {
+fn _pattern8() {
     let a = 1;
     match a {
         // | 匹配多种
@@ -93,7 +93,7 @@ fn pattern8() {
 }
 
 // 9. 解构 分解值
-fn pattern9() {
+fn _pattern9() {
     let p = Point { x: 1, y: 2 };
     // 解构 结构体,这里相当于这样写
     // let Point { x: x, y: y } = p;
@@ -107,7 +107,7 @@ fn pattern9() {
         Point { x, y } => println!("x:{},y:{}", x, y),
     }
     // 解构元组 ,只要对应好就能都取出来, 非常好用
-    let ((feet, inches), Point { x, y }) = ((3, 10), Point { x: 3, y: -10 });
+    let ((_feet, _inches), Point { x: _x, y: _y }) = ((3, 10), Point { x: 3, y: -10 });
 }
 
 // 10 match 匹配 枚举enum
@@ -123,18 +123,18 @@ enum Message {
     ChangeColor(Color),
 }
 
-fn pattern10() {
+fn _pattern10() {
     let msg = Message::ChangeColor(Color::Rgb(0, 160, 255));
     match msg {
         Message::Quit => {
             println!("quit")
         }
         Message::Move { x, y } => {
-            println!("move")
+            println!("move {} {}", x, y)
         }
         // 这里特别像 java 中得 lambda 表达式,text 作为匿名函数的入参
         Message::Write(text) => {
-            println!("text");
+            println!("text {}",text);
         }
         // 一个一个对应取出来
         Message::ChangeColor(Color::Rgb(r, g, b)) => {
@@ -147,7 +147,7 @@ fn pattern10() {
 }
 
 // 11 使用 _ 忽略值
-fn pattern11() {
+fn _pattern11() {
     // 忽略参数,这里其实第一个入参传的值会被忽略
     // fn f1(_:i32,y:i32)
     let s = Some(5);
@@ -179,7 +179,7 @@ fn pattern11() {
 
 // 12 使用 .. 忽略剩余部分
 
-fn pattern12() {
+fn _pattern12() {
     let s = Point { x: 0, y: 3 };
     match s {
         // 这里使用 .. 来省略后面的变量,如果后面有 5 个,就会省略 5 个
@@ -197,7 +197,7 @@ fn pattern12() {
 
 // 13, 使用 match 守卫,来提供额外的条件.
 // match 守卫就是 match arm 模式后额外的 if 判断条件,想要匹配条件也必须满足
-fn pattern13() {
+fn _pattern13() {
     let x = Some(5);
     let y = 10;
     match x {
@@ -215,7 +215,7 @@ fn pattern13() {
 }
 
 // 14 @ 创建一个变量,匹配后绑定匹配值
-fn pattern14() {
+fn _pattern14() {
     let msg = Point { x: 5, y: 19 };
     match msg {
         // 匹配指定值

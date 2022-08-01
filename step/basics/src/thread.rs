@@ -1,7 +1,5 @@
-use std::rc::Rc;
 use std::sync::{mpsc, Arc, Mutex};
 use std::thread;
-use std::thread::spawn;
 use std::time::Duration;
 
 // 1. 例子
@@ -102,7 +100,7 @@ pub fn thread33() {
 // 是因为 Rc<T>不能用在多线程中,因为他没有 Send 这个 trait
 // Arc 和 Rc 的 api 是相同的,在标准库中默认是 Rc 不是 Arc,因为 Arc 性能有点慢
 // use std::sync::{mpsc, Mutex,Arc};
-pub fn thread4Rc() {
+pub fn thread_rc() {
     // // 这里不能用 Rc,因为 Rc 没有实现 Send trait
     // let counter = Rc::new(Mutex::new(0));
     // let mut handles = vec![];
@@ -133,7 +131,7 @@ pub fn thread4Rc() {
 }
 
 // 将 Rc 换成 Arc 就可以了
-pub fn thread4Arc() {
+pub fn thread_arc() {
     // 这里不能用 Rc,因为 Rc 没有实现 Send trait
     let counter = Arc::new(Mutex::new(0));
     let mut handles = vec![];
