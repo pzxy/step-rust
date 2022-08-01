@@ -25,9 +25,9 @@ pub fn log1() {
     env_logger::init();
     // env_logger是通过环境变量设置日志级别。设置日志级别运行 RUST_LOG=info cargo run
     // 设置到标准输出。这样的话，env_logger::init();就要注释掉才行。
-    let mut builder = Builder::from_default_env();
-    builder.target(Target::Stdout);
-    builder.init();
+    // let mut builder = Builder::from_default_env();
+    // builder.target(Target::Stdout);
+    // builder.init();
     // 注意，env_logger 必须尽可能早的初始化
     debug!("debug");
     info!("info!");

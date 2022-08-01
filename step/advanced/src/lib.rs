@@ -1,5 +1,10 @@
 mod async_wait;
+pub mod r_log;
+use crate::r_log::log1;
 
+pub fn log_demo() {
+    log1()
+}
 #[cfg(test)]
 mod tests {
     use crate::async_wait::async_main;
