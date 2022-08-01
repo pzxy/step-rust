@@ -3,6 +3,8 @@
 
 extern crate core;
 
+use crate::r_log::log1;
+
 // cargo test 命令，执行所有测试
 // 下面是打印信息
 // 运行了一个测试
@@ -47,12 +49,15 @@ pub fn add_two(x: i32) -> i32 {
     x + 2
 }
 
+pub fn log_demo() {
+    log1()
+}
+
 // 这是单元测试
 #[cfg(test)]
 mod tests {
     use crate::iterator::{iterator31, iterator32, iterator4};
     use crate::pointer::{pointer2, pointer3, pointer4, pointer5, pointer7};
-    use crate::r_log::{log1, log2};
     use crate::r_unsafe::unsafe4;
     use crate::thread::{thread1, thread2, thread3, thread33, thread_arc};
 
@@ -130,12 +135,6 @@ mod tests {
         unsafe4()
     }
 
-
-    #[test]
-    fn t_log(){
-        log1();
-        log2();
-    }
 }
 
 // 测试命令：
