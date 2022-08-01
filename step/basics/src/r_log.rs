@@ -44,6 +44,7 @@ pub fn log1() {
 use log::{Record, Metadata};
 
 struct SimpleLogger;
+// 对于这类开发者而言，自然要实现自己的 Log 特征咯:
 
 impl log::Log for SimpleLogger {
     fn enabled(&self, metadata: &Metadata) -> bool {
@@ -60,7 +61,7 @@ impl log::Log for SimpleLogger {
 use log::{SetLoggerError, LevelFilter};
 
 static LOGGER: SimpleLogger = SimpleLogger;
-
+//除此之外，我们还需要像 env_logger 一样包装下 set_logger 和 set_max_level:
 pub fn init() -> Result<(), SetLoggerError> {
     log::set_logger(&LOGGER)
         .map(|()| log::set_max_level(LevelFilter::Info))
