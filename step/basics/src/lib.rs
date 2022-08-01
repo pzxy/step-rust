@@ -3,8 +3,6 @@
 
 extern crate core;
 
-use crate::r_log::log1;
-
 // cargo test 命令，执行所有测试
 // 下面是打印信息
 // 运行了一个测试
@@ -34,7 +32,6 @@ mod r_trait;
 mod r_type;
 mod r_unsafe;
 mod thread;
-mod r_log;
 
 /// 这是文档注释
 /// # Examples
@@ -47,10 +44,6 @@ mod r_log;
 
 pub fn add_two(x: i32) -> i32 {
     x + 2
-}
-
-pub fn log_demo() {
-    log1()
 }
 
 // 这是单元测试
