@@ -1,4 +1,3 @@
-use crate::logger::log1;
 use crate::tracing::trance1;
 
 mod async_wait;
@@ -6,7 +5,6 @@ pub mod logger;
 mod tracing;
 
 pub fn log_demo() {
-    // log1()
     trance1()
 }
 
