@@ -30,7 +30,7 @@ use std::time::Duration;
 /// [dependencies]
 /// futures = "0.3"
 /// ```
-
+///
 struct Song {
     author: String,
     name: String,

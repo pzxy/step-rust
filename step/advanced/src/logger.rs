@@ -16,7 +16,7 @@
 
 
 use log::{log, log_enabled, debug, info, error, Level};
-use env_logger::{Builder, Target};
+// use env_logger::{Builder, Target};
 
 pub fn log1() {
     // 直接使用log，是看不到输出的，因为这是接口，要有实现才行。这里我们使用env_logger
