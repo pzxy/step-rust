@@ -1,8 +1,12 @@
-pub fn r_demo() {
+use std::cmp::Ordering;
+use std::io;
+use rand::Rng;
+
+pub fn _r_demo() {
     // 带了一个！，表示这是一个宏不是一个函数。
     println!("Hello, world!");
     // 1～101也是包头不包尾
-    let secret_number = rand::thread_rng().gen_range(1, 101);
+    let secret_number = rand::thread_rng().gen();
     println!("神秘数字: {}", secret_number);
     loop {
         println!("猜一个数");

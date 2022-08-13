@@ -1,7 +1,7 @@
 use std::fs::File;
 use std::io::{self, Read};
 
-pub fn read_file1() -> Result<String, io::Error> {
+pub fn _read_file1() -> Result<String, io::Error> {
     let f = File::open("hello.txt");
     let mut f = match f {
         Ok(file) => file,
@@ -15,7 +15,7 @@ pub fn read_file1() -> Result<String, io::Error> {
     }
 }
 
-pub fn read_file2() -> Result<String, io::Error> {
+pub fn _read_file2() -> Result<String, io::Error> {
     let mut s = String::new();
 
     File::open("hello.txt")?.read_to_string(&mut s)?;
