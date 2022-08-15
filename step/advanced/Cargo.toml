@@ -12,7 +12,13 @@ env_logger = "0.9"
 tracing = "0.1"
 tokio = { version = "1", features = ["full"] }
 mini-redis = "0.4"
-
+# json
+serde_json = "1.0.81"
+serde = { version = "1.0.137", features = ["derive"] }
+# orm
+#diesel = { version = "<version>", features = ["<postgres|mysql|sqlite>"] }
+diesel = { version = "1.4.8", features = ["sqlite"] }
 [[example]]
 name = "hello-redis"
 path = "examples/hello-redis.rs"
+
