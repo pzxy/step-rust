@@ -6,6 +6,5 @@ members = [
     "step/rtokio",
     "algorithms/leetcode",
     "demo",
-    "practice/http-server",
-    "practice/crawler"
+    "practice/*",
 ]
