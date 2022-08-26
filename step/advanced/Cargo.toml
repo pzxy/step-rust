@@ -17,7 +17,9 @@ serde_json = "1.0.81"
 serde = { version = "1.0.137", features = ["derive"] }
 # orm
 #diesel = { version = "<version>", features = ["<postgres|mysql|sqlite>"] }
-diesel = { version = "1.4.8", features = ["sqlite"] }
+diesel = { version = "2.0.0-rc.1", features = ["sqlite"] }
+# sqlite
+rusqlite = { version = "0.28.0", features = ["bundled"] }
 [[example]]
 name = "hello-redis"
 path = "examples/hello-redis.rs"
