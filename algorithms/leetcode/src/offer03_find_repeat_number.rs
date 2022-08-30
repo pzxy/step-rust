@@ -4,6 +4,8 @@
 // [2, 3, 1, 0, 2, 5, 3]
 // 输出：2 或 3
 
+use std::fs::read_to_string;
+
 pub fn find_repeat_number(nums: Vec<i32>) -> i32 {
     let mut nums = nums.clone();
     let mut idx: usize = 0;
@@ -20,4 +22,29 @@ pub fn find_repeat_number(nums: Vec<i32>) -> i32 {
         }
     }
     idx as i32
+}
+
+pub fn find_repeat_number2(nums: Vec<i32>) -> i32 {
+    let mut nums = nums.clone();
+    let mut idx: usize = 0;
+    while idx < nums.len() {
+        if nums[idx] as usize == idx {
+            idx += 1;
+            continue;
+        }
+        if nums[idx] == nums[nums[idx] as usize] {
+            return nums[idx];
+        } else {
+            let target = nums[idx] as usize;
+            nums.swap(idx, target)
+        }
+    }
+    idx as i32
+}
+
+#[test]
+fn test03() {
+    let nums = vec![2, 3, 1, 0, 2, 5, 3];
+    let ret = find_repeat_number2(nums);
+    println!("{}", ret)
 }
