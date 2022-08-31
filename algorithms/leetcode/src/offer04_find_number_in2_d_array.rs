@@ -49,3 +49,28 @@ pub fn find_number_in2_d_array(matrix: [[i32; 1]; 1], target: i32) -> bool {
     }
     false
 }
+
+pub fn find_number_in2_d_array2(m: [[i32; 1]; 1], target: i32) -> bool {
+    if m.is_empty() {
+        return false;
+    }
+    if m[0].is_empty() {
+        return false;
+    }
+    let mut row = 0;
+    let mut col = m[0].len() - 1;
+    while row < m.len() && col >= 0 {
+        if m[row][col] == target {
+            return true;
+        }
+        if m[row][col] > target {
+            if col == 0 {
+                break;
+            }
+            col -= 1;
+        } else {
+            row += 1;
+        }
+    }
+    false
+}
