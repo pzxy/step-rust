@@ -48,3 +48,13 @@ pub fn reverse_print2(head: Option<Box<ListNode>>) -> Vec<i32> {
     }
     stack.iter().rev().map(|&x| x).collect()
 }
+
+pub fn reverse_print3(head: Option<Box<ListNode>>) -> Vec<i32> {
+    let mut p = head;
+    let mut stack = Vec::new();
+    while let Some(mut cur) = p {
+        p = cur.next;
+        stack.push(cur.val);
+    }
+    stack.iter().map(|&x| x).collect()
+}

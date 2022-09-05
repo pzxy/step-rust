@@ -14,3 +14,17 @@ pub fn replace_space(s: String) -> String {
     }
     ret
 }
+
+// fn replace_space2(s: String) -> String {
+//     let mut ret = String::from("");
+//     for c in s.chars() {
+//         if c == ' ' {
+//             ret.push('%');
+//             ret.push('2');
+//             ret.push('0');
+//         } else {
+//             ret.push(c);
+//         }
+//     }
+//     ret
+// }
