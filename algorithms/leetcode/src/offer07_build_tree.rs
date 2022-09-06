@@ -29,6 +29,7 @@ use std::rc::Rc;
 #[derive(Debug, PartialEq, Eq)]
 pub struct TreeNode {
     pub val: i32,
+    // treeNode 会被其他 treeNode对象多个同时引用,所以要用 refCell 包起来.
     pub left: Option<Rc<RefCell<TreeNode>>>,
     pub right: Option<Rc<RefCell<TreeNode>>>,
 }
