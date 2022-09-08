@@ -2,14 +2,14 @@ extern crate diesel;
 extern crate orm;
 
 use diesel::prelude::*;
-use orm::establish_connection;
 
+use orm::establish_connection;
 use orm::models::*;
 
 fn main() {
     use orm::schema::posts::dsl::*;
 
-    let  connection = establish_connection();
+    let connection = establish_connection();
     let results = posts.filter(published.eq(true))
         .limit(5)
         .load::<Post>(&connection)

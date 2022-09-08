@@ -1,4 +1,4 @@
-use log::info;
+use log::{info};
 use serde::{Deserialize, Serialize};
 
 #[tokio::main]
@@ -9,7 +9,7 @@ async fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     let resp: Root = serde_json::from_str(res.as_str())?;
     if resp.success == true {
         for v in resp.result.datas {
-            println!("{} --> {}", v.solution_name, v.head_line)
+            info!("{} --> {}", v.solution_name, v.head_line)
         }
     }
     // 存储

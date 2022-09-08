@@ -127,7 +127,6 @@ impl<'a> ImportantExcerpt<'a> {
     }
 }
 
-
 // 5. 生命周期 泛型 trait bound
 // 生命周期也是泛型的一种
 fn longest5<'a, T>(x: &'a str, y: &'a str, ann: T) -> &'a str
@@ -140,5 +139,3 @@ fn longest5<'a, T>(x: &'a str, y: &'a str, ann: T) -> &'a str
         y
     }
 }
-
-
