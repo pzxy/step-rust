@@ -1,4 +1,20 @@
-use std::fmt::{ Debug, Display, Formatter};
+use std::fmt::{Debug, Display, Formatter};
+// 10. 使用 super-trait 来要求 trait 附带其他 trait 的功能. 相当于 trait 的继承概念
+// 有时候需要在一个 trait 中使用其他 trait 的功能
+// - 需要被依赖的 trait 也被发现
+// - 那个被间接依赖的 trait 就是当前 trait 的 super-trait
+use std::fmt;
+// 8. 默认泛型参数和运算符重载
+// 可以在使用泛型参数时为泛型指定一个默认的具体类型
+// 语法:<PlaceholderType=ConcreteType>
+// 这种技术常用语运算符重载.
+// 主要应用场景:
+// - 扩展一个类型而不破坏现有代码
+// - 允许在大部分用户都不需要的特定场景下进行自定义
+// 虽然 Rust 不允许创建自己的运算符 以及 重载任意运算符.
+// 但可以通过实现 std::ops 中列出的那些 trait 来重载一部分相应的运算符
+// 例子
+use std::ops::Add;
 
 // 类似接口
 // 但不完全是，一般高级语言的接口是不自己实现方法的，
@@ -25,13 +41,14 @@ pub struct Tweet {
     username: String,
     age: i32,
 }
+
 impl Summary for Tweet {
     fn summarize(&self) -> String {
         format!("{}", self.username)
     }
 }
 
-// 1. trait bound
+// 1. trait bound,指定 trait 对象
 pub fn notify<T: Summary>(iterm1: T, _iterm2: T) {
     println!("notify:{}", iterm1.summarize())
 }
@@ -53,9 +70,9 @@ pub fn notify3<T: Summary + Display, U: Clone + Debug>(a: T, _b: U) -> String {
 
 // 使用where子句定义trait，和c#很像
 pub fn notify31<T, U>(a: T, _b: U) -> String
-where
-    T: Summary + Display,
-    U: Clone + Debug,
+    where
+        T: Summary + Display,
+        U: Clone + Debug,
 {
     format!("notify:{}", a.summarize())
 }
@@ -150,18 +167,6 @@ impl Iterator for Counter {
 //         todo!()
 //     }
 // }
-
-// 8. 默认泛型参数和运算符重载
-// 可以在使用泛型参数时为泛型指定一个默认的具体类型
-// 语法:<PlaceholderType=ConcreteType>
-// 这种技术常用语运算符重载.
-// 主要应用场景:
-// - 扩展一个类型而不破坏现有代码
-// - 允许在大部分用户都不需要的特定场景下进行自定义
-// 虽然 Rust 不允许创建自己的运算符 以及 重载任意运算符.
-// 但可以通过实现 std::ops 中列出的那些 trait 来重载一部分相应的运算符
-// 例子
-use std::ops::Add;
 
 #[derive(Debug, PartialEq)]
 struct Point {
@@ -258,12 +263,6 @@ pub fn trait9() {
     <Human as Pilot>::run();
     <Human as Wizard>::run();
 }
-
-// 10. 使用 super-trait 来要求 trait 附带其他 trait 的功能. 相当于 trait 的继承概念
-// 有时候需要在一个 trait 中使用其他 trait 的功能
-// - 需要被依赖的 trait 也被发现
-// - 那个被间接依赖的 trait 就是当前 trait 的 super-trait
-use std::fmt;
 
 // OutlinePrint 依赖于 fmt::Display 这个 trait
 trait OutlinePrint: fmt::Display {
