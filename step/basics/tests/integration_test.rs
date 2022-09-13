@@ -2,6 +2,7 @@ use crate::common::setup;
 
 //导入本目录下的模块
 mod common;
+mod strait_sized_test;
 
 // 这里没有写cfg是因为，tests目录会被特殊对待
 // 只有执行cargo  test 时候这个目录下的文件才会被编译。
