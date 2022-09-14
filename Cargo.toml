@@ -4,7 +4,6 @@ members = [
     "step/basics",
     "step/advanced",
     "step/rtokio",
-    "step/gui",
     "step/orm",
     "step/standard",
     "algorithms/leetcode",
