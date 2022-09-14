@@ -80,3 +80,20 @@ pub fn min_array3(numbers: Vec<i32>) -> i32 {
     }
     return numbers[p];
 }
+
+// 这道题的关键是用中间值和一边比较大小,然后做分析
+pub fn min_array4(num: Vec<i32>)->i32{
+    let mut p = 0;
+    let mut q = num.len()-1;
+    while q>p {
+        let m = (p+q)/2;
+        if num[m]>num[q] {
+            p = m+1;
+        }else if num[m]<num[q] {
+            q = m;
+        }else {
+            q -= 1
+        }
+    }
+    num[p]
+}
