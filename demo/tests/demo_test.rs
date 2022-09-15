@@ -1,4 +1,3 @@
-use crate::common::setup;
 
 //导入本目录下的模块
 mod common;
@@ -9,5 +8,10 @@ mod common;
 fn demo() {
     // 只能调用lib.rs文件下的pub方法
     // 或者tests目录下的其他模块，通过mod引用进来，来调用。
-    setup();
+    let  r ;
+    {
+        let x :&'static i32 = &31;
+        r = x
+    }
+    println!("{}",r)
 }

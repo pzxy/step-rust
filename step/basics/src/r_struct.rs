@@ -1,6 +1,7 @@
 
 // struct
 // 调试使用，rust包含调试功能，这是为这个结构体显示的选择这一个功能。
+#![allow(unused)]
 #[derive(Debug)]
 struct User {
     name: String,
