@@ -4,6 +4,7 @@ mod r1_hello;
 mod r2_reverse;
 mod r3_after;
 mod r4_clock;
+mod r5_anagram;
 
 pub struct Payload {
     pub features: Vec<String>,
