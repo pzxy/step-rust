@@ -26,7 +26,6 @@
 // 提示：
 // 输入必须是长度为 32 的 二进制串 。
 
-
 // 移动位置后和1进行与操作。
 pub fn hamming_weight(n: usize) -> i32 {
     let mut count = 0;
@@ -34,6 +33,19 @@ pub fn hamming_weight(n: usize) -> i32 {
     while num > 0 {
         if num & 1 == 1 {
             count += 1;
+        }
+        num >>= 1;
+    }
+    count
+}
+
+pub fn hamming_weight2(n: usize) -> i32 {
+    let mut count = 0;
+    let mut num = n;
+    while num > 0 {
+        match num & 1 {
+            1 => count += 1,
+            _ => continue,
         }
         num >>= 1;
     }
