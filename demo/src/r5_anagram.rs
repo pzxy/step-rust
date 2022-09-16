@@ -11,7 +11,7 @@
 // Try to limit case changes. Case changes are expensive in terms of time, so it's faster to minimize them.
 //
 // If sorting, consider sort_unstable which is typically faster than stable sorting. When applicable, unstable sorting is preferred because it is generally faster than stable sorting and it doesn't allocate auxiliary memory.
-
+// 猜字谜, 不区分大小写, 字符全部相同(字符个数也要相同)就返回(相同单词例外), 正确例子 quite quiEt , 错误例子 egg eg
 use std::collections::{HashMap, HashSet};
 
 pub fn anagrams_for<'a>(word: &str, possible_anagrams: &[&'a str]) -> HashSet<&'a str> {
