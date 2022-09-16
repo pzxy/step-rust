@@ -12,35 +12,53 @@
 //
 // If sorting, consider sort_unstable which is typically faster than stable sorting. When applicable, unstable sorting is preferred because it is generally faster than stable sorting and it doesn't allocate auxiliary memory.
 
-use std::collections::HashSet;
+use std::collections::{HashMap, HashSet};
 
 pub fn anagrams_for<'a>(word: &str, possible_anagrams: &[&'a str]) -> HashSet<&'a str> {
     let mut ret: HashSet<&str> = HashSet::new();
-    let word_uppercase_map = word.to_uppercase().chars().collect::<HashSet<char>>();
+    let word_map = str2map(word);
     for s in possible_anagrams.iter() {
         if s.len() != word.len() {
             continue;
         }
+        if s.clone().to_uppercase().eq(&word.to_uppercase()) {
+            continue;
+        }
+        let curr_map = str2map(s);
         ret.insert(s);
-        for c in s.clone().to_string().to_uppercase().chars() {
-            match word_uppercase_map.get(&c) {
+        println!("insert:{}", s);
+        // compare map
+        for c in s.clone().to_uppercase().chars() {
+            match word_map.get(&c) {
                 None => {
                     ret.remove(s);
                     break;
                 }
-                // 排除这种情况
-                // let word = "ΑΒΓ";
-                // let inputs = ["ΑΒγ"];
-                Some(v) => {
-                    println!("{}", v);
-                    println!("{}", c);
-                    if v.to_string() != c.to_string() {
+                Some(vv) => match curr_map.get(&c) {
+                    None => {
                         ret.remove(s);
                         break;
                     }
-                }
+                    Some(vvv) => {
+                        if vv != vvv {
+                            ret.remove(s);
+                            break;
+                        }
+                    }
+                },
             }
         }
+    }
+    ret
+}
+
+fn str2map(s: &str) -> HashMap<char, i32> {
+    let mut ret: HashMap<char, i32> = HashMap::new();
+    for v in s.to_uppercase().chars() {
+        match ret.get(&v) {
+            None => ret.insert(v, 1),
+            Some(count) => ret.insert(v, count + 1),
+        };
     }
     ret
 }
@@ -54,7 +72,8 @@ fn process_anagram_case(word: &str, inputs: &[&str], expected: &[&str]) {
 #[test]
 fn demo() {
     let word = "ΑΒΓ";
-    let inputs = ["ΑΒγ"];
-    let outputs = vec![];
+    // These words don't make sense, they're just greek letters cobbled together.
+    let inputs = ["ΒΓΑ", "ΒΓΔ", "γβα"];
+    let outputs = vec!["ΒΓΑ", "γβα"];
     process_anagram_case(word, &inputs, &outputs);
 }
