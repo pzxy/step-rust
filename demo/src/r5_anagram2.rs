@@ -1,4 +1,5 @@
 use std::collections::HashSet;
+
 pub fn anagrams_for<'a>(word: &'a str, possible_anagrams: &'a [&'a str]) -> HashSet<&'a str> {
     let low = word.to_lowercase();
     let mut low_s = low.chars().collect::<Vec<_>>();

@@ -14,7 +14,7 @@
 // 特征允许以一种通用的方式来实现各种类型的功能。
 //
 // 如需进一步学习，请考虑如何String::from为该Clock类型实现。您不必实际实现这一点——它是多余的Display，当目标类型是时，这通常是更好的选择String——但在你的工具包中拥有一些类型转换特征是有用的。
-
+#[allow(unused)]
 use std::fmt::{Display, Formatter};
 
 #[derive(PartialEq, Eq, Debug)]
@@ -63,7 +63,7 @@ fn handle_t(h: i32, m: i32) -> Clock {
 #[test]
 fn demo() {
     println!("{}", Clock::new(-83, 49));
-    // assert_eq!(Clock::new(10, 37), Clock::new(34, 37))
+    assert_eq!(Clock::new(10, 37).add_minutes(1), Clock::new(34, 38))
     // assert_eq!(Clock::new(-83, 49), Clock::new(34, 37))
 }
 
