@@ -9,10 +9,10 @@ pub fn anagrams_for<'a>(word: &'a str, possible_anagrams: &'a [&'a str]) -> Hash
         .filter(|p| {
             let low_p = p.to_lowercase();
             let mut cs = low_p.chars().collect::<Vec<_>>();
-            cs.sort_unstable();
+            cs.sort();
             cs == low_s && low != low_p
         })
-        .map(|&p| p);
+        .copied();
     HashSet::from_iter(r)
 }
 
