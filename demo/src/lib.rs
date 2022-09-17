@@ -8,6 +8,7 @@ mod r5_anagram;
 mod r5_anagram2;
 mod r6_space_age;
 mod r6_space_age2;
+mod r7_armstrong_numbers;
 
 pub struct Payload {
     pub features: Vec<String>,
@@ -18,3 +19,4 @@ pub struct Root {
     pub success: bool,
     pub payload: Payload,
 }
+
