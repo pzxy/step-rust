@@ -117,7 +117,6 @@ impl Planet for Neptune {
     }
 }
 
-
 fn assert_in_delta(expected: f64, actual: f64) {
     let diff: f64 = (expected - actual).abs();
     let delta: f64 = 0.01;
@@ -129,6 +128,7 @@ fn assert_in_delta(expected: f64, actual: f64) {
     }
 }
 
+
 #[test]
 fn earth_age() {
     let duration = Duration::from(1_000_000_000);
@@ -139,10 +139,6 @@ fn earth_age() {
 #[ignore]
 fn mercury_age() {
     let duration = Duration::from(2_134_835_688);
-    let s = 2134835688 / 24 / 3600; //24708
-    let ss = s as f64/ 365.25;
-
-    println!("{}", ss / 0.2408467);
     assert_in_delta(280.88, Mercury::years_during(&duration));
 }
 

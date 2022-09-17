@@ -6,6 +6,8 @@ mod r3_after;
 mod r4_clock;
 mod r5_anagram;
 mod r5_anagram2;
+mod r6_space_age;
+mod r6_space_age2;
 
 pub struct Payload {
     pub features: Vec<String>,
