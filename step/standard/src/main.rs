@@ -1,5 +1,9 @@
 use std::io;
 
+fn main() {
+    println!("Hello, world!");
+}
+
 #[test]
 fn demo_io() {
     let mut read_str = String::new();
