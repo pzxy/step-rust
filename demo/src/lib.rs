@@ -11,6 +11,7 @@ mod r6_space_age2;
 mod r7_armstrong_numbers;
 mod r8_grains;
 mod r9_high_scores;
+mod r10_difference_of_squares;
 
 pub struct Payload {
     pub features: Vec<String>,
