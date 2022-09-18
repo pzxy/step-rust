@@ -14,6 +14,7 @@ mod r9_high_scores;
 mod r10_difference_of_squares;
 mod r11_leap;
 mod r12_nth_prime;
+mod r13_raindrop;
 
 pub struct Payload {
     pub features: Vec<String>,
