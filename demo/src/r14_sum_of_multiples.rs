@@ -5,7 +5,7 @@
 //
 // The sum of these multiples is 78.
 //指示
-// 给定一个数字，找到特定数字的所有唯一倍数的总和，但不包括该数字。
+// 给定一个数字，找到特定数字的所有唯一倍数的总和，但不包括该数字 。
 //
 // 如果我们列出所有小于 20 且是 3 或 5 的倍数的自然数，我们会得到 3、5、6、9、10、12、15 和 18。
 //
@@ -29,6 +29,7 @@ pub fn sum_of_multiples2(limit: u32, factors: &[u32]) -> u32 {
         })
         .sum()
 }
+
 //高分
 pub fn sum_of_multiples(limit: u32, factors: &[u32]) -> u32 {
     (1..limit)
@@ -42,15 +43,15 @@ fn no_multiples_within_limit() {
     let vec2 = vec![4, 5, 6];
 
     // `iter()` for vecs yields `&i32`. Destructure to `i32`.
-    println!("2 in vec1: {}", vec1.iter()     .any(|&x| x == 2));
+    println!("2 in vec1: {}", vec1.iter().any(|&x| x == 2));
     // `into_iter()` for vecs yields `i32`. No destructuring required.
-    println!("2 in vec2: {}", vec2.into_iter().any(| x| x == 2));
+    println!("2 in vec2: {}", vec2.into_iter().any(|x| x == 2));
 
     let array1 = [1, 2, 3];
     let array2 = [4, 5, 6];
 
     // `iter()` for arrays yields `&i32`.
-    println!("2 in array1: {}", array1.iter()     .any(|&x| x == 2));
+    println!("2 in array1: {}", array1.iter().any(|&x| x == 2));
     // `into_iter()` for arrays yields `i32`.
     println!("2 in array2: {}", array2.into_iter().any(|x| x == 2));
 
