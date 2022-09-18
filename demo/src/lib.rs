@@ -16,6 +16,7 @@ mod r11_leap;
 mod r12_nth_prime;
 mod r13_raindrop;
 mod r14_sum_of_multiples;
+mod r15_series;
 
 pub struct Payload {
     pub features: Vec<String>,
