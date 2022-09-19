@@ -37,7 +37,7 @@
 // edition = "2021"
 // name = "minesweeper"
 // version = "1.1.0"
-pub fn annotate(minefield: &[&str]) -> Vec<String> {
+pub fn annotate2(minefield: &[&str]) -> Vec<String> {
     let mut ret = Vec::new();
     let row = minefield.len();
     if row == 0 {
@@ -56,59 +56,59 @@ pub fn annotate(minefield: &[&str]) -> Vec<String> {
             //  限制上下左右
             // 左上
             if r > 0 && c > 0 {
-                match minefield[r - 1].get(c - 1..=c - 1) {
-                    Some(x) => { if x.eq("*") { count += 1 } }
-                    None => ()
+                match minefield[r - 1].as_bytes()[c - 1] {
+                    b'*' => count += 1,
+                    _ => ()
                 }
             }
 
             // 向上
             if r > 0 {
-                match minefield[r - 1].get(c..=c) {
-                    Some(x) => { if x.eq("*") { count += 1 } }
-                    None => ()
+                match minefield[r - 1].as_bytes()[c] {
+                    b'*' => count += 1,
+                    _ => ()
                 }
             }
             // 右上
             if r > 0 && c + 1 < col {
-                match minefield[r - 1].get(c + 1..=c + 1) {
-                    Some(x) => { if x.eq("*") { count += 1 } }
-                    None => ()
+                match minefield[r - 1].as_bytes()[c + 1] {
+                    b'*' => count += 1,
+                    _ => ()
                 }
             }
             // 向右
             if c + 1 < col {
-                match minefield[r].get(c + 1..=c + 1) {
-                    Some(x) => { if x.eq("*") { count += 1 } }
-                    None => ()
+                match minefield[r].as_bytes()[c + 1] {
+                    b'*' => count += 1,
+                    _ => ()
                 }
             }
             // 右下
             if r + 1 < row && c + 1 < col {
-                match minefield[r + 1].get(c + 1..=c + 1) {
-                    Some(x) => { if x.eq("*") { count += 1 } }
-                    None => ()
+                match minefield[r + 1].as_bytes()[c + 1] {
+                    b'*' => count += 1,
+                    _ => ()
                 }
             }
             // 向下
             if r + 1 < row {
-                match minefield[r + 1].get(c..=c) {
-                    Some(x) => { if x.eq("*") { count += 1 } }
-                    None => ()
+                match minefield[r + 1].as_bytes()[c] {
+                    b'*' => count += 1,
+                    _ => ()
                 }
             }
             // 左下
             if c > 0 && r + 1 < row {
-                match minefield[r + 1].get(c - 1..=c - 1) {
-                    Some(x) => { if x.eq("*") { count += 1 } }
-                    None => ()
+                match minefield[r + 1].as_bytes()[c - 1] {
+                    b'*' => count += 1,
+                    _ => ()
                 }
             }
             // 向左
             if c > 0 {
-                match minefield[r].get(c - 1..=c - 1) {
-                    Some(x) => { if x.eq("*") { count += 1 } }
-                    None => ()
+                match minefield[r].as_bytes()[c - 1] {
+                    b'*' => count += 1,
+                    _ => ()
                 }
             }
 
@@ -121,6 +121,34 @@ pub fn annotate(minefield: &[&str]) -> Vec<String> {
     }
 
     ret
+}
+
+// 高分答案
+static NEIGBOURHOOD_OFFSETS: &'static [(i32, i32)] = &[
+    (-1, -1), (0, -1), (1, -1),
+    (-1, 0), (1, 0),
+    (-1, 1), (0, 1), (1, 1),
+];
+
+pub fn annotate(field: &[&str]) -> Vec<String> {
+    let height = field.len() as i32;
+    (0..height).map(|y| {
+        let width = field[y as usize].len() as i32;
+        (0..width).map(|x| {
+            if field[y as usize].as_bytes()[x as usize] == b'*' {
+                '*'
+            } else {
+                match NEIGBOURHOOD_OFFSETS.iter()
+                    .map(|&(ox, oy)| (x + ox, y + oy))
+                    .filter(|&(x, y)| (0 <= x && x < width) && (0 <= y && y < height))
+                    .filter(|&(x, y)| field[y as usize].as_bytes()[x as usize] == b'*')
+                    .count() {
+                    0 => ' ',
+                    n => (n as u8 + '0' as u8) as char
+                }
+            }
+        }).collect()
+    }).collect()
 }
 
 
