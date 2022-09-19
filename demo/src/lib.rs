@@ -19,6 +19,7 @@ mod r14_sum_of_multiples;
 mod r15_series;
 mod fileter_any_windows;
 mod r16_collatz_conjecture;
+mod r17_minesweeper;
 
 pub struct Payload {
     pub features: Vec<String>,
