@@ -33,9 +33,6 @@
 // ·2*2·
 // ·111·
 
-
-use std::ops::Index;
-
 //[package]
 // edition = "2021"
 // name = "minesweeper"
@@ -51,22 +48,76 @@ pub fn annotate(minefield: &[&str]) -> Vec<String> {
         // 遍历行
         let mut row_str = String::new();
         for (c, v) in minefield[r].chars().enumerate() {
-            // todo 开始计算
+            if v == '*' {
+                row_str.push("*".parse().unwrap());
+                continue;
+            }
             let mut count = 0;
-            // todo 限制上下左右
+            //  限制上下左右
+            // 左上
+            if r > 0 && c > 0 {
+                match minefield[r - 1].get(c - 1..=c - 1) {
+                    Some(x) => { if x.eq("*") { count += 1 } }
+                    None => ()
+                }
+            }
+
             // 向上
             if r > 0 {
-                match minefield[r - 1]. {
-
+                match minefield[r - 1].get(c..=c) {
+                    Some(x) => { if x.eq("*") { count += 1 } }
+                    None => ()
+                }
+            }
+            // 右上
+            if r > 0 && c + 1 < col {
+                match minefield[r - 1].get(c + 1..=c + 1) {
+                    Some(x) => { if x.eq("*") { count += 1 } }
+                    None => ()
+                }
+            }
+            // 向右
+            if c + 1 < col {
+                match minefield[r].get(c + 1..=c + 1) {
+                    Some(x) => { if x.eq("*") { count += 1 } }
+                    None => ()
+                }
+            }
+            // 右下
+            if r + 1 < row && c + 1 < col {
+                match minefield[r + 1].get(c + 1..=c + 1) {
+                    Some(x) => { if x.eq("*") { count += 1 } }
+                    None => ()
                 }
             }
             // 向下
-            if r + 1 < row {}
+            if r + 1 < row {
+                match minefield[r + 1].get(c..=c) {
+                    Some(x) => { if x.eq("*") { count += 1 } }
+                    None => ()
+                }
+            }
+            // 左下
+            if c > 0 && r + 1 < row {
+                match minefield[r + 1].get(c - 1..=c - 1) {
+                    Some(x) => { if x.eq("*") { count += 1 } }
+                    None => ()
+                }
+            }
             // 向左
-            if c > 0 {}
-            // 向右
-            if c + 1 < col {}
+            if c > 0 {
+                match minefield[r].get(c - 1..=c - 1) {
+                    Some(x) => { if x.eq("*") { count += 1 } }
+                    None => ()
+                }
+            }
+
+            match count {
+                0 => row_str.push(' '),
+                _ => row_str.push(count.to_string().parse().unwrap()),
+            }
         }
+        ret.push(row_str);
     }
 
     ret
