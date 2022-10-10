@@ -27,6 +27,7 @@ mod iterator;
 mod marco;
 mod pattern;
 mod pointer;
+mod pointer2;
 mod r_func;
 mod r_trait;
 mod r_type;
@@ -127,7 +128,6 @@ mod tests {
     fn t_unsafe() {
         unsafe4()
     }
-
 }
 
 // 测试命令：

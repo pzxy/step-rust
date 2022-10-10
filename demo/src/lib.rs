@@ -1,5 +1,15 @@
 mod a1_file;
 mod demo1;
+mod fileter_any_windows;
+mod r10_difference_of_squares;
+mod r11_leap;
+mod r12_nth_prime;
+mod r13_raindrop;
+mod r14_sum_of_multiples;
+mod r15_series;
+mod r16_collatz_conjecture;
+mod r17_minesweeper;
+mod r18_diffie_hellman;
 mod r1_hello;
 mod r2_reverse;
 mod r3_after;
@@ -11,15 +21,6 @@ mod r6_space_age2;
 mod r7_armstrong_numbers;
 mod r8_grains;
 mod r9_high_scores;
-mod r10_difference_of_squares;
-mod r11_leap;
-mod r12_nth_prime;
-mod r13_raindrop;
-mod r14_sum_of_multiples;
-mod r15_series;
-mod fileter_any_windows;
-mod r16_collatz_conjecture;
-mod r17_minesweeper;
 
 pub struct Payload {
     pub features: Vec<String>,
@@ -30,4 +31,3 @@ pub struct Root {
     pub success: bool,
     pub payload: Payload,
 }
-
