@@ -35,6 +35,7 @@
 // name = "collatz_conjecture"
 // version = "1.2.1"
 
+
 pub fn collatz2(mut n: u64) -> Option<u64> {
     for i in 0.. {
         match n {
