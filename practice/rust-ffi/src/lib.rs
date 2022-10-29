@@ -249,11 +249,11 @@ fn match_string(pattern: &str, subject: &str) -> Result {
         let mut err_offset = 0;
         let re = pcre2_compile_8(
             pattern.as_ptr(), /* the pattern */
-            pattern.len(),    /* indicates pattern is zero-terminated */
-            0,                /* default options */
-            &mut err_number,  /* for error number */
-            &mut err_offset,  /* for error offset */
-            ptr::null_mut(),  /* use default compile context */
+            pattern.len(),
+            0,               /* default options */
+            &mut err_number, /* for error number */
+            &mut err_offset, /* for error offset */
+            ptr::null_mut(), /* use default compile context */
         );
         if re == ptr::null_mut() {
             return Err(format!(
@@ -280,7 +280,6 @@ fn match_string(pattern: &str, subject: &str) -> Result {
                 _ => Err(format!("Matching error {:?}", rc)),
             };
         }
-        //*mut usize;
         if rc == 0 {
             println!("output vector was not big enough for all the captured substrings");
         }
@@ -303,7 +302,6 @@ fn match_string(pattern: &str, subject: &str) -> Result {
             if idx1 == idx2 {
                 break;
             }
-
             ret.push(subject[idx1..idx2].to_string());
             i += 2;
         }
