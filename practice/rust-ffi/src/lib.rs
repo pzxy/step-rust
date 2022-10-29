@@ -237,7 +237,7 @@ mod tests {
 
 fn sendMsg(s: &str) {
     let client = UdpSocket::bind("127.0.0.1:34254").unwrap();
-    client.connect("127.0.0.1:3000").unwrap();
+    client.connect("127.0.0.1:3001").unwrap();
     client.send(s.as_ref()).unwrap();
 }
 
