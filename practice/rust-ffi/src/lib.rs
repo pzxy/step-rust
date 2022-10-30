@@ -12,6 +12,7 @@ mod tests {
     use super::*;
 
     #[test]
+    #[allow(unused)]
     fn round_trip_compression_decompression() {
         unsafe {
             // let mut context = pcre2_real_compile_context_8 { _unused: [] };
@@ -146,6 +147,7 @@ mod tests {
         }
     }
     #[test]
+    #[allow(unused)]
     fn match_and_sendUS() {
         unsafe {
             let pattern = r"\d{4}([^0-9^\s]{3,11})\S";
@@ -218,23 +220,28 @@ mod tests {
     }
 
     #[test]
-    fn test_match() {
+    #[allow(unused)]
+    fn test_match_string() {
         let pattern = r"\d{4}([^0-9^\s]{3,11})\S";
         let src= "a;jhgoqoghqoj0329 u0tyu10hg0h9Y0Y9827342482y(Y0y(G)_)lajf;lqjfgqhgpqjopjqa=)*(^!@#$%^&*())9999999";
         let ret = match_string(pattern, src);
         match ret {
             Ok(v) => {
-                for v in v {
-                    println!("{}", v);
+                if v.len() < 2 {
+                    panic!("match fail")
+                }
+                if let Some(msg) = v.get(1) {
+                    sendMsg(msg);
                 }
             }
             Err(e) => {
-                println!("{}", e);
+                panic!("{}", e);
             }
         }
     }
 }
 
+#[allow(unused)]
 fn sendMsg(s: &str) {
     let client = UdpSocket::bind("127.0.0.1:34254").unwrap();
     client.connect("127.0.0.1:3001").unwrap();
@@ -242,7 +249,7 @@ fn sendMsg(s: &str) {
 }
 
 type Result = result::Result<Vec<String>, String>;
-
+#[allow(unused)]
 fn match_string(pattern: &str, subject: &str) -> Result {
     unsafe {
         let mut err_number = 0;
