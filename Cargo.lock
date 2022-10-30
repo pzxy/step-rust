@@ -1307,13 +1307,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "rust-ffi"
-version = "0.1.0"
-dependencies = [
- "bindgen",
-]
-
-[[package]]
 name = "rustc-hash"
 version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1477,6 +1470,13 @@ checksum = "66d72b759436ae32898a2af0a14218dbf55efde3feeb170eb623637db85ee1e0"
 dependencies = [
  "libc",
  "winapi",
+]
+
+[[package]]
+name = "solution"
+version = "0.1.0"
+dependencies = [
+ "bindgen",
 ]
 
 [[package]]
