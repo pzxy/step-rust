@@ -37,6 +37,8 @@ fn r_fn() {
     // if和else都是表达式，表达式是有返回值的，所以可以放在等号的右边。
     // 表达式的最后一个值就是表达式的返回值，这里if表达式返回的是1。
     let number = if condition { 1 } else { 2 };
+
+    let condition = true;
     println!("number:{}", number)
 }
 
@@ -63,6 +65,8 @@ fn r_vector() {
     for i in &mut v {
         *i += 50;
     }
+
+    for i in &mut v {}
     // 发现值已经被改变了
     for i in v {
         println!("{}", i)
@@ -110,11 +114,13 @@ fn r_hashMap() {
 
     // 通过元组创建，可以创建很多种类型，hashMap是其中一种。
     // let teams = vec![String::from("Blue"),String::from("Yellow")];
-    // let  initial_scores = vec![10,50];
+    // let initial_scores = vec![10,50];
     // 这里 声明未指定类型，因为可以推断出来。
     // let scores:HashMap<_,_> = teams.iter().zip(initial_scores.iter()).collect();
     // HashMap所有权，基本类型会Copy， String类型会转移所有权。
-
+    let teams = vec![String::from("Blue"), String::from("Yellow")];
+    let initial_scores = vec![10, 50];
+    let scores = teams.iter().zip(initial_scores).collect();
     // let field_name = String::from("Favorite Color");
     // let field_value = String::from("Blue");
     // let mut map = HashMap::new();
@@ -159,4 +165,3 @@ fn r_hashMap() {
     }
     println!("{:#?}", map)
 }
-
