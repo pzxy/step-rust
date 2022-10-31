@@ -298,6 +298,7 @@ fn match_string(pattern: &str, subject: &str) -> Result {
         while idx1 != idx2 {
             idx1 = *output_vector.offset(i);
             idx2 = *output_vector.offset(i + 1);
+            println!("idx:{},idx2:{}", idx1, idx2);
             if idx1 > idx2 {
                 pcre2_match_data_free_8(match_data); /* Release memory used for the match */
                 pcre2_code_free_8(re); /*   data and the compiled pattern. */
