@@ -194,11 +194,11 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
 
 [[package]]
-name = "chapter5-data"
+name = "ch5-data"
 version = "0.1.0"
 
 [[package]]
-name = "chapter6-memory"
+name = "ch6-memory"
 version = "0.1.0"
 
 [[package]]
