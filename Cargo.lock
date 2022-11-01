@@ -198,6 +198,10 @@ name = "chapter5-data"
 version = "0.1.0"
 
 [[package]]
+name = "chapter6-memory"
+version = "0.1.0"
+
+[[package]]
 name = "chrono"
 version = "0.4.22"
 source = "registry+https://github.com/rust-lang/crates.io-index"
