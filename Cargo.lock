@@ -211,7 +211,7 @@ name = "ch6-memory"
 version = "0.1.0"
 
 [[package]]
-name = "ch7-file-storage"
+name = "ch7-file"
 version = "0.1.0"
 dependencies = [
  "bincode",

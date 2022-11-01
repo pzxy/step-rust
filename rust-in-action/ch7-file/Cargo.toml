@@ -1,5 +1,5 @@
 [package]
-name = "ch7-file-storage"
+name = "ch7-file"
 version = "0.1.0"
 edition = "2021"
 
