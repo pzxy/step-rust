@@ -1,3 +1,5 @@
+mod hexdump;
+mod read_file;
 mod serde_bincode;
 
 pub fn add(left: usize, right: usize) -> usize {
@@ -7,6 +9,8 @@ pub fn add(left: usize, right: usize) -> usize {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::hexdump::hexdump;
+    use crate::read_file::read_file;
     use crate::serde_bincode::serialize;
 
     #[test]
@@ -17,5 +21,13 @@ mod tests {
     #[test]
     fn test_serialize() {
         serialize()
+    }
+    #[test]
+    fn test_hexdump() {
+        let _r = hexdump();
+    }
+    #[test]
+    fn test_read_file() {
+        read_file();
     }
 }
