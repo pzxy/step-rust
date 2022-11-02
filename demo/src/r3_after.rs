@@ -35,7 +35,12 @@ pub fn after(start: DateTime<Utc>) -> DateTime<Utc> {
     start + Duration::seconds(1000000000)
 }
 
+pub fn after2(strat: DateTime<Utc>) -> DateTime<Utc> {
+    strat + Duration::seconds(10)
+}
+
 #[test]
 fn demo() {
-    println!("{}", after(DateTime::default()))
+    println!("{}", after(DateTime::default()));
+    println!("{}", DateTime::default())
 }

@@ -11,6 +11,8 @@ mod offer11_min_array;
 mod offer12_char_exist;
 mod offer13_moving_count;
 mod offer15_hamming_weight;
+mod sort2;
+mod offer16;
 
 #[cfg(test)]
 mod tests {
@@ -55,13 +57,14 @@ mod tests {
         let ret = moving_count(3, 1, 0);
         assert_eq!(ret, 1);
     }
+
     #[test]
     fn offer15() {
         for i in -3..=1 {
             println!("{}", i)
         }
         let ret = hamming_weight(11);
-        assert_eq!(0.1+0.2,0.3);
+        assert_eq!(0.1 + 0.2, 0.3);
         assert_eq!(ret, 3)
     }
 }
