@@ -1,18 +1,17 @@
 [package]
 name = "ch7-storage"
 version = "0.1.0"
-edition = "2022"
-authors = "wonkung@163.com"
+edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 byteorder = "1.4.3"
-crc = "1.9.0"
-
+crc = "1.8.1"
+serde = "1"
 [lib]
 name = "libactionkv"
 path = "src/lib.rs"
 
 [[bin]]
 name = "akv_mem"
-path = "src/main.rs"
+path = "src/main.txt"
