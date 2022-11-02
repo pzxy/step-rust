@@ -10,6 +10,7 @@ mod r15_series;
 mod r16_collatz_conjecture;
 mod r17_minesweeper;
 mod r18_diffie_hellman;
+mod r19_zip;
 mod r1_hello;
 mod r2_reverse;
 mod r3_after;

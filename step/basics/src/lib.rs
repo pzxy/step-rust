@@ -12,7 +12,7 @@ extern crate core;
 // 通过1个，失败0个，被忽视0个，性能测试0个，过滤的测试0个
 // test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
 //
-//      Running unittests src/main.rs (target/debug/deps/step_rust-591d145e20300c2a)
+//      Running unittests src/akv_mem (target/debug/deps/step_rust-591d145e20300c2a)
 //
 // running 0 tests
 //

@@ -47,7 +47,7 @@ pub mod kinds {
     }
 }
 
-// main.rs 中
+// akv_mem 中
 // 这里调用需要引用这么长的名字
 use crate名字::kinds::PrimaryColor;
 
@@ -74,7 +74,7 @@ pub mod kinds {
     }
 }
 
-// main.rs 中
+// akv_mem 中
 // 这里可以直接crate 名字来调用
 use crate名字::PrimaryColor;
 

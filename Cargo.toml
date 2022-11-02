@@ -9,4 +9,5 @@ members = [
     "algorithms/leetcode",
     "demo",
     "practice/*",
+    "rust-in-action/*",
 ]
