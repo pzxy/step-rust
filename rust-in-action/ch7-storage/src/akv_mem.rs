@@ -1,4 +1,5 @@
-use libactionkv::ActionKV;
+use livactionkv::ActionKV;
+
 // rust 条件编译：书218页。
 #[cfg(target_os = "windows")]
 const USAGE: &str = "
@@ -27,12 +28,12 @@ fn main() {
 
     let path = std::path::Path::new(&fname);
     let mut store = ActionKV::open(path).expect("unable to open file");
-    store.load.expect("unable to load data");
+    store.load().expect("unable to load data");
 
     match action {
-        "get" => match store.get(key) {
+        "get" => match store.get(key).unwrap() {
             None => eprintln!("{:?} not found", key),
-            Some(value) => println!("{:?}", value),
+            Some(value) => println!("value?:{:?}", value),
         },
         "delete" => store.delete(key).unwrap(),
         "insert" => {
@@ -44,7 +45,7 @@ fn main() {
             store.update(key, value).unwrap();
         }
         _ => {
-            eprinln!("{}", &USAGE);
+            eprintln!("{}", &USAGE);
         }
     }
 }

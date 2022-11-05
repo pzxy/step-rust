@@ -42,5 +42,5 @@ pub fn after2(strat: DateTime<Utc>) -> DateTime<Utc> {
 #[test]
 fn demo() {
     println!("{}", after(DateTime::default()));
-    println!("{}", DateTime::default())
+    // println!("{}", DateTime::default())
 }

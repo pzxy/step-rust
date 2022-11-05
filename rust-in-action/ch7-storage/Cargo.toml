@@ -5,13 +5,19 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-byteorder = "1.4.3"
-crc = "1.8.1"
-serde = "1"
+bincode = "1"
+byteorder = "1"
+crc = "1"
+serde = { version = "1", features = ["derive"] }
+
 [lib]
-name = "libactionkv"
+name = "livactionkv"
 path = "src/lib.rs"
 
 [[bin]]
 name = "akv_mem"
-path = "src/main.txt"
+path = "src/akv_mem.rs"
+
+[[bin]]
+name = "akv_disk"
+path = "src/akv_disk.rs"

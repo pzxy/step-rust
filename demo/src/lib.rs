@@ -12,6 +12,7 @@ mod r17_minesweeper;
 mod r18_diffie_hellman;
 mod r19_zip;
 mod r1_hello;
+mod r20_vec;
 mod r2_reverse;
 mod r3_after;
 mod r4_clock;
