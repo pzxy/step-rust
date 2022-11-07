@@ -38,7 +38,7 @@
 例子:
 
 ```rust
-// lib.rs 中
+// main.rs 中
 pub mod kinds {
     pub enum PrimaryColor {
         Red,
@@ -63,7 +63,7 @@ fn main() {
 
 ```rust
 
-// lib.rs 中
+// main.rs 中
 pub use self::kinds::PrimaryColor;
 
 pub mod kinds {
