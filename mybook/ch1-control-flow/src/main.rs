@@ -17,8 +17,8 @@ fn main() {
         _ => 0,
     };
     //while 循环和 loop循环，基本上主要就是这些控制流了。以后补充
-    println!("需要类型实现Debug trait: {}", v); // 需要类型实现Debug trait
-    println!("需要类型实现Display trait: {:?}", v); // 需要类型实现Display trait
+    println!("需要类型实现 Display trait: {}", v); // 需要类型实现 Display trait
+    println!("需要类型实现 Debug trait: {:?}", v); // 需要类型实现 Debug trait
     println!("输出引用地址: {:p}", &v); // 输出地址
     print!("打印数，如果不足7位，则在左侧用零填充：{:07x} ", 18); // x十六进制，b二进制。
 }
