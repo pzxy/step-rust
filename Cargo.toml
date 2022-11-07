@@ -1,13 +1,10 @@
 [workspace]
 
 members = [
-    "step/basics",
-    "step/advanced",
-    "step/rtokio",
-    "step/orm",
-    "step/standard",
+    "step/*",
     "algorithms/leetcode",
     "demo",
     "practice/*",
     "rust-in-action/*",
+    "mybook/*"
 ]
