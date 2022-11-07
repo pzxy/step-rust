@@ -111,13 +111,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "904dfeac50f3cdaba28fc6f57fdcddb75f49ed61346676a78c4ffe55877802fd"
 
 [[package]]
-name = "basic-handler"
-version = "0.1.0"
-dependencies = [
- "libc",
-]
-
-[[package]]
 name = "basics"
 version = "0.1.0"
 dependencies = [
@@ -1602,6 +1595,13 @@ name = "shlex"
 version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "43b2853a4d09f215c24cc5489c992ce46052d359b5109343cbafbf26bc62f8a3"
+
+[[package]]
+name = "signal"
+version = "0.1.0"
+dependencies = [
+ "libc",
+]
 
 [[package]]
 name = "signal-hook-registry"
