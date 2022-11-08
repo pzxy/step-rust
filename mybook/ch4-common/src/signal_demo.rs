@@ -17,7 +17,7 @@ pub fn signal_sleep() {
     for i in 0_u8.. {
         sleep(delay);
         println!(". {}", i);
-        if i > 3 {
+        if i > 10 {
             unsafe {
                 // 给自己发送信号
                 raise(SIGTERM);
@@ -41,14 +41,11 @@ fn process_() {
 
 fn func1() {
     unsafe {
-        println!(" 0表示正常退出 ");
+        //" 0表示正常退出 "
         exit(0)
     }
 }
 
 fn func2() {
-    unsafe {
-        println!(" 0表示正常退出 ");
-        exit(0)
-    }
+    unsafe { exit(0) }
 }
