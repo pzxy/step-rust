@@ -1,3 +1,6 @@
+use std::thread::sleep;
+use std::time::Duration;
+
 use chrono::{DateTime, Local, NaiveDateTime};
 
 #[test]
@@ -16,4 +19,6 @@ fn time_() {
     println!("DateTime: {:?}", t1);
     let t2 = NaiveDateTime::parse_from_str("2022-02-10 00:00:00", "%Y-%m-%d %H:%M:%S").unwrap();
     println!("NaiveDateTime: {:?}", t2);
+
+    sleep(Duration::from_secs(3));
 }
