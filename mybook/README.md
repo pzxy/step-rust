@@ -15,7 +15,7 @@ rust前提概念很多，这里先暂留下来。毕竟就我自己看
 ## 第二关：基本类型
 L字节类型 string 类型，各种基本类型的操作常用方法，以及互相转换，还有工具方法，比如buffer等。
 ## 第三关：容器和迭代器
-enum vec slice 结构体，元组，hashmap,BHashmap等使用遍历操作的掌握。
+enum vec slice 结构体，元组，hashmap,BTreemap等使用遍历操作的掌握。
 迭代器map zip windows filter collect用法。
 ## 第四关：常用方法
 常用操作：时间，睡眠，信号，加密，校验。

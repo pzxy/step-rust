@@ -5,6 +5,7 @@ fn main() {
     let s: u8 = 18; //变量名：类型
                     // 这种s..写法其实很有意思，会一直增加，直到u8类型溢出panic。
     for i in s.. {
+        // 还有s..20 ,如果要包含20，s..=20
         println!("i: {}", i);
         if i == 20 {
             break;
