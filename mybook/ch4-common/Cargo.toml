@@ -8,5 +8,7 @@ edition = "2021"
 [dependencies]
 chrono = "0.4"
 libc = "0.2"
+# 现在最新是3版本，但是1版本用起来很简单。
+crc = "1"
 #[target.'cfg(not(windows))'.dependencies]
 #libc = "0.2"

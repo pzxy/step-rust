@@ -2,7 +2,7 @@ use std::process;
 use std::thread::sleep;
 use std::time::Duration;
 
-use libc::{exit, raise, signal, SIGINT, SIGKILL, SIGTERM, SIGUSR1, SIG_DFL, SIG_IGN};
+use libc::{exit, raise, signal, SIGINT, SIGTERM, SIGUSR1, SIG_IGN};
 
 pub fn signal_sleep() {
     unsafe {
@@ -11,7 +11,7 @@ pub fn signal_sleep() {
         signal(SIGTERM, func1 as usize);
         signal(SIGUSR1, func2 as usize);
         // 忽略 SIG_INT 信号。启动后使用ctrl+c时，是没用的。
-        signal(SIGINT, SIG_DFL);
+        signal(SIGINT, SIG_IGN);
     }
     let delay = Duration::from_secs(1);
     for i in 0_u8.. {
@@ -26,6 +26,7 @@ pub fn signal_sleep() {
     }
 }
 
+#[test]
 fn process_() {
     // 挂起进程 kill  -SIGSTOP pid
     // 继续进程 kill  -SIGCONT pid
@@ -40,14 +41,14 @@ fn process_() {
 
 fn func1() {
     unsafe {
-        println!(" func1 ");
+        println!(" 0表示正常退出 ");
         exit(0)
     }
 }
 
 fn func2() {
     unsafe {
-        println!(" func2 ");
+        println!(" 0表示正常退出 ");
         exit(0)
     }
 }

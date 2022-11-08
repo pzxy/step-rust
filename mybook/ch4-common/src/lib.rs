@@ -1,5 +1,6 @@
 use crate::signal_demo::signal_sleep;
 
+mod crc;
 mod signal_demo;
 mod time;
 
