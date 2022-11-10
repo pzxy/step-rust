@@ -1,10 +1,8 @@
-use std::process;
+use libc::{raise, signal, SIGINT, SIGTERM, SIGUSR1, SIG_IGN};
 use std::thread::sleep;
 use std::time::Duration;
 
-use libc::{exit, raise, signal, SIGINT, SIGTERM, SIGUSR1, SIG_IGN};
-
-pub fn signal_sleep() {
+fn main() {
     unsafe {
         // 这里的 func1 as usize 其实是函数指针。fn就是创建一个函数指针。
         // 监听信号，后面是处理。
@@ -24,28 +22,4 @@ pub fn signal_sleep() {
             }
         }
     }
-}
-
-#[test]
-fn process_() {
-    // 挂起进程 kill  -SIGSTOP pid
-    // 继续进程 kill  -SIGCONT pid
-    let delay = Duration::from_secs(1);
-    let pid = process::id();
-    println!("pid:{}", pid);
-    for i in 1..=60 {
-        sleep(delay);
-        println!(". {}", i);
-    }
-}
-
-fn func1() {
-    unsafe {
-        //" 0表示正常退出 "
-        exit(0)
-    }
-}
-
-fn func2() {
-    unsafe { exit(0) }
 }

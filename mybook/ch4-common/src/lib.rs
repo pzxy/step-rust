@@ -1,7 +1,7 @@
-use crate::signal_demo::signal_sleep;
+use crate::process::signal_sleep;
 
 mod crc;
-mod signal_demo;
+mod process;
 mod time;
 
 pub fn add(left: usize, right: usize) -> usize {
@@ -17,8 +17,4 @@ mod tests {
         let result = add(2, 2);
         assert_eq!(result, 4);
     }
-}
-
-pub fn signal_demo() {
-    signal_sleep()
 }

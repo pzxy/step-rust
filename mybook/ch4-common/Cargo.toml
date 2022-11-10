@@ -12,3 +12,10 @@ libc = "0.2"
 crc = "1"
 #[target.'cfg(not(windows))'.dependencies]
 #libc = "0.2"
+
+[[bin]]
+name="console"
+path="bin/console.rs"
+[[bin]]
+name="signal"
+path="bin/signal.rs"
