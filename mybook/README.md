@@ -13,7 +13,7 @@ rust前提概念很多，这里先暂留下来。毕竟就我自己看
 ## 第一关：控制流
 基本语法 关键字 声明等。let if for match while等。
 ## 第二关：基本类型
-L字节类型 string 类型，各种基本类型的操作常用方法，以及互相转换，还有工具方法，比如buffer等。
+字节类型 string 类型，各种基本类型的操作常用方法，以及互相转换，还有工具方法，比如buffer等。
 ## 第三关：容器和迭代器
 enum vec slice 结构体，元组，hashmap,BTreemap等使用遍历操作的掌握。
 迭代器map zip windows filter collect用法。
@@ -25,17 +25,15 @@ enum vec slice 结构体，元组，hashmap,BTreemap等使用遍历操作的掌�
 常用日志库，常用错误封装。
 ## 第七关：智能指针
 常用智能指针。
-## 第八关：数据库
-orm 
-## 第九关：网络
-基本tcp，udp，http实现。简单的web服务器。
-## 第十关：并发
+## 第八关：并发
 原生和tokio，以及channel的使用，线程池等。
+## 第九关：数据库
+orm
+## 第十关：网络
+基本tcp，udp，http实现。简单的web服务器。
 ## 第十一关：宏
 宏的分类，和常用的一些宏，实现一个简单的宏。
 ## 第十二关：FFI
 如何实现FFI
-## 第十三关：trait
-trait是什么？什么是trait对象
-## 第十四关：测试
+## 第十三关：测试
 单测，集成测试。
