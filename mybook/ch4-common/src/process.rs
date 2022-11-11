@@ -1,5 +1,4 @@
 use std::process;
-use std::process::exit;
 use std::thread::sleep;
 use std::time::Duration;
 
@@ -14,15 +13,4 @@ fn process_() {
         sleep(delay);
         println!(". {}", i);
     }
-}
-
-fn func1() {
-    unsafe {
-        //" 0表示正常退出 "
-        exit(0)
-    }
-}
-
-fn func2() {
-    unsafe { exit(0) }
 }
