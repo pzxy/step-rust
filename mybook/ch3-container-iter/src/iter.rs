@@ -37,6 +37,10 @@ fn iter_() {
     for arr in arrays {
         println!("windows: {:?}", arr)
     }
+
+    // 7. fold
+
+    // 8. take
 }
 
 // 小总结：
