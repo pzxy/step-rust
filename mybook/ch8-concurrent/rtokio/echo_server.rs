@@ -1,7 +1,6 @@
 use futures::FutureExt;
 use tokio::io;
-use tokio::io::AsyncBufRead;
-use tokio::net::TcpListener;
+use tokio::prelude::*;
 
 fn main() {
     let addr = "127.0.0.1:6142".parse().unwrap();
@@ -26,7 +25,7 @@ fn main() {
         });
 
         // spawn the task that handles the client connection socket on to the
-        // tokio runtime. This means each client connection will be handled
+        // rtokio runtime. This means each client connection will be handled
         // concurrently
         tokio::spawn(msg);
         Ok(())

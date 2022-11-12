@@ -14,5 +14,13 @@ name = "native_async"
 path = "bin/native_async.rs"
 
 [[bin]]
-name = "tokio"
-path = "bin/tokio.rs"
+name = "atomic"
+path = "bin/atomic.rs"
+
+[[bin]]
+name = "condvar"
+path = "bin/condvar.rs"
+
+[[bin]]
+name = "mpsc"
+path = "bin/mpsc.rs"

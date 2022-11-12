@@ -4,7 +4,7 @@ use std::time::Duration;
 
 // 1. 例子
 #[test]
-fn thread1() {
+fn _thread1() {
     // 开启一个线程
     let handle = thread::spawn(|| {
         for i in 1..20 {
@@ -136,6 +136,7 @@ fn thread_rc() {
 
 // 将 Rc 换成 Arc 就可以了
 #[test]
+#[allow(unused)]
 fn thread_arc() {
     // 这里不能用 Rc,因为 Rc 没有实现 Send trait
     let counter = Arc::new(Mutex::new(0));

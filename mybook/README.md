@@ -26,7 +26,8 @@ enum vec slice 结构体，元组，hashmap,BTreemap等使用遍历操作的掌�
 ## 第七关：智能指针
 常用智能指针。
 ## 第八关：并发
-原生和tokio，以及channel的使用，线程池等。
+
+原生和[tokio](https://tokio-zh.github.io/document/)，以及channel的使用，线程池等。
 ## 第九关：数据库
 orm
 ## 第十关：网络
