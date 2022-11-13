@@ -49,6 +49,28 @@ rust中4种channel
 
 [tokio的使用例子](https://github.com/tokio-rs/tokio/blob/master/examples)
 
+# async/await 是什么？
 
+这两个都是关键字。
 
+async关键字在编译时会给这个方法实现Future trait。
+
+.await是调用Future，主要是为了直观的异步编程。下面这两种写法是一个意思。
+都是对future执行依赖的编排，可以看出使用.await更直观。
+```rust
+  let future = id_rpc(&my_server).and_then(|id|{
+        get_row(id)
+    }).map(|row|{
+        json::encode(row)
+    }).and_then(|encoded|{
+        write_string(my_socket,encoded)
+    });
+```
+
+```rust
+    let id = id_rpc(&my_server).await;
+    let row = get_row(id).await;
+    let encoded = json::encode(row);
+    write_string(my_socket,encoded).await;
+```
 
