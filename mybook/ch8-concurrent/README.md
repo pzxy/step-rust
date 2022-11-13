@@ -40,7 +40,7 @@ rust中4种channel
 
 2. Future
 
-   Future是将来要执行的逻辑，他是一个trait在rust标准包中。只有实现了future的trait才能被包装成task在Executor中执行。
+   Future是将来要执行的逻辑，他是一个trait在rust标准包中。只有实现了future trait才能被包装成task在Executor中执行。
 
 3. 执行器（调度器）
 
