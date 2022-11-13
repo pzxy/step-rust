@@ -6,11 +6,13 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-tokio = "1"
+tokio = { version = "1", features = ["full"] }
+anyhow = "1"
+futures = "0.3.25"
 
 [[bin]]
 name = "native_async"
-path = "bin/features.rs"
+path = "bin/futures.rs"
 
 [[bin]]
 name = "atomic"
@@ -21,5 +23,9 @@ name = "condvar"
 path = "bin/condvar.rs"
 
 [[bin]]
-name = "tokio"
-path = "bin/tokio.rs"
+name = "tokio_hello"
+path = "bin/tokio_hello.rs"
+
+[[bin]]
+name = "tokio_task"
+path = "bin/tokio_task.rs"

@@ -47,7 +47,7 @@ rust中4种channel
    执行task的工具（相当于GO语言中的GMP），rust虽然定义的future和task trait，但是没有提供执行他们的工具，这个工具要用户自己实现。好在官方给我们实现了一个简单的执行器`futures`。还有tokio也是一个执行器。无论是哪个，都支持reactor事件模型（以后会支持别的事件模型比如Preactor）。
 
 
-[tokio的使用例子](https://github.com/tokio-rs/tokio/blob/master/examples)
+[tokio 教程](https://course.rs/async-rust/tokio/overview.html)
 
 # async/await 是什么？
 
