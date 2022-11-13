@@ -1,5 +1,6 @@
 [参考链接](https://time.geekbang.org/column/article/445814)
 
+目的是先用起来，这章没必要纠结各种channel的实现原理，只要明白rust的异步原理就可以。
 # CAS
 [原子操作](./bin/atomic.rs)
 用处：锁的基本结构，无锁结构等
@@ -12,19 +13,41 @@
 
 # Channel
 rust中4种channel
-oneshot：写一次，读一次。一次性。实现（atomic + swap ）
-rendezvous：不发数据，channel size为0。实现（Mutex + Condvar）
-bounded：类似go中channel，有队列，队列写满，写者被挂起。当阻塞后，若读取数据，Condvar 的 notify_one 通知写者，继续写入。实现(mutex + condvar)，go中ring。
-unbounded：没上限，自动扩容。
 
-[实现一个mpsc](../bin/mpsc.rs)：多生产者，单消费者。缓存大小无上限。测试驱动开发。
-[完整代码实现](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=042ee12817442a32bcfa05e31a1084f9)
+- oneshot：写一次，读一次。一次性。实现（atomic + swap ）
+
+- rendezvous：不发数据，channel size为0。实现（Mutex + Condvar）
+
+- bounded：类似go中channel，有队列，队列写满，写者被挂起。当阻塞后，若读取数据，Condvar 的 notify_one 通知写者，继续写入。实现(mutex + condvar)，go中ring。
+
+- unbounded：没上限，自动扩容。
+
+上面这几个了解就行，用的最多的是mpsc和oneshot。
+
+[实现一个mpsc](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=042ee12817442a32bcfa05e31a1084f9)
+
+# 简单原理：
+目前rust中异步实现主要用的reactor，所以就只讨论reactor的实现。
+## 1. 基本逻辑
+1. 执行器轮询多个task。
+2. Task会返回(成功，或者不成功)。返回成功则task执行结束，如果返回不成功，将task放回。
+3. 监听事件(来自操作系统比如epoll，或者其他事件)。监听到后，通知执行器重新执行该task。重复2，3。
+
+## 2. 名词解释：
+1. Task
+
+   Task在rust标准库中提供，相当于go语言中go关键字后的函数体(不完全一样，可以先这么理解)。里面组合了多个Future或者单个Future。
+
+2. Future
+
+   Future是将来要执行的逻辑，他是一个trait在rust标准包中。只有实现了future的trait才能被包装成task在Executor中执行。
+
+3. 执行器（调度器）
+
+   执行task的工具（相当于GO语言中的GMP），rust虽然定义的future和task trait，但是没有提供执行他们的工具，这个工具要用户自己实现。好在官方给我们实现了一个简单的执行器`futures`。还有tokio也是一个执行器。无论是哪个，都支持reactor事件模型（以后会支持别的事件模型比如Preactor）。
 
 
-
-
-
-
+[tokio的使用例子](https://github.com/tokio-rs/tokio/blob/master/examples)
 
 
 
