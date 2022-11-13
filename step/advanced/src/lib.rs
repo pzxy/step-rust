@@ -1,7 +1,11 @@
 use crate::tracing::trance1;
 
 mod async_wait;
+mod json_serde;
 pub mod logger;
+mod orm_diesel;
+mod pow;
+mod sqlite;
 mod tracing;
 
 pub fn log_demo() {

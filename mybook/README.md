@@ -17,8 +17,8 @@ rust前提概念很多，这里先暂留下来。毕竟就我自己看
 ## 第三关：容器和迭代器
 enum vec slice 结构体，元组，hashmap,BTreemap等使用遍历操作的掌握。
 迭代器map zip windows filter collect用法。
-## 第四关：常用方法
-常用操作：时间，睡眠，信号，加密，校验。
+## 第四关：通用方法
+常用操作：时间，睡眠，信号，加密，校验，序列化，cargo.toml详细分析
 ## 第五关：文件操作
 文件读写，配置文件读写。
 ## 第六关：日志和错误处理
@@ -26,10 +26,9 @@ enum vec slice 结构体，元组，hashmap,BTreemap等使用遍历操作的掌�
 ## 第七关：智能指针
 常用智能指针。
 ## 第八关：并发
-
-原生和[tokio](https://tokio-zh.github.io/document/)，以及channel的使用，线程池等。
+原生和[tokio](https://github.com/tokio-rs/tokio)，以及channel的使用，线程池等。
 ## 第九关：数据库
-orm
+orm sqlx库
 ## 第十关：网络
 基本tcp，udp，http实现。简单的web服务器。
 ## 第十一关：宏
