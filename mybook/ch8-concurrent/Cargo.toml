@@ -9,6 +9,7 @@ edition = "2021"
 tokio = { version = "1", features = ["full"] }
 anyhow = "1"
 futures = "0.3.25"
+bytes = "1"
 
 [[bin]]
 name = "native_async"
@@ -29,3 +30,11 @@ path = "bin/tokio_hello.rs"
 [[bin]]
 name = "tokio_task"
 path = "bin/tokio_task.rs"
+
+[[bin]]
+name = "tokio_mutex"
+path = "bin/tokio_mutex.rs"
+
+[[bin]]
+name = "tokio_native_mutex"
+path = "bin/tokio_native_mutex.rs"

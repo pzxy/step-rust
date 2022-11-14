@@ -23,6 +23,8 @@ rust中4种channel
 - unbounded：没上限，自动扩容。
 
 上面这几个了解就行，用的最多的是mpsc和oneshot。
+值的一提的是，只有调度器中实现了future的channel阻塞时才会让出线程使用权，原生的channel
+在async中使用的时候，是不会让出使用权的。
 
 [实现一个mpsc](https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=042ee12817442a32bcfa05e31a1084f9)
 
