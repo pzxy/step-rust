@@ -48,8 +48,8 @@ async fn main() {
     tokio::spawn(async move {
         let (resp_tx, resp_rx) = oneshot::channel();
         tx.send(Command::Set {
-            key: String::from("不怕没好人"),
-            value: Bytes::from("就怕没好事"),
+            key: String::from("k1"),
+            value: Bytes::from("不要以千金之躯,当众矢之鹄,舍盘石之安,就虎尾之危。"),
             resp: resp_tx,
         })
         .await
@@ -65,8 +65,8 @@ async fn main() {
     tokio::spawn(async move {
         let (resp_tx, resp_rx) = oneshot::channel();
         tx2.send(Command::Set {
-            key: String::from("清风不识字"),
-            value: Bytes::from("何故乱翻书"),
+            key: String::from("k2"),
+            value: Bytes::from("清风不识字,何故乱翻书"),
             resp: resp_tx,
         })
         .await
@@ -104,7 +104,7 @@ async fn main() {
     sleep(Duration::from_secs(3));
     let (resp_tx, resp_rx) = oneshot::channel();
     tx3.send(Command::Get {
-        key: String::from("清风不识字"),
+        key: String::from("k1"),
         resp: resp_tx,
     })
     .await
