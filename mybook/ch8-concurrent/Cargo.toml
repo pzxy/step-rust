@@ -7,6 +7,8 @@ edition = "2021"
 
 [dependencies]
 tokio = { version = "1", features = ["full"] }
+tokio-stream = { version = "0.1" }
+
 anyhow = "1"
 futures = "0.3.25"
 bytes = "1"
@@ -50,3 +52,7 @@ path = "bin/tokio_channel.rs"
 [[bin]]
 name = "tokio_channel_select"
 path = "bin/tokio_channel_select.rs"
+
+[[bin]]
+name = "tokio_stream"
+path = "bin/tokio_stream.rs"
