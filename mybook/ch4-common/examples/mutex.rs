@@ -1,5 +1,4 @@
-#[test]
-fn mutex_() {
+fn main() {
     use std::sync::Mutex;
 
     let foo = "".to_string();

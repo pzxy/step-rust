@@ -18,8 +18,7 @@ impl From<i32> for Number {
 //     }
 // }
 
-#[test]
-fn from_into() {
+fn main() {
     // from 将另外一种类型转换为自己，参考String::from();
     // 别的类型要实现From trait，只要实现了From trait就实现了Into trait
     let num = Number::from(12);

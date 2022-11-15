@@ -1,8 +1,7 @@
 // 一些基本类型操作和转换。
 // 我们只讨论utf8编码。unicode并不是一个字节编码一个字符，更复杂一点。
 
-#[test]
-fn byte_char_string() {
+fn main() {
     // 1. byte类型,就是u8，他的[u8]其实就是string，可以互相转换
     // [u8]
     let bs: Vec<u8> = vec![97, 98, 99];

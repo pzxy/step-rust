@@ -4,13 +4,13 @@ use sha256::digest;
 
 #[test]
 fn pow_demo() {
-    let mut input = "hello";
-    let val = digest(&digest(input));
+    let mut input = String::from("hello");
+    let val = digest(digest(input.clone()));
     let mut nonce = 0;
     while verify(&val, String::from("0")) {
         nonce += 1;
-        input = input + nonce.to_string();
-        let val = digest(&digest(input));
+        input = format!("{}{}", input, nonce.to_string());
+        let val = digest(digest(input.clone()));
     }
     println!("{}", input);
 }

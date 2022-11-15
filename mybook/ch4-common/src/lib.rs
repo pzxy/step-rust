@@ -1,7 +1,3 @@
-mod crc;
-mod mutex;
-mod process;
-mod time;
 
 pub fn add(left: usize, right: usize) -> usize {
     left + right

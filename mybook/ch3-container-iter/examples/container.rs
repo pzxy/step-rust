@@ -1,9 +1,8 @@
 // enum vec slice 结构体，元组，hashmap,BHashmap等使用遍历操作的掌握。
 
-use std::collections::{BTreeMap, HashMap};
+// use std::collections::{BTreeMap, HashMap};
 
-#[test]
-fn container() {
+fn main() {
     tuple();
     array();
     slice();

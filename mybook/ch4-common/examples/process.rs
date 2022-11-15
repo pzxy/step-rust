@@ -2,8 +2,7 @@ use std::process;
 use std::thread::sleep;
 use std::time::Duration;
 
-#[test]
-fn process_() {
+fn main() {
     // 挂起进程 kill  -SIGSTOP pid
     // 继续进程 kill  -SIGCONT pid
     let delay = Duration::from_secs(1);

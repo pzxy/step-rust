@@ -3,8 +3,7 @@ use std::time::Duration;
 
 use chrono::{DateTime, Local, NaiveDateTime};
 
-#[test]
-fn time_() {
+fn main() {
     // 获取本地时间 doc: https://crates.io/crates/chrono
     let now: DateTime<Local> = Local::now();
     println!("now: {:?}", now); // 当前时间

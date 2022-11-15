@@ -1,8 +1,7 @@
 // iter 返回不可变引用&T
 // iter_mut 返回可变引用
 // into_iter 返回值本身，其实是复制了一份。
-#[test]
-fn iter_() {
+fn main() {
     // 1.  map 里面一个匿名函数
     let a = [1, 2, 3, 4];
     // let b = &[5, 6, 7, 8];

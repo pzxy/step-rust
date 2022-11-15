@@ -27,17 +27,6 @@ pub fn read_file() {
     }
 }
 
-fn _open_file() {
-    // use std::fs::File; 以只读方式打开文件。
-    // use std::fs::OpenOptions::new() 有更多的操作，类似go中的 crated|wr这种。
-    let f = std::fs::OpenOptions::new()
-        .read(true) // 可读
-        .write(true) // 可写
-        .create(true) // 不存在就创建
-        .append(true) // 追加不删除
-        .open(path)?;
-}
-
 fn _path() {
     //std::path::Path std::path::PathBuf
     let hello = PathBuf::from("./src/chao.txt");
