@@ -40,9 +40,13 @@ name = "tokio_native_mutex"
 path = "bin/tokio_native_mutex.rs"
 
 [[bin]]
+name = "tokio_io"
+path = "bin/tokio_io.rs"
+
+[[bin]]
 name = "tokio_channel"
 path = "bin/tokio_channel.rs"
 
 [[bin]]
-name = "tokio_io"
-path = "bin/tokio_io.rs"
+name = "tokio_channel_select"
+path = "bin/tokio_channel_select.rs"

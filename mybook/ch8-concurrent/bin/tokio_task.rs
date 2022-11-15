@@ -5,6 +5,9 @@ use tokio::time;
 #[tokio::main]
 async fn main() {
     // tokio::spawn 相当于go关键字
+    //tokio::spawn 函数会启动新的任务来运行一个异步操作，每个任务都是一个独立的对象可以单独被 Tokio 调度运行，
+    // 因此两个不同的任务的调度都是独立进行的，甚至于它们可能会运行在两个不同的操作系统线程上。
+    // 鉴于此，生成的任务和生成的线程有一个相同的限制：不允许对外部环境中的值进行借用。
     tokio::spawn(async {
         // 一定会先执行hello1 再执行hello2
         // 如果他们中有future返回pending则会让出线程。
