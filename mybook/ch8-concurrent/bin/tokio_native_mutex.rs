@@ -12,10 +12,12 @@ async fn main() {
     for i in 1..10 {
         let db = db.clone();
         tokio::spawn(async move {
-            // 这里会报错，因为MutexGuard这个锁没有实现 send tait
+            // 这里去掉{}会报错，因为MutexGuard这个锁没有实现 send tait
             // future可能会放到不同的线程中去执行，所以编译器提前报错了。不过如果这个锁生命周期内没有 .await就没问题。
-            let mut db = db.lock().unwrap();
-            db.insert(i.to_string(), Bytes::from("value"));
+            {
+                let mut db = db.lock().unwrap();
+                db.insert(i.to_string(), Bytes::from("value"));
+            }
             todo(i).await;
         });
     }

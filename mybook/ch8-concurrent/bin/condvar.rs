@@ -1,7 +1,5 @@
-use futures::future::MaybeDone::Future;
-use std::sync::{mpsc, Arc, Condvar, Mutex};
+use std::sync::{Arc, Condvar, Mutex};
 use std::thread;
-use std::time::Duration;
 
 fn main() {
     let pair = Arc::new((Mutex::new(false), Condvar::new()));
