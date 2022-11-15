@@ -22,7 +22,7 @@ fn main() {
     // from 将另外一种类型转换为自己，参考String::from();
     // 别的类型要实现From trait，只要实现了From trait就实现了Into trait
     let num = Number::from(12);
-    println!("from {:?}", num);
+    println!("from {:?}", num.value);
     // 需要指定类型。
     let v: Number = 32.into();
     println!("into {:?}", v);
