@@ -249,6 +249,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "ch12-ffi"
+version = "0.1.0"
+dependencies = [
+ "bindgen",
+]
+
+[[package]]
 name = "ch12-sixty"
 version = "0.1.0"
 
