@@ -17,7 +17,6 @@ fn main() {
     assert_eq!(iter.next(), Some((&2, &5)));
     // 两个迭代长度必须一样。
     assert_eq!(iter.next(), None);
-    
 
     // 3. skip 跳过2个值，copied()相当于map(x|x)
     let skip3 = a.iter().skip(2).copied().collect::<Vec<i32>>();
@@ -39,8 +38,34 @@ fn main() {
     }
 
     // 7. fold
+    // 它有两个参数，第一个init是初始值，第二个是一个闭包，
+    // 闭包的第一个参数acc是上一次闭包函数的返回值(acc初始值就是init)，闭包第二参数是数组中值的引用。
+    // 大概类似于这样：只不过fold支持的是泛型不仅仅i32类型。
+    // let vec = vec![1, 2, 3, 4, 5];
+    // let init = 0;
+    // let mut ret = init;
+    // fn f(acc: i32, x: i32) -> i32 {
+    //     acc + x
+    // }
+    // for x in vec {
+    //     ret = f(ret, x)
+    // }
+    // 上面的代码用fold写的话就是这样。
+    let vec = vec![1, 2, 3, 4, 5];
+    let res = vec.iter().fold(0, |acc, x| acc + x);
+    // 当我们要按照顺序操作迭代器中所有值时，并且下次操作依赖于上次操作的结果时，就可以用fold。
+    println!("fold: {:?}", res);
 
     // 8. take
+    let vec = vec![1, 2, 3, 4, 5];
+    // take 从迭代器中取前面的2个值，相当于下面这个代码。
+    // for &v in vec[..2].iter() {
+    //     println!("take: {:?}", v);
+    // }
+    // 需要注意的是，取出来的值是引用类型。
+    for &v in vec.iter().take(2) {
+        println!("take: {:?}", v);
+    }
 }
 
 // 小总结：
