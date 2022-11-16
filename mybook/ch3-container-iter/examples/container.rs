@@ -2,10 +2,13 @@
 
 // use std::collections::{BTreeMap, HashMap};
 
+use std::collections::{HashMap, BTreeMap};
+
 fn main() {
     tuple();
     array();
     slice();
+    hashmap();
 }
 
 // tuple 元组
@@ -27,7 +30,7 @@ fn array() {
 
 // 切片,
 fn slice() {
-    // 自动扩容切片 vector
+    // 自动扩容切片 vector 
     let mut v = vec![1, 2, 3, 4];
     let mut v2 = vec![5, 6, 7, 8];
     v.append(&mut v2);
@@ -35,8 +38,7 @@ fn slice() {
     println!("slice: {:?}", v);
 }
 
-#[test]
-fn hashmap_() {
+fn hashmap() {
     // 原生hashmap可以防止dos攻击，也就是当相同hash值的攻击有一定防御作用，但是性能不是最好。
     let mut m = HashMap::new();
     m.insert("name", "pzxy");
@@ -65,3 +67,4 @@ enum _EE {
 // 2. vector是切片，可以动态扩容，他增加值是push，因为他相当于一个栈结构。而hashmap增加值是insert()
 // 3. 枚举可以将不同类型的值抽象成一个类型。
 // 4. hashMap 安全性能略差，BTreeMap 性能好。
+// 5. 

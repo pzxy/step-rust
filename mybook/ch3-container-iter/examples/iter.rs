@@ -17,6 +17,7 @@ fn main() {
     assert_eq!(iter.next(), Some((&2, &5)));
     // 两个迭代长度必须一样。
     assert_eq!(iter.next(), None);
+    
 
     // 3. skip 跳过2个值，copied()相当于map(x|x)
     let skip3 = a.iter().skip(2).copied().collect::<Vec<i32>>();
