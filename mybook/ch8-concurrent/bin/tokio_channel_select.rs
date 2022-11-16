@@ -23,7 +23,6 @@
 /// 其实也很好理解，因为select中的分支只会有一个被执行。
 /// 5. 关与loop select的信息 [参考](https://course.rs/async-rust/tokio/select.html#%E5%BE%AA%E7%8E%AF)
 use tokio::net::TcpStream;
-use tokio::sync::mpsc;
 use tokio::sync::oneshot;
 
 #[tokio::main]

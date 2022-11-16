@@ -1,12 +1,7 @@
 //! Rust异步笔记
 
-use std::net::TcpListener;
-use std::thread::sleep;
-use std::time::Duration;
-use std::{io, thread};
-
 use futures::executor::block_on;
-use futures::{join, task, TryFutureExt};
+use futures::join;
 
 // https://www.jianshu.com/p/227be7169e72
 /// 并发模型

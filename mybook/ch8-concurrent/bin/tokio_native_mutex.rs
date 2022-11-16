@@ -5,7 +5,6 @@ use std::time::Duration;
 
 use bytes::Bytes;
 
-type Db = Arc<Mutex<HashMap<String, Bytes>>>;
 #[tokio::main]
 async fn main() {
     let db = Arc::new(Mutex::new(HashMap::new()));

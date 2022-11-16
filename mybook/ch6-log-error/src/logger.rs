@@ -13,7 +13,7 @@
 // enabled 判断日志级别能否被记录，log_enabled！宏使用。
 // log 会记录 record 所代表的日志。
 // flush 会将缓存中的日志刷到标准输出或者文件中。
-
+#![allow(unused)]
 use log::{debug, error, info, log, log_enabled, Level};
 // 实现自己的日志库
 use log::{LevelFilter, SetLoggerError};

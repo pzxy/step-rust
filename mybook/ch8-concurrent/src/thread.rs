@@ -1,10 +1,11 @@
+#![allow(unused)]
 use std::sync::{mpsc, Arc, Mutex};
 use std::thread;
 use std::time::Duration;
 
 // 1. 例子
 #[test]
-fn _thread1() {
+fn thread1() {
     // 开启一个线程
     let handle = thread::spawn(|| {
         for i in 1..20 {
