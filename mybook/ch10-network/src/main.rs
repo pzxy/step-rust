@@ -1,3 +1,6 @@
 fn main() {
-    println!("Hello, world!");
+    let i = 5;
+    let five = String::from("5");
+
+    assert_eq!(five, i.to_string());
 }
