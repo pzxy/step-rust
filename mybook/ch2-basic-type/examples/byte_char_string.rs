@@ -26,7 +26,7 @@ fn main() {
 
     // 4. str 是 String的切片类型，切片都是引用，所以我们一般用的最多的就是&str
     let str = "abc";
-    let s4 = str.to_string(); //to string
+    let s4 = str.to_owned(); //一般用to_owned(),to_string()底层也是调用的to_owned()
     println!("s4:{:?}", s4);
     let c4: Vec<char> = str.chars().collect(); // to vec[char]
     println!("c4:{:?}", c4);
