@@ -1275,6 +1275,9 @@ version = "0.1.0"
 dependencies = [
  "anyhow",
  "askama",
+ "proc-macro2",
+ "quote",
+ "syn",
 ]
 
 [[package]]
