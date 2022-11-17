@@ -1,4 +1,4 @@
-// 过程宏
+// 过程宏-函数宏
 use proc_macro::TokenStream;
 
 #[proc_macro]
@@ -9,7 +9,7 @@ pub fn query(input: TokenStream) -> TokenStream {
         .unwrap()
 }
 
-// 派生宏
+// 过程宏-派生宏
 mod raw_builder;
 use raw_builder::BuilderContext;
 #[proc_macro_derive(RawBuilder)]
