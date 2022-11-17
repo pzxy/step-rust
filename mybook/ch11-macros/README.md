@@ -30,7 +30,7 @@ proc-macro = true
 实现原理：用 [jinja](https://jinja.palletsprojects.com/en/3.0.x/) 定义一个模版,然后用 [askama](https://github.com/djc/askama) 库处理这个模版。
 
 - 添加依赖
-```rust
+```toml
 [dependencies]
 anyhow = "1"
 askama = "0.11"
