@@ -7,10 +7,10 @@
 基本语法 关键字 声明等。let if for match while等。
 ## 第二关：基本类型
 字节类型 string 类型，各种基本类型的操作常用方法，以及互相转换，还有工具方法，比如buffer等。
-## 第三关：容器和迭代器
+## 第三关：基本trait和function
 enum vec slice 结构体，元组，hashmap,BTreemap等使用遍历操作的掌握。
 迭代器map zip windows filter collect用法。
-## 第四关：通用方法
+## 第四关：通用工具
 常用操作：时间，睡眠，信号，加密，校验，序列化，cargo.toml详细分析
 ## 第五关：文件操作
 文件读写，配置文件读写。
