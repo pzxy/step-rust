@@ -1,5 +1,5 @@
 [package]
-name = "ch3-container-iter"
+name = "ch3-trait-func"
 version = "0.1.0"
 edition = "2021"
 

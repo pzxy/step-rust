@@ -334,11 +334,11 @@ name = "ch2-basic-type"
 version = "0.1.0"
 
 [[package]]
-name = "ch3-container-iter"
+name = "ch3-trait-func"
 version = "0.1.0"
 
 [[package]]
-name = "ch4-common"
+name = "ch4-tool-help"
 version = "0.1.0"
 dependencies = [
  "chrono",
