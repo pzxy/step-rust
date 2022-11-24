@@ -9,8 +9,8 @@ edition = "2021"
 tokio = { version = "1", features = ["full"] }
 mini-redis = "0.4"
 bytes = "1"
-
-[[example]]
-name = "hello-redis"
-path = "examples/hello-redis.rs"
-
+futures = "0.3"
+tokio-stream = "0.1"
+tokio-util = {version ="0.7",features = ["full"]}
+futures-util = "0.3"
+bincode = "1.3"
