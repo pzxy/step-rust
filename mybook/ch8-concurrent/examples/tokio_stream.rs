@@ -1,6 +1,6 @@
 /// tokio-stream 可以让迭代器在迭代时异步进行。
 /// 依赖  tokio-stream = { version = "0.1" }
-/// stream 没搞明白，有点困了
+/// stream 就是future的队列，按照顺序执行。
 use tokio_stream::StreamExt;
 
 #[tokio::main]
