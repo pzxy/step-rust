@@ -9,4 +9,4 @@ edition = "2021"
 
 
 [build-dependencies]
-bindgen = "0.61.0"
+bindgen = "0.62.0"

@@ -66,6 +66,8 @@ fn main() {
     for &v in vec.iter().take(2) {
         println!("take: {:?}", v);
     }
+
+    // 9. map_or
 }
 
 // 小总结：
