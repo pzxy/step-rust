@@ -1,8 +1,14 @@
-use std::fs::File;
-use std::io::{BufRead, BufReader, Read, Write};
+#![allow(dead_code)]
+#![allow(unused_variables)]
+use std::{
+    fs::File,
+    io::{BufReader, Write, BufRead},
+};
 
 use chrono::Local;
 
+fn main() {}
+#[allow(unused)]
 #[test]
 fn open_or_create_file() {
     // let path = std::path::PathBuf::from("./text.txt");
@@ -15,7 +21,7 @@ fn open_or_create_file() {
         .append(true) // 追加不删除
         .open("./text2.txt");
 }
-
+#[allow(unused)]
 #[test]
 fn write_file() {
     let mut f3 = std::fs::OpenOptions::new()
@@ -28,7 +34,7 @@ fn write_file() {
     let context = Local::now().to_string();
     f3.write_all(format!("{}\n", context).as_bytes()).unwrap()
 }
-
+#[allow(unused)]
 #[test]
 fn read_file() {
     let f = std::fs::OpenOptions::new()
@@ -40,7 +46,7 @@ fn read_file() {
         println!("{:?}", line.unwrap());
     }
 }
-
+#[allow(unused)]
 #[test]
 fn read_file_binary() {
     let file_name = String::from("./text3.txt");
