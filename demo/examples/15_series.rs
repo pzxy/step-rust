@@ -31,6 +31,7 @@
 // 而且，如果您从 5 位字符串中要求 6 位系列，那么您应得的。
 //
 // 注意，这些系列只需要在输入中占据相邻位置 即可；数字不必在数字上是连续的。
+fn main(){}
 pub fn series2(digits: &str, len: usize) -> Vec<String> {
     let src: Vec<char> = digits.chars().collect();
     let mut ret = vec![];

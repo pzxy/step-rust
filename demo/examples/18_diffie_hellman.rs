@@ -53,6 +53,7 @@
 // 计算产生相同的结果！Alice 和 Bob 现在共享秘密 s。
 
 // 得出私钥 a 和 b
+fn main(){}
 pub fn private_key(p: u64) -> u64 {
     p - 1
 }

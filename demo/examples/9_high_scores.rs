@@ -18,6 +18,7 @@
 // edition = "2021"
 // name = "high-scores"
 // version = "4.0.0"
+fn main(){}
 #[derive(Debug)]
 pub struct HighScores {
     scores: Vec<u32>,

@@ -34,7 +34,7 @@
 // edition = "2021"
 // name = "collatz_conjecture"
 // version = "1.2.1"
-
+fn main(){}
 
 pub fn collatz2(mut n: u64) -> Option<u64> {
     for i in 0.. {

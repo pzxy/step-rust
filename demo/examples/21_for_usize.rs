@@ -1,5 +1,4 @@
-use std::thread::sleep;
-use std::time::Duration;
+fn main() {}
 
 #[test]
 #[ignore]

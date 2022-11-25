@@ -1,3 +1,5 @@
+fn main(){}
+
 #[test]
 #[ignore]
 fn test_vec() {

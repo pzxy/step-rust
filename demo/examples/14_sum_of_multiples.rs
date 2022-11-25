@@ -14,6 +14,7 @@
 // edition = "2021"
 // name = "sum-of-multiples"
 // version = "1.5.0"
+fn main(){}
 pub fn sum_of_multiples2(limit: u32, factors: &[u32]) -> u32 {
     (0..limit)
         .filter(|&n| {

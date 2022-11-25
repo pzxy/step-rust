@@ -1,5 +1,4 @@
 use std::fmt;
-use std::fmt::{Display, Formatter};
 
 trait OutlinePrint: fmt::Display {
     fn outline_print(&self) {

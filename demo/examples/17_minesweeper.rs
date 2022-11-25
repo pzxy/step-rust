@@ -37,6 +37,7 @@
 // edition = "2021"
 // name = "minesweeper"
 // version = "1.1.0"
+fn main(){}
 pub fn annotate2(minefield: &[&str]) -> Vec<String> {
     let mut ret = Vec::new();
     let row = minefield.len();

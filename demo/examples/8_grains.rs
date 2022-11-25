@@ -22,6 +22,9 @@
 // 给定正方形上有多少谷物，
 // 棋盘上的谷物总数，以及
 // 如果值无效，则会出现“Square must be between 1 and 64”消息的恐慌
+fn main(){
+    process_square_case(1, 1);
+}
 pub fn square(s: u32) -> u64 {
     match s {
         1..=64 => {

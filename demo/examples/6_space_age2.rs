@@ -1,5 +1,6 @@
 ///  [高分答案](https://exercism.org/tracks/rust/exercises/space-age/solutions/tokenrove)
 
+fn main(){}
 pub struct Duration(f64);
 
 impl From<u64> for Duration {
