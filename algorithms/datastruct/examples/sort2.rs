@@ -1,5 +1,4 @@
-#[test]
-fn sort2() {
+fn main() {
     let mut s = vec![1, 4, 5, 2, 6, 9];
     bulle_sort2(&mut s);
     println!("bubble sort: {:?}", s);

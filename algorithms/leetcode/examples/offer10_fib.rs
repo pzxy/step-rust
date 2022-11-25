@@ -24,7 +24,10 @@
 // 来源：力扣（LeetCode）
 // 链接：https://leetcode.cn/problems/fei-bo-na-qi-shu-lie-lcof
 // 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
-
+fn main() {
+    let aa = fib22(48);
+    println!("{}", aa);
+}
 pub fn fib(n: i32) -> i32 {
     if n == 0 {
         return 0;

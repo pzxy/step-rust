@@ -23,6 +23,12 @@
 // 链接：https://leetcode.cn/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof
 // 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 
+fn main(){
+    let s = [[-5]];
+    let array = find_number_in2_d_array(s, -10);
+    println!("{}", array)
+}
+
 pub fn find_number_in2_d_array(matrix: [[i32; 1]; 1], target: i32) -> bool {
     if matrix.is_empty() {
         return false;

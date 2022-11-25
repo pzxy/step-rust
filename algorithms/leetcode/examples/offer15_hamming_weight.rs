@@ -26,6 +26,14 @@
 // 提示：
 // 输入必须是长度为 32 的 二进制串 。
 
+fn main() {
+    for i in -3..=1 {
+        println!("{}", i)
+    }
+    let ret = hamming_weight(11);
+    assert_eq!(0.1 + 0.2, 0.3);
+    assert_eq!(ret, 3)
+}
 // 移动位置后和1进行与操作。
 pub fn hamming_weight(n: usize) -> i32 {
     let mut count = 0;

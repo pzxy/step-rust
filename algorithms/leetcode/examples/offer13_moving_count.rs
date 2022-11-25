@@ -17,6 +17,14 @@
 // 0 <= k<= 20
 // 通过次数265,514提交次数496,968
 
+fn main() {
+    let ret = moving_count(2, 3, 1);
+    assert_eq!(ret, 3);
+    let ret = moving_count(3, 1, 0);
+    assert_eq!(ret, 1);
+}
+
+
 // 这里只是举例了可以将数字转换成字符来获取每位相加的和
 pub fn sum(x: i32, y: i32, k: i32) -> i32 {
     // 获取数不应该转成字符串再转回来。

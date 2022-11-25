@@ -2,7 +2,7 @@
 
 members = [
     "step/*",
-    "algorithms/leetcode",
+    "algorithms/*",
     "demo",
     "practice/*",
     "rust-in-action/*",

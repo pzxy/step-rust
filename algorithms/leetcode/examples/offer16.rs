@@ -21,6 +21,8 @@
 // -231<= n <=231-1
 // -104<= xn<= 104
 
+fn main(){}
+
 pub fn my_pow(x: f64, n: i32) -> f64 {
 
     match n {

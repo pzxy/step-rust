@@ -22,6 +22,8 @@
 // -5000 <= numbers[i] <= 5000
 // numbers 原来是一个升序排序的数组，并进行了 1 至 n 次旋转
 
+fn main(){}
+
 // 【3，1，2,3】
 pub fn min_array(num: Vec<i32>) -> i32 {
     let mut l = 0;

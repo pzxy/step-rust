@@ -20,6 +20,12 @@
 // 输入：board = [["a","b"],["c","d"]], word = "abcd"
 // 输出：false
 
+fn main() {
+    let board = vec![vec!['h', 'e', 'l', 'l', 'o'], vec!['w', 'o', 'r', 'l', 'd']];
+    let ret = exist(board, "heor".to_string());
+    assert_eq!(ret, true)
+}
+
 pub struct point {
     x: i32,
     y: i32,

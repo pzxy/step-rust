@@ -9,6 +9,9 @@
 
 // Definition for singly-linked list.
 
+fn main(){}
+
+
 #[derive(PartialEq, Eq, Clone, Debug)]
 pub struct ListNode {
     pub val: i32,
@@ -58,3 +61,4 @@ pub fn reverse_print3(head: Option<Box<ListNode>>) -> Vec<i32> {
     }
     stack.iter().map(|&x| x).collect()
 }
+
