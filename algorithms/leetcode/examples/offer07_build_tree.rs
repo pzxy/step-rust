@@ -69,6 +69,7 @@ pub fn build_tree(preorder: Vec<i32>, inorder: Vec<i32>) -> Option<Rc<RefCell<Tr
 }
 
 // 时间换空间
+#[allow(unused)]
 fn build(preorder: &[i32], inorder: &[i32]) -> Option<Rc<RefCell<TreeNode>>> {
     if preorder.is_empty() {
         return None;

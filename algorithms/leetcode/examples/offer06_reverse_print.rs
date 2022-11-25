@@ -9,7 +9,8 @@
 
 // Definition for singly-linked list.
 
-fn main(){}
+fn main(){
+}
 
 
 #[derive(PartialEq, Eq, Clone, Debug)]
@@ -18,6 +19,7 @@ pub struct ListNode {
     pub next: Option<Box<ListNode>>,
 }
 
+#[allow(unused)]
 impl ListNode {
     #[inline]
     // 内联,编译后会内联到其他代码中.

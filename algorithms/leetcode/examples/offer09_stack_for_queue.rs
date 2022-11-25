@@ -29,6 +29,7 @@ struct CQueue {
     stack_in: Vec<i32>,
     stack_out: Vec<i32>,
 }
+#[allow(unused)]
 
 impl CQueue {
     fn new() -> Self {

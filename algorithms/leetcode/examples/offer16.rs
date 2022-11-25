@@ -21,10 +21,11 @@
 // -231<= n <=231-1
 // -104<= xn<= 104
 
-fn main(){}
+fn main() {
+    assert_eq!(my_pow(2.0,3),8.0);
+}
 
-pub fn my_pow(x: f64, n: i32) -> f64 {
-
+fn my_pow(x: f64, n: i32) -> f64 {
     match n {
         0 => 1.0,
         1 => x,
@@ -36,4 +37,3 @@ pub fn my_pow(x: f64, n: i32) -> f64 {
         }
     }
 }
-

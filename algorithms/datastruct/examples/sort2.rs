@@ -9,7 +9,7 @@ fn main() {
     println!("quick sort: {:?}", s2)
 }
 
-
+#[allow(unused)]
 fn bubble_sort(data: &mut [i32]) {
     let mut swapped = true;
     let mut len = data.len();

@@ -103,8 +103,11 @@ pub fn exist(board: Vec<Vec<char>>, word: String) -> bool {
     false
 }
 
+#[allow(unused)]
+
 struct Solution {}
 
+#[allow(unused)]
 impl Solution {
     fn dfs(board: &mut Vec<Vec<char>>, chars: &Vec<char>, y: usize, x: usize, i: usize) -> bool {
         if board[y][x] != chars[i] {
