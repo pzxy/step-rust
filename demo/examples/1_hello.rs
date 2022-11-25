@@ -23,7 +23,6 @@ impl fmt::Display for Point {
 
 impl OutlinePrint for Point {}
 
-#[test]
-fn demo() {
+fn main() {
     Point{x:1,y:2}.outline_print()
 }

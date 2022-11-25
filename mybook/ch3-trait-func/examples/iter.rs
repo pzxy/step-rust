@@ -68,6 +68,10 @@ fn main() {
     }
 
     // 9. map_or
+
+    // 10. any
+    let s = (1..9).any(|x| x % 2 == 0);
+    println!("{}",s)
 }
 
 // 小总结：

@@ -60,8 +60,7 @@ fn handle_t(h: i32, m: i32) -> Clock {
     Clock { h: h, m: m }
 }
 
-#[test]
-fn demo() {
+fn main() {
     println!("{}", Clock::new(-83, 49));
     assert_eq!(Clock::new(10, 37).add_minutes(1), Clock::new(34, 38))
     // assert_eq!(Clock::new(-83, 49), Clock::new(34, 37))

@@ -39,8 +39,7 @@ pub fn after2(strat: DateTime<Utc>) -> DateTime<Utc> {
     strat + Duration::seconds(10)
 }
 
-#[test]
-fn demo() {
+fn main() {
     println!("{}", after(DateTime::default()));
     // println!("{}", DateTime::default())
 }

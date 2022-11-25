@@ -69,8 +69,7 @@ fn process_anagram_case(word: &str, inputs: &[&str], expected: &[&str]) {
     assert_eq!(result, expected);
 }
 
-#[test]
-fn demo() {
+fn main() {
     let word = "ΑΒΓ";
     // These words don't make sense, they're just greek letters cobbled together.
     let inputs = ["ΒΓΑ", "ΒΓΔ", "γβα"];
