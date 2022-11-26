@@ -48,12 +48,9 @@ rust中4种channel
 
    执行task的工具（相当于GO语言中的GMP），rust虽然定义的future trait，但是没有提供执行他们的工具，这个工具要用户自己实现。好在官方给我们实现了一个简单的执行器`futures`。还有tokio也是一个执行器。无论是哪个，都支持reactor事件模型（以后会支持别的事件模型比如Preactor）。
 
-[tokio 教程](https://course.rs/async-rust/tokio/overview.html)
-
 
 # 详细流程梳理
 
-[参考](https://course.rs/async-rust/tokio/async.html)
 1. 首先是调度器，他有一个channel A。调度器启动后会持续不断的从A中获取task，然后执行task的poll方法。task其实就是包装了一下future，task中有 channel A 和future。
 
 2. 当我们执行调度器的spawn方法传入一个future时，调度器会包装这个future成为一个task，然后将这个task发送到A中。
