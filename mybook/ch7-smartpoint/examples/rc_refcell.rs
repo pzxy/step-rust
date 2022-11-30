@@ -1,14 +1,16 @@
-#![allow(unused)]
 use std::cell::RefCell;
 use std::rc::Rc;
+fn main() {
+    ref_count();
+    ref_cell();
+}
 
 // 2. Rc<T> ,refer count,不在预先导入模块中,只使用于单线程.并且只允许不可变借用.
 // - clone 增加引用计数.不会执行深度 copy 操作,只是增加引用计数的值.
 // - strong_count 获取引用计数,当所有值为 0 时释放这个值.
 // - weak_count 获取引用计数,不为 0 时也可释放.
 
-#[test]
-fn ref_count_() {
+fn ref_count() {
     let a = Rc::new("any type");
     let _b = a.clone();
     let _c = a.clone();
@@ -28,7 +30,6 @@ fn ref_count_() {
     );
 }
 
-#[test]
 fn ref_cell() {
     let v = RefCell::new(5);
     println!("refCell:{}", v.borrow());

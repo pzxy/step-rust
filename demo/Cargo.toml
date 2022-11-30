@@ -11,5 +11,3 @@ rand = "0.8.5"
 json = "0.12.4"
 time = "0.3"
 tokio-util = "0.7"
-[features]
-big-primes = []
