@@ -56,7 +56,7 @@ fn main() {
     // 当我们要按照顺序操作迭代器中所有值时，并且下次操作依赖于上次操作的结果时，就可以用fold。
     println!("fold: {:?}", res);
 
-    // 8. take
+    // 8.1 take
     let vec = vec![1, 2, 3, 4, 5];
     // take 从迭代器中取前面的2个值，相当于下面这个代码。
     // for &v in vec[..2].iter() {
@@ -66,12 +66,18 @@ fn main() {
     for &v in vec.iter().take(2) {
         println!("take: {:?}", v);
     }
+    // 8.2 Option的take
+    let mut x = Some(2);
+    // Option的take 会取走值，然后设置一个None，相当于 std::mem::replace(self, None)
+    let y = x.take();
+    assert_eq!(x, None);
+    assert_eq!(y, Some(2));
 
     // 9. map_or
 
     // 10. any
     let s = (1..9).any(|x| x % 2 == 0);
-    println!("{}",s)
+    println!("{}", s)
 }
 
 // 小总结：
