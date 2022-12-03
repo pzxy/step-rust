@@ -20,8 +20,6 @@ fn main() {
     assert_eq!(list.pop(), None);
 }
 
-use std::mem;
-
 pub struct List {
     head: Link,
 }
@@ -50,22 +48,27 @@ impl List {
     }
 
     pub fn pop(&mut self) -> Option<i32> {
-        // match mem::replace(&mut self.head, None) {
-        match self.head.take() {
-            None => None,
-            Some(node) => {
-                self.head = node.next;
-                Some(node.elem)
-            }
-        }
+        // match mem::replace(&mut self.head, None) 相当于 match self.head.take()
+        // match self.head.take() {
+        //     None => None,
+        //     Some(node) => {
+        //         self.head = node.next;
+        //         Some(node.elem)
+        //     }
+        // }
+        // 下面这个代码相当于上面的代码。map如果是Node的话用闭包f()的处理。
+        self.head.take().map(|node| {
+            self.head = node.next;
+            node.elem
+        })
     }
 }
 
-impl Drop for List {
-    fn drop(&mut self) {
-        let mut cur_link = mem::replace(&mut self.head, None);
-        while let Some(mut boxed_node) = cur_link {
-            cur_link = mem::replace(&mut boxed_node.next, None);
-        }
-    }
-}
+// impl Drop for List {
+//     fn drop(&mut self) {
+//         let mut cur_link = self.head.take();
+//         while let Some(mut boxed_node) = cur_link {
+//             cur_link = boxed_node.next.take();
+//         }
+//     }
+// }
