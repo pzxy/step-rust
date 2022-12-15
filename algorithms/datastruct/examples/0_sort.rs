@@ -4,7 +4,7 @@ fn main() {
     println!("bubble sort: {:?}", s);
 
     let mut s2 = vec![1, 4, 5, 2, 6, 9];
-    let r = s2.len()-1;
+    let r = s2.len() - 1;
     quick_sort(&mut s2, 0, r);
     println!("quick sort: {:?}", s2)
 }
@@ -45,6 +45,14 @@ fn quick_sort(a: &mut [i32], p: usize, r: usize) {
     let q = partition(a, p, r);
     quick_sort(a, p, q - 1);
     quick_sort(a, q + 1, r)
+}
+
+fn quick_sort22(a: &mut [i32], p: usize, r: usize) {
+    if p >= r {
+        return;
+    }
+    let q = partition(a, p, r);
+    quick_sort(a, p, q - 1)
 }
 
 fn partition(a: &mut [i32], p: usize, r: usize) -> usize {
