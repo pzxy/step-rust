@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package demo.parameters;
+
+import "basic.proto";
+
+message SubmitResult {
+    uint32 status_data = 1;
+    repeated basic.ResultLog logs = 2;
+}

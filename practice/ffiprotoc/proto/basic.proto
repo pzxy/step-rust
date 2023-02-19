@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package demo.basic;
+
+message Address {
+    bytes value = 1; //  use bytes to represent H160 ( [u8; 20] )
+}
+
+message U256 {
+    bytes data = 1; // pub type RawU256 = [u8; 32];
+}
+
+message ResultLog {
+    Address address = 1;
+    repeated U256 topics = 2;
+}
