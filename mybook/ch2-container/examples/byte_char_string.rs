@@ -1,6 +1,8 @@
 // 一些基本类型操作和转换。
 // 我们只讨论utf8编码。unicode并不是一个字节编码一个字符，更复杂一点。
 
+use std::io::Read;
+
 fn main() {
     // 1. byte类型,就是u8，他的[u8]其实就是string，可以互相转换
     // [u8]
@@ -17,7 +19,7 @@ fn main() {
 
     // 3. String
     let s3 = String::from("abc");
-    let b3 = b"#abc#".to_vec(); // to vec[u8]
+    let b3 = b"abc".to_vec(); // to vec[u8]
     println!("b3: {:?}", b3);
     let b3 = s3.as_bytes(); // to vec[u8] slice，rust中只要是切片都是引用。如果变为vec[u8]的话，使用to_vec()
     println!("b3: {:?}", b3);
