@@ -378,6 +378,8 @@ version = "0.1.0"
 name = "ch10-network"
 version = "0.1.0"
 dependencies = [
+ "hyper",
+ "reqwest",
  "tokio",
 ]
 
