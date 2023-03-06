@@ -409,6 +409,8 @@ dependencies = [
  "chrono",
  "crc 1.8.1",
  "libc",
+ "serde",
+ "serde_json",
 ]
 
 [[package]]
