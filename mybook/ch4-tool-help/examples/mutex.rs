@@ -6,5 +6,10 @@ fn main() {
 
     let locked = data.lock().unwrap();
     println!("locked data: {}", &locked[..]);
-    // locked离开空间会自动释放锁，不用去主动解锁。
+    // locked离开空间会自动释放锁，不用去主动解锁
+    {
+        // 如果空间太大可以这样
+        data.lock().unwrap();
+        println!("locked data: {}", &locked[..]);
+    }
 }
