@@ -5,4 +5,6 @@ fn main(){
     let v2 = Rc::new(RefCell::new(6));
      v=v2;
     println!("123 {:?}",v);
+    // 贪吃蛇游戏
+        
 }

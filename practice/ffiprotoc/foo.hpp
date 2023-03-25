@@ -9,3 +9,4 @@ public:
     void send(int a);
     void recv(int a);
 };
+
