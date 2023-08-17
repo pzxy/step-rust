@@ -32,7 +32,7 @@ extern crate chrono;
 use chrono::*;
 
 pub fn after(start: DateTime<Utc>) -> DateTime<Utc> {
-    start + Duration::seconds(1000000000)
+    start + Duration::seconds(1e9 as i64)
 }
 
 pub fn after2(strat: DateTime<Utc>) -> DateTime<Utc> {
@@ -40,6 +40,7 @@ pub fn after2(strat: DateTime<Utc>) -> DateTime<Utc> {
 }
 
 fn main() {
+    let a: DateTime<Utc> = DateTime::default();
+    println!("{}", a);
     println!("{}", after(DateTime::default()));
-    // println!("{}", DateTime::default())
 }

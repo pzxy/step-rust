@@ -23,5 +23,5 @@ impl fmt::Display for Point {
 impl OutlinePrint for Point {}
 
 fn main() {
-    Point{x:1,y:2}.outline_print()
+    Point { x: 1, y: 2 }.outline_print()
 }
