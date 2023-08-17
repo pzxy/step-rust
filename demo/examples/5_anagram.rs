@@ -11,37 +11,37 @@
 // Try to limit case changes. Case changes are expensive in terms of time, so it's faster to minimize them.
 //
 // If sorting, consider sort_unstable which is typically faster than stable sorting. When applicable, unstable sorting is preferred because it is generally faster than stable sorting and it doesn't allocate auxiliary memory.
-// 猜字谜, 不区分大小写, 字符全部相同(字符个数也要相同)就返回(相同单词例外), 正确例子 quite quiEt , 错误例子 egg eg
+// 猜字谜, 不区分大小写, 字符全部相同(字符个数也要相同)就返回(相同单词例外), 正确例子 quite quiEt , 错误例子 egg eg, egg EgG
 use std::collections::{HashMap, HashSet};
 
 pub fn anagrams_for<'a>(word: &str, possible_anagrams: &[&'a str]) -> HashSet<&'a str> {
     let mut ret: HashSet<&str> = HashSet::new();
     let word_map = str2map(word);
-    for s in possible_anagrams.iter() {
-        if s.len() != word.len() {
+    for curr in possible_anagrams.iter() {
+        if curr.len() != word.len() {
             continue;
         }
-        if s.clone().to_uppercase().eq(&word.to_uppercase()) {
+        if curr.clone().to_uppercase().eq(&word.to_uppercase()) {
             continue;
         }
-        let curr_map = str2map(s);
-        ret.insert(s);
-        println!("insert:{}", s);
+        let curr_char_map = str2map(curr);
+        ret.insert(curr);
+        println!("insert:{}", curr);
         // compare map
-        for c in s.clone().to_uppercase().chars() {
-            match word_map.get(&c) {
+        for curr_char in curr.clone().to_uppercase().chars() {
+            match word_map.get(&curr_char) {
                 None => {
-                    ret.remove(s);
+                    ret.remove(curr);
                     break;
                 }
-                Some(vv) => match curr_map.get(&c) {
+                Some(vv) => match curr_char_map.get(&curr_char) {
                     None => {
-                        ret.remove(s);
+                        ret.remove(curr);
                         break;
                     }
                     Some(vvv) => {
                         if vv != vvv {
-                            ret.remove(s);
+                            ret.remove(curr);
                             break;
                         }
                     }
