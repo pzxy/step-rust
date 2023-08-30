@@ -1,4 +1,10 @@
+#![allow(unused)]
+#![allow(dead_code)]
 use std::collections::HashMap;
+
+fn main() {
+
+}
 
 // tuple 元组
 fn r_tuple() {
@@ -165,3 +171,4 @@ fn r_hashMap() {
     }
     println!("{:#?}", map)
 }
+

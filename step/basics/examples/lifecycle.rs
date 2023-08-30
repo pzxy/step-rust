@@ -1,7 +1,9 @@
 // 借用：将引用作为参数的，就是借用，如果要修改借用的数据，需要声明mut。
-
+#![allow(unused)]
 use std::fmt::Display;
-
+fn main() {
+    r_null();
+}
 // Rust 中没有null
 fn r_null() {
     // Some None这是 Prelude 预导入的Option<T>枚举类型的值，所以可以直接用。
@@ -139,3 +141,5 @@ fn longest5<'a, T>(x: &'a str, y: &'a str, ann: T) -> &'a str
         y
     }
 }
+
+// 2023/8/30 只有引用才有生命周期。

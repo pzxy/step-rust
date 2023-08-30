@@ -1,7 +1,16 @@
+
+fn main(){
+    r_for_while_loop();
+    r_if_let();
+}
 fn r_for_while_loop() {
     // loop 相当于go里面的for {}
     // while 就是传统的那种
     let a = [10, 20, 30, 40];
+    for e in a.iter(){
+        println!("{:?}",e);
+
+    }
     for e in a.iter() {
         println!("value:{}", e);
     }
@@ -16,7 +25,7 @@ fn r_for_while_loop() {
 fn r_if_let() {
     let v = Some(8u32);
     match v {
-        Some(3) => println!("three"),
+        Some(8) => println!("three"),
         // 表示其他类型的匹配，因为枚举类型必须穷举，相当于 default
         _ => println!("other"),
     }

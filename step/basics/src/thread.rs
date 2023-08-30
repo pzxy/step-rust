@@ -1,7 +1,6 @@
 use std::sync::{mpsc, Arc, Mutex};
 use std::thread;
 use std::time::Duration;
-
 // 1. 例子
 pub fn thread1() {
     // 开启一个线程

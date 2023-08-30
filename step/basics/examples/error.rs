@@ -6,12 +6,9 @@
 // [profile.release]
 // panic = `abort`
 
-use core::panicking::panic;
-use std::f32::consts::E;
 use std::fs::File;
-use std::io;
-use std::io::{ErrorKind, Read};
-use std::ptr::read;
+use std::io::{Error,ErrorKind, Read};
+
 /*
 panic(unwrap expect) 使用场景：
 1. demo
@@ -19,13 +16,22 @@ panic(unwrap expect) 使用场景：
 3. 测试
 4. 确定一定是对的，unwrap
 */
-
+fn main(){
+    r_panic();
+    // r_match();
+    r_error_kind();
+    r_unwrap();
+    r_unwrap_expect();
+    read_username_from_file().expect("panic file");
+    read_username_from_file2().expect("panic file2");
+}
 fn r_panic() {
     // 设置环境变量 RUST_BACKTRACE=1 会显示调用栈，同时Cargo run 命令不能带有 --release参数
     panic!("crash and burn")
 }
 
 // 处理Result方式1,match方式
+#[allow(unused)]
 fn r_match() {
     let f = File::open("hello.txt");
     let f = match f {
@@ -49,7 +55,7 @@ fn r_error_kind() {
                 Err(e) => panic!("Error creating file:{:?}", e),
             },
             // 这个表示其他错误，这个变量可以随便写。
-            asd => panic!("Error creating file:{:?}", e),
+            e => panic!("Error creating file:{:?}", e),
         }
     };
 }
@@ -82,7 +88,7 @@ fn r_unwrap_expect() {
 }
 
 // 错误作为函数返回值
-fn read_username_from_file() -> Result<String, io::Error> {
+fn read_username_from_file() -> Result<String, Error> {
     let f = File::open("text.txt");
     let mut f = match f {
         Ok(file) => file,
@@ -98,7 +104,7 @@ fn read_username_from_file() -> Result<String, io::Error> {
 // ? 快捷处理错误，？其实是调用from函数，将一种错误转换成另外一种错误类型。
 // 如果发生错误就会返回，否则继续执行
 // 如果在main函数中使用？，则fn main() -> Result<(),Box<dyn Error>>
-fn read_username_from_file2() -> Result<String, io::Error> {
+fn read_username_from_file2() -> Result<String, Error> {
     let mut f = File::open("text.txt")?;
     let mut s = String::new();
     f.read_to_string(&mut s)?;
@@ -108,4 +114,9 @@ fn read_username_from_file2() -> Result<String, io::Error> {
     // File::open("text.txt")?.read_to_string(&mut s)?;
     // Ok(s)
 }
+
+// 23/8/30
+// unwrap & expect 都是错误以后直接报错。
+// ? 返回错误或者结果。
+// 只要结构体实现了 io::Error trait 就可以当错误struct来用。
 

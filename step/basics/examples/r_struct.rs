@@ -1,4 +1,3 @@
-
 // struct
 // 调试使用，rust包含调试功能，这是为这个结构体显示的选择这一个功能。
 #![allow(unused)]
@@ -8,12 +7,16 @@ struct User {
     age: u32,
 }
 
+fn main() {
+
+}
+
 // tuple struct
 struct Color(i32, u32, i32);
 // 元组结构体只包含一个元素时就是 newType 模式
 // 可以定义分数的一些方法,可以和 u32进行区分
 struct Score(u32);
-
+#[allow(unused)]
 fn r_struct(name: String, age: u32) {
     // 必须全部赋值，不能像go中，只声明一部分
     let user1 = User {
@@ -36,10 +39,12 @@ fn r_struct(name: String, age: u32) {
     println!("{:#?}", user2);
 }
 // 单元结构体,不占用空间
+#[allow(unused)]
 struct Unit;
 
 // 结构体的方法
 // 可以有多个 impl User
+#[allow(unused)]
 impl User {
     // 获取名字的方法
     // fn getName(&self) -> String {
@@ -48,13 +53,13 @@ impl User {
     //     // String在heap上，并且没主动实现copy，我们返回一个name时候，因为是借用，不能移交所有权。
     //     self.name
     // }
-    fn getAge(&self) -> u32 {
+    fn get_age(&self) -> u32 {
         self.age
     }
     // 关联函数，关联函数不传self，可以直接通过结构体调用
     // 调用方式有点像java中静态方法，功能类似go中NewObject这种。
-    // 调用方式 User::newUser("你好")
-    fn newUser(name: String) -> User {
+    // 调用方式 User::new_user("你好")
+    fn new_user(name: String) -> User {
         User {
             name,
             age: 18,
@@ -64,6 +69,7 @@ impl User {
 
 // 枚举类型
 // 别人可以用枚举类型。方式IpAddrKind::V4
+#[allow(unused)]
 enum IpAddrKind {
     // 数据可以是任何类型
     V4(u8, u8, u8, u8),
@@ -73,8 +79,9 @@ enum IpAddrKind {
 }
 
 // 给枚举类型定义方法
+#[allow(unused)]
 impl IpAddrKind {
     fn call(&self) -> IpAddrKind {
-        self::V4
+        self::IpAddrKind::V6
     }
 }

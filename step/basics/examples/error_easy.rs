@@ -1,3 +1,9 @@
+fn main() {
+    error_easy1();
+    error_easy2();
+    error_easy3();
+}
+
 // 使用尽可能多的方法来通过编译
 fn error_easy1() {
     // 这种string 类型,没有实现 Copy strait
@@ -9,14 +15,17 @@ fn error_easy1() {
 }
 
 // 使用三种方法实现以下发散函数
+#[allow(unused)]
 fn never_return_fn() -> ! {
     unimplemented!()
 }
 
+#[allow(unused)]
 fn never_return_fn2() -> ! {
     panic!("6789")
 }
 
+#[allow(unused)]
 fn never_return_fn3() -> ! {
     loop {
         std::thread::sleep(std::time::Duration::from_secs(1))
@@ -24,6 +33,7 @@ fn never_return_fn3() -> ! {
 }
 
 // 只能修改下面的代码!
+#[allow(unused)]
 fn give_ownership() -> String {
     let s = String::from("hello, world");
     // convert String to Vec
@@ -70,3 +80,7 @@ fn error_easy3() {
 }
 
 // 借用,不能借用两次可变借用,如果借用同一个多次可变,要不不使用借用,要不只使用最后一次借用
+
+// 23/8/30
+// String 堆中
+// 使用join 和 concat 对["a","b","c] 数组进行处理。
