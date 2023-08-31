@@ -1,3 +1,4 @@
+mod pattern;
 
 fn main(){
     r_for_while_loop();
