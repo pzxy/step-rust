@@ -26,8 +26,6 @@ extern crate core;
 mod iterator;
 mod pointer;
 mod pointer2;
-mod r_func;
-mod r_trait;
 mod r_unsafe;
 mod thread;
 

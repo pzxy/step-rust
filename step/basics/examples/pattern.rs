@@ -17,6 +17,7 @@
 
 mod marco_todo;
 mod r_type;
+mod r_func;
 
 fn main(){
     _pattern3();

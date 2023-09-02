@@ -1,6 +1,10 @@
 // 函数分为
 // 常规函数 /关联函数 方法
-
+#![allow(unused)]
+#![allow(dead_code)]
+fn main(){
+    func1();
+}
 // 定义一个元组结构体
 struct Func1(i32, i32);
 

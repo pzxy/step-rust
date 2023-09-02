@@ -1,3 +1,5 @@
+#![allow(unused)]
+#![allow(dead_code)]
 use std::fmt::{Debug, Display, Formatter};
 // 10. 使用 super-trait 来要求 trait 附带其他 trait 的功能. 相当于 trait 的继承概念
 // 有时候需要在一个 trait 中使用其他 trait 的功能
@@ -16,6 +18,10 @@ use std::fmt;
 // 例子
 use std::ops::Add;
 
+
+fn main(){
+    notify4(true);
+}
 // 类似接口
 // 但不完全是，一般高级语言的接口是不自己实现方法的，
 // 但是trait可以自己声明方法，自己实现方法。而且，trait中还能定义类型。
@@ -23,8 +29,8 @@ use std::ops::Add;
 // 都是哪个类，或者结构实现了哪个接口，这里其实实现类是主动的。是类要去实现这个接口。
 
 // 但是在rust中，含义是：为某个类实现trait，说实现不太恰当，应该说把trait赋予给了这个类。在这里trait是主动的。
-// 给了你了，你就是有了这个trait的特性了，这其中可能一些方法已经实现了，所以就没必要他，可能一些没有实现，你就需要实现他。
-// 类型有了这个trait，就相当于有了一种特性，同时也获得了这个特性的中特别的方法了。
+// 给了你了，你就是有了这个trait的特性了，这其中可能一些方法已经实现了，所以就没必要重新实现他，一些没有实现，你就需要实现他。
+// 类型有了这个trait，就相当于有了一种特性或者说某些能力，同时也获得了这个特性的中特别的方法了。
 // trait作为入参，出参的时候，其实都是在过滤这种特性。
 // 其实在别的语言中接口也可以这样理解，但没那个必要。
 pub trait Summary {
@@ -198,7 +204,7 @@ struct Meters(u32);
 
 impl Add<Meters> for Millimeters {
     type Output = Millimeters;
-
+    // c++中 rhs(Right-Hand Side)代表赋值运算符右侧的值或表达式。
     fn add(self, rhs: Meters) -> Self::Output {
         Millimeters(self.0 + (rhs.0 * 1000))
     }
