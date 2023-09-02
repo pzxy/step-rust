@@ -1,5 +1,10 @@
 // 闭包：闭包的本质是将栈上的数据放到了堆上，从个延长声明周期。
+#![allow(unused)]
+#![allow(dead_code)]
 
+fn main(){
+    // closure1();
+}
 // 1. 声明一个闭包
 fn closure1() {
     // 定义了一个匿名函数
