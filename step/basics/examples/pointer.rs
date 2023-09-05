@@ -7,6 +7,8 @@
 // Box<T>: heap 内存上分配值
 // Rc<T>: 启动多重所有权的引用计数类型
 // Ref<T> RefMut<T>:通过 RefCell<T>访问:在运行时而不是编译时强制借用规则的类型
+#![allow(unused)]
+#![allow(dead_code)]
 
 use std::cell::RefCell;
 // 2. Deref
@@ -14,21 +16,23 @@ use std::cell::RefCell;
 // Deref trait 的要求,我们要实现要求,实现一个 deref 方法:1. 借用 self,返回一个执行内部数据的引用
 use std::ops::Deref;
 use std::rc::{Rc, Weak};
+use crate::List2::{Cons2, Nil2};
+use crate::List3::{Cons3, Nil3};
+use crate::List::{Cons, Nil};
+use crate::Node2::Cons5;
+use crate::Node::{Cons4, Nil4};
 
 // 1. Box 使用场景:
 // - 在编译时,类型大小无法确定
 // - 有大量数据,需要移交所有权,要保证在操作时数据不会被复制.
 // - 使用某个值时,只关心实现了某个 trait,二不关心具体的类型时.
-use crate::pointer::List::{Cons, Nil};
 // 导入枚举值
-use crate::pointer::List2::{Cons2, Nil2};
 // 5. RefCell<T> 只会在运行时检查借用规则,
 // 可以通过调用方法,来修改内部的值,虽然外部是不可变的,但是内部是可变的,从而达到内部可变性.
 // 通俗点讲,就是将数据放在head上,然后 refcell 中维护一个可变引用和多个不可变引用的变量,这些变量只能通过指针获取到.
-use crate::pointer::List3::{Cons3, Nil3};
 // 6. 写一个循环引用,造成内存泄漏,蛇咬住自己的尾巴.
-use crate::pointer::Node::{Cons4, Nil4};
-use crate::pointer::Node2::{Cons5, Nil5};
+
+fn main() {}
 
 enum List {
     // Cons(i32, List),这种写法,编译不会通过的, 因为循环引用,不能确定结构大小.

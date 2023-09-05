@@ -180,3 +180,8 @@ fn counter222(i: i32) -> i32 {
     }
     5
 }
+
+// 总结：
+// 2023/9/2
+// 函数指针可以看成是fn关键字，这是一种类型，这个类型实现了fn FnMut FnOnce三个trait。
+// 闭包会实现fn FnMut FnOnce三个trait中的一个或多个。
