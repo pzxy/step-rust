@@ -8,6 +8,12 @@ fn main() {
 }
 
 fn dp_1(arr: Vec<i32>) -> i32 {
+    if arr.len() == 0 {
+        return 0;
+    }
+    if arr.len() == 1 {
+        return arr[1];
+    }
     let mut opt = vec![0; arr.len()];
     opt[0] = arr[0];
     opt[1] = max(arr[0], arr[1]);
