@@ -21,13 +21,19 @@
 //
 
 fn main() {
+    // 买股票最佳时机1
     let nums = vec![2, 2, 1, 1, 1, 2, 2];
     let ret = majority_element(nums);
     println!("{}", ret);
 
     let nums2 = vec![7, 1, 5, 3, 6, 4];
-    let ret2 = max_profit3(nums2);
-    println!("{}", ret2)
+    let ret2 = max_profit13(nums2);
+    println!("{}", ret2);
+
+    // 买股票最佳时机2
+    let nums3 = vec![6, 1, 3, 2, 4, 7];
+    let ret3 = max_profit20(nums3);
+    println!("{}", ret3);
 }
 
 // 同归于尽法
@@ -88,7 +94,7 @@ pub fn max_profit(prices: Vec<i32>) -> i32 {
     return ret;
 }
 
-pub fn max_profit2(prices: Vec<i32>) -> i32 {
+pub fn max_profit12(prices: Vec<i32>) -> i32 {
     let mut max = 0;
     let mut ret = 0;
     let length = prices.len() - 1;
@@ -106,7 +112,7 @@ pub fn max_profit2(prices: Vec<i32>) -> i32 {
     return ret;
 }
 
-pub fn max_profit3(prices: Vec<i32>) -> i32 {
+pub fn max_profit13(prices: Vec<i32>) -> i32 {
     let mut min = i32::MAX;
     let mut ret = 0;
     for i in 0..prices.len() {
@@ -114,6 +120,77 @@ pub fn max_profit3(prices: Vec<i32>) -> i32 {
             min = prices[i];
         } else if (prices[i] - min) > ret {
             ret = prices[i] - min;
+        }
+    }
+    return ret;
+}
+
+//给你一个整数数组 prices ，其中 prices[i] 表示某支股票第 i 天的价格。
+//
+// 在每一天，你可以决定是否购买和/或出售股票。你在任何时候 最多 只能持有 一股 股票。你也可以先购买，然后在 同一天 出售。
+//
+// 返回 你能获得的 最大 利润 。
+//
+//
+//
+// 示例 1：
+//
+// 输入：prices = [7,1,5,3,6,4]
+// 输出：7
+// 解释：在第 2 天（股票价格 = 1）的时候买入，在第 3 天（股票价格 = 5）的时候卖出, 这笔交易所能获得利润 = 5 - 1 = 4 。
+//      随后，在第 4 天（股票价格 = 3）的时候买入，在第 5 天（股票价格 = 6）的时候卖出, 这笔交易所能获得利润 = 6 - 3 = 3 。
+//      总利润为 4 + 3 = 7 。
+// 示例 2：
+//
+// 输入：prices = [1,2,3,4,5]
+// 输出：4
+// 解释：在第 1 天（股票价格 = 1）的时候买入，在第 5 天 （股票价格 = 5）的时候卖出, 这笔交易所能获得利润 = 5 - 1 = 4 。
+//      总利润为 4 。
+// 示例 3：
+//
+// 输入：prices = [7,6,4,3,1]
+// 输出：0
+// 解释：在这种情况下, 交易无法获得正利润，所以不参与交易可以获得最大利润，最大利润为 0 。
+//
+
+// 买股票最佳时机二
+// [6,1,3,2,4,7]
+pub fn max_profit20(prices: Vec<i32>) -> i32 {
+    if prices.len() == 1 {
+        return 0;
+    }
+    let mut min = prices[0];
+    let mut tmp = 0;
+    let mut ret = 0;
+    for i in 1..prices.len() {
+        if prices[i - 1] > prices[i] {// 这一步是触发更新ret的操作，可能无法触发，所以要在else最后一次循环中触发。
+            ret += tmp;
+            min = prices[i];
+            tmp = 0;
+        } else {
+            tmp = prices[i] - min;
+            if i == prices.len() - 1 {
+                ret += tmp;
+            }
+        }
+        println!("tmp:{},min:{},ret:{}", tmp, min, ret);
+    }
+    return ret;
+}
+
+// 买股票最佳时机二
+// [6,1,3,2,4,7]
+// 贪心算法，有賺就卖。
+pub fn max_profit21(prices: Vec<i32>) -> i32 {
+    if prices.len() == 1 {
+        return 0;
+    }
+    let mut tmp = 0;
+    let mut ret = 0;
+    for i in 1..prices.len() {
+        tmp = prices[i] - prices[i - 1];
+        if tmp > 0 {// 这一步是触发更新ret的操作，可能无法触发，所以要在else最后一次循环中触发。
+            ret += tmp;
         }
     }
     return ret;
