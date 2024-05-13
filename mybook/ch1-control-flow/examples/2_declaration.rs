@@ -4,7 +4,7 @@
 // , 在rust中表示一种相同属性的分割，或者一种顺序。
 fn main() {
     // 声明，rust中的声明全部都是 变量名：类型,无论是作为函数参数，还是函数中的临时变量。
-    // 这里的let表示一种绑定，将Dog这个值的所有权绑定到变量s上。
+    // 这里的let表示一种绑定，将Dog这个值的所有权绑定到变量a上。
     let a: Dog = Dog {
         Name: "diandian".to_owned(),
         Age: 12,
@@ -28,7 +28,7 @@ struct Dog {
     Age: usize,
 }
 
-// 实现Animal tarit
+// 实现Animal trait
 impl Animal for Dog {}
 
 fn foo(a: impl Animal) {

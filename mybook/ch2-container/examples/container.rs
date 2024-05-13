@@ -34,7 +34,7 @@ fn slice() {
     let mut v = vec![1, 2, 3, 4];
     let mut v2 = vec![5, 6, 7, 8];
     v.append(&mut v2);
-    let v = &v[1..7];
+    let v = &v[0..3];// 1,2,3
     println!("slice: {:?}", v);
 }
 
@@ -42,14 +42,16 @@ fn hashmap() {
     // 原生hashmap可以防止dos攻击，也就是当相同hash值的攻击有一定防御作用，但是性能不是最好。
     let mut m = HashMap::new();
     m.insert("name", "pzxy");
-    println!("hashMap:{:?}", m);
+    for (k, v) in m.iter() {
+        println!("hashMap: k:{:?},b:{:?}", k, v);
+    }
 
     let mut tm = BTreeMap::new();
     tm.insert(1, "a");
     tm.insert(4, "b");
     tm.insert(2, "c");
     tm.insert(9, "d");
-    for (k, v) in tm.range(0..6) {
+    for (k, v) in tm.range(0..6) {// 限定key的大小来打印
         // 打印指定范围数据。
         println!("k:{},v:{}", k, v)
     }

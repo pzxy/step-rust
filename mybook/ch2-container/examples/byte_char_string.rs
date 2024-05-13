@@ -12,7 +12,7 @@ fn main() {
     println!("s1:{:?}", s1);
 
     // 2. char类型，char类型是4个字节。在go里面是rune，这里就是char
-    let c2: Vec<char> = vec!['a', 'b', 'c', 'd']; //必须是单引号。
+    let c2 = vec!['a', 'b', 'c', 'd']; //必须是单引号。
     println!("c2: {:?}", c2);
     let s2: String = c2.iter().collect(); // to string
     println!("s2: {:?}", s2);

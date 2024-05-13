@@ -8,7 +8,7 @@ fn main() {
             break;
         }
     }
-    // 还有 if let 这种写法，if let Some(v) = a {},这是一个匹配语句，匹配江a的内容和Some(v)做匹配。
+    // 还有 if let 这种写法，if let Some(v) = a {},这是一个匹配语句，匹配将a的内容和Some(v)做匹配。
     let v = match s {
         // if 这种
         s if (s > 0) => s,
