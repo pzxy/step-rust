@@ -1,4 +1,4 @@
-use libc::{raise, signal, SIGINT, SIGTERM, SIGUSR1, SIG_IGN};
+use libc::{raise, signal, SIGINT, SIGTERM, SIGUSR1, SIG_IGN, exit};
 use std::thread::sleep;
 use std::time::Duration;
 
@@ -15,15 +15,21 @@ fn main() {
     for i in 0_u8.. {
         sleep(delay);
         println!(". {}", i);
-        if i > 10 {
+        if i > 3 {
             unsafe {
                 // 给自己发送信号
                 raise(SIGTERM);
+                raise(SIGUSR1);
             }
         }
     }
 }
 
-fn func1() {}
+fn func1() {
+    println!("收到 SIGTERM 信号")
+}
 
-fn func2() {}
+unsafe fn func2() {
+    println!("收到 SIGUSR1 信号");
+    exit(1);
+}

@@ -7,8 +7,8 @@ fn main() {
     // 继续进程 kill  -SIGCONT pid
     let delay = Duration::from_secs(1);
     let pid = process::id();
-    println!("pid:{}", pid);
-    for i in 1..=60 {
+    println!("process id: {}", pid);
+    for i in 1..=10 {
         sleep(delay);
         println!(". {}", i);
     }

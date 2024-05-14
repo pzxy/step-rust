@@ -1,28 +1,27 @@
 use std::borrow::Cow;
 
-fn abs_all(input: &mut Cow<[i32]>) {
-    for i in 0..input.len() {
-        let v = input[i];
-        if v < 0 {
-            // Clones into a vector if not already owned.
-            let a = input.to_mut();
-            a[i] = -v;
-        }
+fn process_string(s: Cow<str>) {
+    if s.len() > 10 {
+        let owned_string: String = s.into_owned();
+        println!("Received owned string: {}", owned_string);
+        // 这里可以修改 owned_string
+    } else {
+        println!("Received borrowed string: {}", s);
+        // 这里不能修改 s
     }
 }
 
 fn main() {
-    // No clone occurs because `input` doesn't need to be mutated.
-    let slice = [0, 1, 2];
-    let mut input = Cow::from(&slice[..]);
-    abs_all(&mut input);
+    let mut borrowed_string: Cow<str> = Cow::Borrowed("Hello, Rust!");
 
-    // Clone occurs because `input` needs to be mutated.
-    let slice = [-1, 0, 1];
-    let mut input = Cow::from(&slice[..]);
-    abs_all(&mut input);
+    borrowed_string.to_mut().push_str(" world");
+    println!("c:{}", borrowed_string);
+    let mut owned_string: Cow<str> = Cow::Owned("Hello, Rust!".to_string());
+    owned_string.to_mut().push_str(" world");
+    println!("c:{}", owned_string);
 
-    // No clone occurs because `input` is already owned.
-    let mut input = Cow::from(vec![-1, 0, 1]);
-    abs_all(&mut input);
+    let mut c = Cow::from("hello");
+    c.to_mut().push_str(" world");
+    c.to_owned();
+    println!("c:{}", c);
 }
