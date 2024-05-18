@@ -9,7 +9,10 @@ fn main() {
         Name: "diandian".to_owned(),
         Age: 12,
     };
-    foo(a)
+    foo(a);
+    let aa = String::from("tyui");
+    let bb = String::from("tyui");
+    println!("{:?}", aa + bb)
 }
 
 // 声明 trait

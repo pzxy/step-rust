@@ -47,7 +47,7 @@ fn ref_cell(){
     println!(">> ref cell");
     let r = RefCell::new(5);
     *r.borrow_mut() += 100;
-    println!("{:?}",r.);
+    println!("{:?}",r);
 
 
 }
