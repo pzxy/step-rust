@@ -7,6 +7,7 @@ use std::{
     },
     thread,
 };
+use std::sync::atomic::AtomicU32;
 
 struct Lock<T> {
     locked: AtomicBool,
@@ -47,7 +48,6 @@ impl<T> Lock<T> {
 
         // 已经拿到并加锁，开始干活
         op(&mut self.data.borrow_mut()); // **3
-
         // 解锁
         self.locked.store(false, Ordering::Release);
     }
