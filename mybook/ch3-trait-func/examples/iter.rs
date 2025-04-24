@@ -23,7 +23,7 @@ fn main() {
     println!("skip: {:?}", skip3);//[3,4]
 
     // 4.nth，获取迭代器第三个值。Option类型
-    let nth4 = a.into_iter().nth(0);
+    let nth4 = a.into_iter().nth(2);
     println!("nth: {:?}", nth4);//3
 
     // 5. filter 过滤某个值
@@ -71,8 +71,8 @@ fn main() {
     let mut x = Some(2);
     // Option的take 会取走值，然后设置一个None，相当于 std::mem::replace(self, None)
     let y = x.take();//类似c++中的move
-    assert_eq!(x, None);
-    assert_eq!(y, Some(2));
+    println!("Option take x: {:?}",x); //None
+    println!("Option take y: {:?}",y); // Some(2)
 
     // 9. map_or, 提取Option中的值，使用f处理后返回。当为None时，返回这个默认值。
     let result_1 = x.map_or(0, |v| v * 2); // result_1 = 0

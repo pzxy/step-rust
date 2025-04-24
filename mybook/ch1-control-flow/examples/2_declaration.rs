@@ -10,9 +10,9 @@ fn main() {
         Age: 12,
     };
     foo(a);
-    let aa = String::from("tyui");
-    let bb = String::from("tyui");
-    println!("{:?}", aa + bb)
+    let aa = String::from("hello ");
+    let bb = String::from("world");
+    println!("{:?}", aa + &bb)
 }
 
 // 声明 trait

@@ -1,0 +1,10 @@
+[package]
+name = "bzlib-sys"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+bindgen = "0.65"
+
+[build-dependencies]
+bindgen = "0.65"

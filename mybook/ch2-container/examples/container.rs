@@ -40,6 +40,7 @@ fn slice() {
 
 fn hashmap() {
     // 原生hashmap可以防止dos攻击，也就是当相同hash值的攻击有一定防御作用，但是性能不是最好。
+    // 其实也没啥，就是相同的建做了下处理。
     let mut m = HashMap::new();
     m.insert("name", "pzxy");
     for (k, v) in m.iter() {
