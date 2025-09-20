@@ -8,7 +8,7 @@ fn main() {
         let mut guess = String::new();
         io::stdin().read_line(&mut guess).unwrap();
         let guess: u8 = match guess.trim().parse() {
-            Err(e) => panic!("invalid input"),
+            Err(_) => panic!("invalid input"),
             Ok(v) => v,
         };
         match guess.cmp(&number) {

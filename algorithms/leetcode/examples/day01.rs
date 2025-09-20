@@ -27,35 +27,51 @@
 // 注意，因为 m = 0 ，所以 nums1 中没有元素。nums1 中仅存的 0 仅仅是为了确保合并结果可以顺利存放到 nums1 中。
 
 fn main() {
+    // 测试用例 1：正常合并
     let mut nums1 = vec![1, 2, 3, 0, 0, 0];
     let mut nums2 = vec![2, 5, 6];
     merge(&mut nums1, 3, &mut nums2, 3);
-    println!("{:?}", nums1);
+    println!("测试用例 1: {:?}", nums1);
+    assert_eq!(nums1, vec![1, 2, 2, 3, 5, 6]);
+
+    // 测试用例 2：nums1 只有一个元素，nums2 为空
+    let mut nums1 = vec![1];
+    let mut nums2 = vec![];
+    merge(&mut nums1, 1, &mut nums2, 0);
+    println!("测试用例 2: {:?}", nums1);
+    assert_eq!(nums1, vec![1]);
+
+    // 测试用例 3：nums1 为空，nums2 有一个元素
+    let mut nums1 = vec![0];
+    let mut nums2 = vec![1];
+    merge(&mut nums1, 0, &mut nums2, 1);
+    println!("测试用例 3: {:?}", nums1);
+    assert_eq!(nums1, vec![1]);
+
+    println!("所有测试用例通过！");
 }
 
 pub fn merge(nums1: &mut Vec<i32>, m: i32, nums2: &mut Vec<i32>, n: i32) {
-    let temp = nums1.clone();
-    let mut p1: usize = 0;
-    let mut p2: usize = 0;
-    for i in 0..nums1.len() {
-        if p1 >= m as usize {
-            nums1[i] = nums2[p2];
-            p2 += 1;
-            continue
+    let mut p1 = m as usize;
+    let mut p2 = n as usize;
+    let mut p = (m + n) as usize;
+
+    // 从后往前合并，避免使用额外空间
+    while p1 > 0 && p2 > 0 {
+        if nums1[p1 - 1] > nums2[p2 - 1] {
+            nums1[p - 1] = nums1[p1 - 1];
+            p1 -= 1;
+        } else {
+            nums1[p - 1] = nums2[p2 - 1];
+            p2 -= 1;
         }
-        if p2 >= n as usize {
-            nums1[i] = temp[p1];
-            p1 += 1;
-            continue
-        }
-        if temp[p1] > nums2[p2] {
-            nums1[i] = nums2[p2];
-            p2 += 1;
-            continue
-        }else {
-            nums1[i] = temp[p1];
-            p1 += 1;
-            continue
-        }
+        p -= 1;
+    }
+
+    // 如果 nums2 还有剩余元素，复制到 nums1 的前面
+    while p2 > 0 {
+        nums1[p - 1] = nums2[p2 - 1];
+        p2 -= 1;
+        p -= 1;
     }
 }
