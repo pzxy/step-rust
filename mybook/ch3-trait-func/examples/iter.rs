@@ -1,7 +1,10 @@
 // iter 返回不可变引用&T
 // iter_mut 返回可变引用
 // into_iter 返回值本身，其实是复制了一份。
+// 迭代的意思是"重复地做同一类操作，并用上一次的结果作为下一次的输入"，直到达到某个目标或停止条件。（"重复—修正—逼近"）
+// 循环是更广泛的"重复执行"结构；迭代通常借助循环来实现，但循环也可以是简单的遍历，并不一定进行逼近或优化。
 fn main() {
+    iter_vs_into_iter();
     // 1.  map 里面一个匿名函数
     let a = [1, 2, 3, 4];
     // let b = &[5, 6, 7, 8];
@@ -13,18 +16,18 @@ fn main() {
     let s1 = &[1, 2, 3];
     let s2 = &["hello", "world"];
     let mut iter = s1.iter().zip(s2);
-    assert_eq!(iter.next(), Some((&1, &"hello")));// &1,&&hello
+    assert_eq!(iter.next(), Some((&1, &"hello"))); // &1,&&hello
     assert_eq!(iter.next(), Some((&2, &"world")));
     // 两个迭代长度必须一样。
     assert_eq!(iter.next(), None);
 
     // 3. skip 跳过2个值，copied()相当于map(&x|x)或者map(|x|*x),为了返回
     let skip3 = a.iter().skip(2).copied().collect::<Vec<i32>>();
-    println!("skip: {:?}", skip3);//[3,4]
+    println!("skip: {:?}", skip3); //[3,4]
 
     // 4.nth，获取迭代器第三个值。Option类型
     let nth4 = a.into_iter().nth(2);
-    println!("nth: {:?}", nth4);//3
+    println!("nth: {:?}", nth4); //3
 
     // 5. filter 过滤某个值
     let fil: Vec<i32> = a.iter().filter(|&x| x % 2 == 0).copied().collect();
@@ -52,8 +55,8 @@ fn main() {
     // }
     // 上面的代码用fold写的话就是这样。
     let vec = vec![1, 2, 3, 4, 5];
-    let res = vec.iter().fold(5, |acc, x| acc + x);// 5+1+2+3+4+5=20
-    // 当我们要按照顺序操作迭代器中所有值时，并且下次操作依赖于上次操作的结果时，就可以用fold。
+    let res = vec.iter().fold(5, |acc, x| acc + x); // 5+1+2+3+4+5=20
+                                                    // 当我们要按照顺序操作迭代器中所有值时，并且下次操作依赖于上次操作的结果时，就可以用fold。
     println!("fold: {:?}", res);
 
     // 8.1 take
@@ -65,14 +68,14 @@ fn main() {
     // 需要注意的是，取出来的值是引用类型。
     // 这里可以对比一下skip，skip是跳过前n个值，take是获取到n个值。那我们先skip再take岂不是能获取任意值了。
     for &v in vec.iter().take(2) {
-        println!("take: {:?}", v);// 1 2
+        println!("take: {:?}", v); // 1 2
     }
     // 8.2 Option的take
     let mut x = Some(2);
     // Option的take 会取走值，然后设置一个None，相当于 std::mem::replace(self, None)
-    let y = x.take();//类似c++中的move
-    println!("Option take x: {:?}",x); //None
-    println!("Option take y: {:?}",y); // Some(2)
+    let y = x.take(); //类似c++中的move
+    println!("Option take x: {:?}", x); //None
+    println!("Option take y: {:?}", y); // Some(2)
 
     // 9. map_or, 提取Option中的值，使用f处理后返回。当为None时，返回这个默认值。
     let result_1 = x.map_or(0, |v| v * 2); // result_1 = 0
@@ -88,3 +91,38 @@ fn main() {
 // 1. collect不能作用与迭代器类型。如果发现报错，用map或者copied方法转换一下。
 // 2. zip的调用的双方必须是引用
 // 3. skip和filter都必须转化一下才能collect。要经常使用就记住了，目前还没什么技巧。
+
+fn iter_vs_into_iter() {
+    // ========== iter vs into_iter 的区别 ==========
+    let arr = [1, 2, 3, 4];
+
+    // iter(): 返回 &T，借用数据，不消耗所有权
+    // 类型：Iterator<Item = &i32>
+    let iter_result: Vec<&i32> = arr.iter().collect();
+    println!("iter 返回引用: {:?}", iter_result); // [&1, &2, &3, &4]
+                                                  // arr 仍然可以使用
+    println!("arr 仍然可用: {:?}", arr);
+
+    // into_iter():
+    // - 对于数组 [T; N]: 返回 T（按值，Copy trait 时会复制）
+    // - 对于 Vec<T>: 会消耗所有权，返回 T
+    // 对于数组，类型：Iterator<Item = i32>（因为 i32 实现了 Copy）
+    let into_iter_result: Vec<i32> = arr.into_iter().collect();
+    println!("into_iter 返回值: {:?}", into_iter_result); // [1, 2, 3, 4]
+                                                          // arr 仍然可以使用（因为 i32 实现了 Copy，数组被复制了）
+    println!("arr 仍然可用: {:?}", arr);
+
+    // 对于 Vec，into_iter 会消耗所有权
+    let vec = vec![1, 2, 3, 4];
+    let vec_iter: Vec<i32> = vec.into_iter().collect();
+    println!("vec into_iter: {:?}", vec_iter);
+    // vec 不能再使用了，所有权被消耗
+    // println!("{:?}", vec); // 编译错误：value borrowed here after move
+
+    // 总结：
+    // 1. iter() -> Iterator<Item = &T>，借用，不消耗所有权
+    // 2. into_iter() -> Iterator<Item = T>，消耗所有权（对于 Copy 类型会复制）
+    // 3. 对于实现了 Copy 的类型（如 i32），数组的 into_iter 会复制值，原数组仍可用
+    // 4. 对于未实现 Copy 的类型，into_iter 会移动值，原集合不能再使用
+    println!("\n========== 其他示例 ==========\n");
+}

@@ -1,8 +1,8 @@
 [package]
-name = "ch2-basic-type"
+name = "ch2-container"
 version = "0.1.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
+# cargo run --package ch2-container --example from_into 注意这里的package是上面的包的名字，而不是文件夹的名字。
 [dependencies]
