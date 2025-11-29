@@ -13,6 +13,10 @@ fn main() {
 
     // 2. zip返回的是一个是一个元组，可以将两个不同类型的数组/切片，合并成元组，以最短的数据长度为准。
     // zip https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.zip
+    // zip 的作用：将两个迭代器"拉链式"组合，每次返回一对元素 (A, B)
+    // - 返回类型：Iterator<Item = (A, B)>
+    // - 以短者为准：当其中一个迭代器结束时，zip 停止
+    // - 类型可以不同：两个迭代器的元素类型可以不同
     let s1 = &[1, 2, 3];
     let s2 = &["hello", "world"];
     let mut iter = s1.iter().zip(s2);
@@ -20,6 +24,31 @@ fn main() {
     assert_eq!(iter.next(), Some((&2, &"world")));
     // 两个迭代长度必须一样。
     assert_eq!(iter.next(), None);
+
+    // zip 的实际应用场景：
+    // 1. 同时遍历两个数组，进行配对操作
+    let nums = vec![1, 2, 3];
+    let names = vec!["Alice", "Bob", "Charlie"];
+    let pairs: Vec<_> = nums.iter().zip(names.iter()).collect();
+    println!("zip pairs: {:?}", pairs); // [(&1, &"Alice"), (&2, &"Bob"), (&3, &"Charlie")]
+
+    // 2. 计算两个数组对应元素的乘积
+    let a = [1, 2, 3];
+    let b = [4, 5, 6];
+    let products: Vec<i32> = a.iter().zip(b.iter()).map(|(x, y)| x * y).collect();
+    println!("zip products: {:?}", products); // [4, 10, 18]
+
+    // 3. 创建键值对映射
+    let keys = vec!["name", "age", "city"];
+    let values = vec!["Alice", "30", "Beijing"];
+    let map: std::collections::HashMap<_, _> = keys.iter().zip(values.iter()).collect();
+    println!("zip map: {:?}", map);
+
+    // 4. 与索引一起使用（使用 enumerate 更常见，但也可以用 zip）
+    let items = vec!["a", "b", "c"];
+    let indices = 0..;
+    let indexed: Vec<_> = items.iter().zip(indices).collect();
+    println!("zip with indices: {:?}", indexed); // [(&"a", 0), (&"b", 1), (&"c", 2)]
 
     // 3. skip 跳过2个值，copied()相当于map(&x|x)或者map(|x|*x),为了返回
     let skip3 = a.iter().skip(2).copied().collect::<Vec<i32>>();
@@ -91,6 +120,15 @@ fn main() {
 // 1. collect不能作用与迭代器类型。如果发现报错，用map或者copied方法转换一下。
 // 2. zip的调用的双方必须是引用
 // 3. skip和filter都必须转化一下才能collect。要经常使用就记住了，目前还没什么技巧。
+// 4. zip来组合两个迭代器。skip跳过几个值，nth获取第n个值，filter过滤某个值，window不是作用于迭代器，而是作用于 切片 vector；
+//fold是折叠，将所有值折叠成一个值。take获取前n个值。map_or提取Option中的值，使用f函数处理后返回。当为None时，返回这个默认值。
+//any检查迭代器中是否有元素符合要求，如果符合就返回true。
+//all检查迭代器中是否所有元素都符合要求，如果都符合就返回true。
+//find查找迭代器中第一个符合要求的元素，如果找到就返回Some(T)，否则返回None。
+//position查找迭代器中第一个符合要求的元素的索引，如果找到就返回Some(usize)，否则返回None。
+//rposition查找迭代器中最后一个符合要求的元素的索引，如果找到就返回Some(usize)，否则返回None。
+//nth获取第n个值，如果找到就返回Some(T)，否则返回None。
+//nth_back获取倒数第n个值，如果找到就返回Some(T)，否则返回None。
 
 fn iter_vs_into_iter() {
     // ========== iter vs into_iter 的区别 ==========
